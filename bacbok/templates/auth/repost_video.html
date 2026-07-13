@@ -1,0 +1,294 @@
+{% extends 'auth/base.html' %}
+
+{% load static %}
+
+{% static "media" as mediaURL %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<title>bacbok</title>
+<link rel='stylesheet' , href="{% static 'css/repost.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar">
+        <div class="first">
+            <div class="logo">
+                <h4>Bacbok</h4>
+                <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
+            </div>
+        </div>
+        <div class="second">
+            <form action="search">
+                <a href="{% url 'home' %}" class="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                </a>
+                <div class="search">
+                    <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </button>
+                </div>
+                <a id="message_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                </a>
+            </form>
+        </div>
+        <div class="third">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                </svg>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                </svg>
+            </a>
+            <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
+                    alt=""></a>
+            <a href="{% url 'logout' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="popup">
+        <div class="close">
+            <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+        </div>
+        <div class="content">
+            <div class="content_owner">
+                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
+                        alt=""></a>
+                <div class="content_owner_info">
+                    <h5>{{ profile.fullname }}</h5>
+                    <p>@{{ profile.user.username }}</p>
+                </div>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p id="errors" style="text-align: center;color: red;">{{ message }}</p>
+                <input type="text" name="post_caption" placeholder="What's on your mind,{{profile.user.username}}?"
+                    autocomplete="off">
+                <ion-icon name="close-outline" id="image_cancle"></ion-icon>
+                <div class="showimage_wrapper">
+
+                </div>
+
+                <div class="add_to_post">
+                    <button type="button">Add to your post</button>
+                    <ul>
+                        <li>
+                            <label for="contentimage">
+                                <ion-icon name="images-outline" id="photo"></ion-icon>
+                            </label>
+                            <input type="file" name="post_image" id="contentimage" style="display: none;" multiple>
+                        </li>
+                        <li>
+                            <label for="contenttag">
+                                <ion-icon name="person-add-outline" id="tag"></ion-icon>
+                            </label>
+                            <input type="file" name="content_image" id="contenttag" style="display: none;">
+                        </li>
+                        <li>
+                            <label for="contentlocation">
+                                <ion-icon name="location-outline" id="location"></ion-icon>
+                            </label>
+                            <input type="file" name="content_image" id="contentlocation" style="display: none;">
+                        </li>
+                    </ul>
+                </div>
+                <input type="submit" name="content_upload" value="Upload">
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <div class="first">
+            <ul>
+                <a class="active" href="{% url 'home' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                    <p>Home</p>
+                </a>
+                <a href="{% url 'friend' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                    <p>Friends</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <p>Explore</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                    </svg>
+                    <p>Notifications</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                    </svg>
+                    <p>Groups</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                    </svg>
+                    <p>Premium</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                    </svg>
+                    <p>Bookmarks</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                    </svg>
+                    <p>Marketplace</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                    <p>Profile</p>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <p>More</p>
+                </a>
+            </ul>
+            <a href="#" id="create_post">Create Post</a>
+            <div class="signout">
+                <div class="signout_first">
+                    <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
+                    <div class="signout_info">
+                        <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+                        <p>@{{profile.user.username}}</p>
+                    </div>
+                </div>
+                <div class="signout_second">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="second">
+            <div class="post_container">
+                <div class="repost_owner">
+                    <img width="40px" height="40px" src="{{profile.image.url}}" alt="">
+                    <div class="repost_owner_info">
+                        <h5>{{profile.fullname}}</h5>
+                        <p>{{profile.user.username}}</p>
+                    </div>
+                </div>
+                <p id="success"></p>
+                <div class="repost_container">
+                    <form action="" method="post" id="repostForm">
+                        {% csrf_token %}
+                        <textarea name="repost_caption" id="" placeholder="Add something to the post"></textarea>
+                        <div class="repost_content">
+                            <p>post created by {{video.user.username}}'s</p>
+                            <div class="content">
+                                {% if video.video %}
+                                    <video width="70px" height="70px" playsinline muted>
+                                        <source src="{{video.video.url}}" type="video/mp4">
+                                    </video>
+                                {% endif %}
+                                <p class="post_caption">{{video.caption}}</p>
+                            </div>
+                        </div>
+                        <input id="repostBtn" type="submit" value="Post">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="third">
+            <div class="follow_suggest">
+                <h4>Follow People</h4>
+                {% for profile in profiles %}
+                <div class="follow_container">
+                    <div class="follow_inner">
+                        <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
+                        <div class="follow_info">
+                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+                            <p>@{{ profile.user.username }}</p>
+                        </div>
+                    </div>
+                    <a href="#">Follow</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="trending">
+                <h4>Trending Topics</h4>
+                <p>No trending topics today. Start a conversion!</p>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="{% static 'js/repost.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0B1020;
+    --bg-card: #161B2E;
+
+    --primary: #7C3AED;
+    --secondary: #3B82F6;
+
+    --text-main: #FFFFFF;
+    --text-secondary: #9CA3AF;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+svg {
+    stroke: #0B1020;
+    width: 25px;
+    height: 25px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+}
+
+.container .navbar .first h4 {
+    color: #7C3AED;
+    font-size: 20px;
+}
+
+.container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .first .logo h4 {
+    margin-right: 5px;
+}
+
+.container .navbar .second form {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.container .navbar .second .search input {
+    padding: 8px;
+    border: none;
+    outline: none;
+    width: 300px;
+    margin-right: 3px;
+    border-radius: 5px;
+}
+
+.container .navbar .second .search input::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background-color: #FFFFFF;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.container .navbar .second .search button svg {
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.container .navbar .second .search button svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+}
+
+.container .navbar .second form a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form a {
+    color: #0B1020;
+    border: none;
+    cursor: pointer;
+}
+
+.container .navbar .second form .active svg {
+    stroke: #7C3AED;
+}
+
+
+.container .navbar .third {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+.container .navbar .third a svg:nth-child(3) {
+    margin-right: 0px;
+}
+
+.container .navbar .third svg {
+    stroke: #0B1020;
+}
+
+.container .navbar .third a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+.container main{
+    display: flex;
+    justify-content: center;
+}
+
+.container main .search_result{
+    padding-left: 3%;
+    padding-right: 3%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    width: 500px;
+    max-height: 400px;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    margin-bottom: 6px;
+}
+
+.container main .search_result::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+
+.container main .search_result::-webkit-scrollbar-track{
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.container main .search_result::-webkit-scrollbar-thumb{
+    background-color: #161B2E;
+    border-radius: 5px;
+}
+
+.container main .search_result h3{
+    margin-bottom: 20px;
+}
+
+.container main .search_result .user_profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.container main .search_result .user_profile .first{
+    display: flex;
+    align-items: center;
+}
+
+.container main .search_result .user_profile .first img{
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container main .search_result .user_profile .first .profile_info a{
+    font-size: 18px;
+    text-decoration: none;
+    color: #7C3AED;
+}
+
+.container main .search_result .user_profile .first .profile_info p{
+    font-size: 12px;
+}
+
+.container main .search_result .user_profile .last a{
+    background-color: #3B82F6;
+    width: 120px;
+    padding: 6px;
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+}
+

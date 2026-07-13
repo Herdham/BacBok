@@ -1,0 +1,343 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0B1020;
+    --bg-card: #161B2E;
+
+    --primary: #7C3AED;
+    --secondary: #3B82F6;
+
+    --text-main: #FFFFFF;
+    --text-secondary: #9CA3AF;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+svg {
+    stroke: #0B1020;
+    width: 25px;
+    height: 25px;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 10px;
+}
+
+.container .navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+.container .navbar .first h4 {
+    color: #7C3AED;
+    font-size: 20px;
+}
+
+.container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .first .logo h4 {
+    margin-right: 5px;
+}
+
+.container .navbar .second form {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.container .navbar .second .search input {
+    padding: 8px;
+    border: none;
+    outline: none;
+    width: 300px;
+    margin-right: 3px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second .search input::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background-color: #FFFFFF;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.container .navbar .second .search button svg {
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.container .navbar .second .search button svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+}
+
+.container .navbar .second form a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form a {
+    color: #0B1020;
+    border: none;
+    cursor: pointer;
+}
+
+.container .navbar .second form .active svg {
+    stroke: #7C3AED;
+}
+
+
+.container .navbar .third {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+.container .navbar .third a svg:nth-child(3) {
+    margin-right: 0px;
+}
+
+.container .navbar .third svg {
+    stroke: #0B1020;
+}
+
+.container .navbar .third a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+.container main{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.container main .first {
+    background-color: #FFFFFF;
+    width: 25%;
+    height: 90vh;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-right: 20px;
+    align-self: flex-start;
+    position: fixed;
+    top: 0;
+    margin-top: 60px;
+}
+
+.container main .first ul a {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.container main .first ul .active {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.container main .first ul a:hover {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.container main .first ul a svg {
+    margin-right: 10px;
+    font-size: 20px;
+    stroke: #161B2E;
+}
+
+.container main .first ul a p {
+    font-size: 15px;
+    color: #161B2E;
+    margin-top: 6px;
+}
+
+.container main .first #create_post {
+    background-color: #7C3AED;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 6px;
+    margin-left: 8px;
+    width: 120px;
+    font-size: 12px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.container main .first .signout {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container main .first .signout .signout_first {
+    display: flex;
+    align-items: center;
+}
+
+.container main .first .signout .signout_first img {
+    border-radius: 50%;
+    margin-right: 10px;
+    align-self: flex-start;
+}
+
+.container main .first .signout .signout_first .signout_info p {
+    font-size: 10px;
+}
+
+.container main .account_update{
+    margin-left: 27%;
+    width: 72%;
+}
+
+.container main .account_update h3{
+    margin-bottom: 5px;
+}
+
+.container main .account_update form {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.container main .account_update form .setting_wrapper h5{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.container main .account_update form .setting_wrapper .fullname{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.container main .account_update form .setting_wrapper .fullname input{
+    width: 100%;
+    margin-right: 5px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container main .account_update form .setting_wrapper .fullname input::placeholder {
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+.container main .account_update form .setting_wrapper textarea{
+    width: 100%;
+    margin-right: 5px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+    height: 100px;
+}
+
+.container main .account_update form .setting_wrapper textarea::placeholder {
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container main .account_update form .setting_wrapper input{
+    width: 100%;
+    margin-right: 5px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container main .account_update form .setting_wrapper input::placeholder {
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container main .account_update form input[type="submit"]{
+    border: none;
+    outline: none;
+    background-color: #161B2E;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+}
