@@ -1,71 +1,204 @@
 {% extends "auth/base.html" %}
-
 {% load static %}
 
 {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>bacbok</title>
-    <link rel='stylesheet', href="{% static 'css/signup.css' %}">
-{% endblock  %}
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <title>Bacbok - Create Account</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <form action="" method="POST" id="signupForm">
-            {% csrf_token %}
-            
-            <h2>Bacbok</h2>
-            <p>signup with bacbok and connect with your friends and families</p>
+    <main class="auth-wrapper">
+        <!-- Animated Background -->
+        <div class="auth-background" aria-hidden="true">
+            <div class="bg-shape bg-shape-1"></div>
+            <div class="bg-shape bg-shape-2"></div>
+            <div class="bg-shape bg-shape-3"></div>
+        </div>
+        
+        <!-- Signup Container -->
+        <section class="auth-container">
+            <article class="auth-card">
+                <!-- Header -->
+                <header class="auth-header">
+                    <div class="logo-icon" aria-hidden="true">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                    </div>
+                    <h1>Bacbok</h1>
+                    <p class="subtitle">Create your account and connect with friends & family</p>
+                </header>
 
-            {% if form.non_field_errors %}
-                {% for error in form.non_field_errors %}
-                    <p class="errors">{{error}}</p>
-                {% endfor %}
-            {% endif %}
-            
-            <p style="display: none;" id="error"></p>
-            <div class="type_text">
-                <input type="email" id="email" name="email" value="{{form.email.value|default:''}}" placeholder="your email" required autocomplete="off"/>
-                {% for email_error in form.email.errors %}
-                    <p class="errors">{{email_error}}</p>
-                {% endfor %}
-            </div>
-            
-            <div class="type_text">
-                <input type="text" id="username" name="username" value="{{form.username.value|default:''}}" placeholder="your username" autocomplete="off" required/>
-                {% for user_error in form.username.errors %}
-                    <p class="errors">{{user_error}}</p>
-                {% endfor %}
-            </div>
-            
-            <div class="type_password">
-                <input type="password" id="pass1" name="password1" value="{{form.password1.value|default:''}}" placeholder="enter your password" required/>
-                <input type="password" id="pass2" name="password2" value="{{form.password2.value|default:''}}" placeholder="confirm password" required/>
-            </div>
+                <!-- Signup Form -->
+                <form action="" method="POST" class="auth-form" id="signupForm" novalidate>
+                    {% csrf_token %}
 
-            <div id="type_checkbox">
-                <p>check password</p>
-                <input type="checkbox" id="checkbox"/>
-            </div>
+                    <!-- Django Messages -->
+                    {% if form.non_field_errors %}
+                        <div class="alert-container">
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-error" role="alert">
+                                    <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+                                    <span>{{ error }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
-            <p class="terms">By clicking on Join you agree to our <a href="#">terms and conditions</a> and you have read out <a href="#">data policy</a></p>
+                    <!-- Dynamic Error Message -->
+                    <div class="alert alert-error" id="error" style="display: none;" role="alert">
+                        <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+                        <span id="errorMessage"></span>
+                    </div>
 
-            <div id="join">
-                <button id="signupBtn" disabled type="submit"><p>Join</p><ion-icon name="arrow-forward-outline"></ion-icon></button>
-            </div>
+                    <!-- Email Field -->
+                    <div class="input-group">
+                        <label class="input-label" for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <ion-icon name="mail-outline" class="input-icon" aria-hidden="true"></ion-icon>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                value="{{ form.email.value|default:'' }}"
+                                placeholder="Enter your email" 
+                                required 
+                                autocomplete="email"
+                                class="form-input"
+                                aria-required="true"
+                            >
+                            <div class="input-border"></div>
+                            <div class="validation-icon"></div>
+                        </div>
+                        {% for email_error in form.email.errors %}
+                            <span class="field-error">{{ email_error }}</span>
+                        {% endfor %}
+                    </div>
 
-            <div id="options">
-                <span>Already have an account?</span>
-                <ul>
-                    <li><a href="{% url 'account_login' %}">Login</a></li>
-                    <li><a href="{% url 'account_reset_password' %}">Forget Password?</a></li>
-                </ul>
-            </div>
+                    <!-- Username Field -->
+                    <div class="input-group">
+                        <label class="input-label" for="username">Username</label>
+                        <div class="input-wrapper">
+                            <ion-icon name="person-outline" class="input-icon" aria-hidden="true"></ion-icon>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                value="{{ form.username.value|default:'' }}"
+                                placeholder="Choose a username" 
+                                required
+                                autocomplete="username"
+                                class="form-input"
+                                aria-required="true"
+                            >
+                            <div class="input-border"></div>
+                            <div class="validation-icon"></div>
+                        </div>
+                        {% for user_error in form.username.errors %}
+                            <span class="field-error">{{ user_error }}</span>
+                        {% endfor %}
+                    </div>
 
-        </form>
-    </div>
+                    <!-- Password Fields -->
+                    <div class="input-group">
+                        <label class="input-label" for="pass1">Password</label>
+                        <div class="input-wrapper">
+                            <ion-icon name="lock-closed-outline" class="input-icon" aria-hidden="true"></ion-icon>
+                            <input 
+                                type="password" 
+                                id="pass1" 
+                                name="password1"
+                                value="{{ form.password1.value|default:'' }}"
+                                placeholder="Create a password" 
+                                required
+                                class="form-input"
+                                aria-required="true"
+                            >
+                            <button type="button" class="toggle-password" data-target="pass1" aria-label="Toggle password visibility">
+                                <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
+                            </button>
+                            <div class="input-border"></div>
+                            <div class="validation-icon"></div>
+                        </div>
+                        <!-- Password Strength Meter -->
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill1"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText1"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label" for="pass2">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <ion-icon name="lock-closed-outline" class="input-icon" aria-hidden="true"></ion-icon>
+                            <input 
+                                type="password" 
+                                id="pass2" 
+                                name="password2"
+                                value="{{ form.password2.value|default:'' }}"
+                                placeholder="Confirm your password" 
+                                required
+                                class="form-input"
+                                aria-required="true"
+                            >
+                            <button type="button" class="toggle-password" data-target="pass2" aria-label="Toggle password visibility">
+                                <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
+                            </button>
+                            <div class="input-border"></div>
+                            <div class="validation-icon"></div>
+                        </div>
+                        <div class="password-match" id="passwordMatch"></div>
+                    </div>
+
+                    <!-- Show Password Toggle -->
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="showPassword" aria-label="Show passwords">
+                            <span class="checkmark" aria-hidden="true"></span>
+                            <span class="checkbox-text">Show passwords</span>
+                        </label>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="terms-container">
+                        <p class="terms">
+                            By clicking Join, you agree to our 
+                            <a href="#" class="terms-link">Terms & Conditions</a> and 
+                            <a href="#" class="terms-link">Privacy Policy</a>
+                        </p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="signupBtn" disabled aria-disabled="true">
+                        <span class="btn-text">Create Account</span>
+                        <ion-icon name="arrow-forward-outline" class="btn-icon" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <!-- Footer -->
+                    <footer class="auth-footer">
+                        <p>Already have an account? <a href="{% url 'account_login' %}" class="login-link">Sign In</a></p>
+                    </footer>
+                </form>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block scripts %}
     <script src="{% static 'js/signup.js' %}"></script>
-{% endblock  %}
+{% endblock %}
