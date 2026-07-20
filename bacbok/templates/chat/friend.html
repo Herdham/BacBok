@@ -1,0 +1,161 @@
+{% extends 'chat/base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/chat_css/friend.css' %}">
+    <script src="{% static 'js/htmx/htmx.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-4.0.0.min.js' %}"></script>
+    <title>Bac</title>
+{% endblock head %}
+
+{% block content %}
+    <div class="container">
+        <nav class="navbar">
+            <div class="first">
+                <div class="logo">
+                    <h4>Bacbok</h4>
+                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
+                </div>
+            </div>
+            <div class="second">
+                <form action="search">
+                    <a href="{% url 'home' %}" class="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                    </a>
+                    <div class="search">
+                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a id="message_btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                    </a>
+                </form>
+            </div>
+            <div class="third">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                    </svg>
+                </a>
+                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
+                        alt=""></a>
+                <a href="{% url 'logout' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="first">
+                <div class="header">
+                    <h2>Friends</h2>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path fill-rule="evenodd"
+                                d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="friend_list">
+                    <ul>
+                        <a href="{% url 'friend' %}">
+                            <div class="list_inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                </svg>
+                                <p>Home</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <div class="list_inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                                </svg>
+                                <p>Friends Suggestion</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <div class="list_inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <p>Unfollow</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="second">
+                <h4>People to Follow</h4>
+
+                <div class="all_user_to_follow">
+                    {% for user in users %}
+                        {% if user.users_acc not in profile.follow.all %}
+                            <div class="card">
+                                <img width="200px" height="200px" src="{{user.users_acc.image.url}}" alt="">
+                                <div class="card_info">
+                                    <div class="user_details">
+                                        <h3>{{user.users_acc.fullname}}</h3>
+                                        <p>@{{user.username}}</p>
+                                    </div>
+                                    <button class="card_btn" draggable="true" hx-get="/friend_request/{{user.id}}" hx-trigger="click" hx-target="this" type="button">Follow</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{% static 'js/chat_js/friends.js' %}"></script>
+{% endblock content %}

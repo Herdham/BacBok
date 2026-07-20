@@ -1,0 +1,566 @@
+{% extends 'auth/base.html' %}
+
+{% load static %}
+
+{% static "media" as mediaURL %}
+
+{% block head %} 
+    <title>bacbok</title>
+    <link rel='stylesheet' , href="{% static 'css/profile.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+{% endblock %}
+
+{% block content %} 
+    <div class="container">
+        <nav class="navbar">
+            <div class="first">
+                <div class="logo">
+                    <h4>Bacbok</h4>
+                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
+                </div>
+            </div>
+            <div class="second">
+                <form action="{% url 'search' %}">
+                    <a href="{% url 'home' %}" class="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                    </a>
+                    <div class="search">
+                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="third">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                    </svg>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+        <div class="profile_option_dropdown">
+            <h6>Drop Down</h6>
+        </div>
+
+        <main>
+
+            <div class="first_side">
+                <ul>
+                    <a class="active" href="{% url 'home' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                        <p>Home</p>
+                    </a>
+                    <a href="{% url 'friend' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                        <p>Friends</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <p>Explore</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                        </svg>
+                        <p>Notifications</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                        </svg>
+                        <p>Groups</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                        </svg>
+                        <p>Premium</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                        </svg>
+                        <p>Bookmarks</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                        <p>Marketplace</p>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <p>More</p>
+                    </a>
+                </ul>
+                <div class="signout">
+                    <div class="signout_first">
+                        <img width="30px" height="30px" src="{{other_profile.image.url}}" alt="">
+                        <div class="signout_info">
+                            <h5>{{other_profile.firstname}} {{other_profile.lastname}}</h5>
+                            <p>@{{other_profile.user.username}}</p>
+                        </div>
+                    </div>
+                    <div class="signout_second">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="second_side">
+                <div class="profile_container">
+                    <div class="cover">
+                        <a href="{{other_profile.cover.url}}">
+                            <img src="{{other_profile.cover.url}}" alt="">
+                        </a>
+                    </div>
+
+                    <div class="profile_meta">
+                        <div class="profile_picture">
+                            <a href="{{other_profile.image.url}}">
+                                <img src="{{other_profile.image.url}}" alt="">
+                            </a>
+                        </div>
+
+                        <div class="user_option">
+                            <ul>
+                                <a class="profile_option" href="#">
+                                    <svg id="profile_option" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                    </svg>
+                                </a>
+                                <a href="{% url 'message' %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                    </svg>
+                                </a>
+                                {% if other_profile in request.user.users_acc.follow.all %}
+                                    <a href="{% url 'follow' profile_id=other_profile.id %}" class="follow_btn">Following</a>
+                                {% elif other_profile.user.username == request.user.username %}
+                                        <a href="#" class="follow_btn">Message</a>
+                                {% else %}
+                                    <a href="{% url 'follow' profile_id=other_profile.id %}" class="follow_btn">Follow</a>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user_info">
+                    <h3>{{other_profile.fullname}}</h3>
+                    <p>@{{other_profile.user.username}}</p>
+                    <span>{{other_profile.bio}}</span>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                            </svg>
+                            <a href="#">{{other_profile.website}}</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                            </svg>
+                            <a href="#">{{other_profile.date_created}}</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                            </svg>
+                            <a href="#">{{other_profile.address}}</a>
+                        </li>
+                    </ul>
+
+                    <div class="follow_counts">
+                        <p id="following"><strong>{{other_profile.follow.count}}</strong> Following</p>
+                        <p id="followers"><strong>{{other_profile.followers.count}}</strong> Followers</p>
+                        <p id="followers"><strong>{{post_count}}</strong> Post</p>
+                    </div>
+
+                    <ul class="user_feeds_option">
+                        <li><a href="#">Post</a></li>
+                        <li><a href="#">Replies</a></li>
+                        <li><a href="#">Likes</a></li>
+                        <li><a href="#">Highlight</a></li>
+                        <li><a href="#">Media</a></li>
+                    </ul>
+                    <hr>
+                    
+                    {% for post in others_post reversed %}
+                        <div class="post_container">
+                            <div class="post_owner">
+                                <img width="30px" height="30px" src="{{post.user.users_acc.image.url}}" alt="">
+                                <div class="post_owner_info">
+                                    <div class="info">
+                                        <h5>{{post.user.users_acc.firstname}} {{post.user.users_acc.lastname}}</h5>
+                                        <p>@{{post.user.username}} {{post.created_at|time:"h:i A"}}</p>
+                                    </div>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="size-6 post_option">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                </svg>
+                            </div>
+
+                            <div class="post_option_container">
+                                {% if post.user.username == request.user.username %}
+                                    <ul>
+                                        <a class="deletepost" href="{% url 'deletePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                            </svg>
+                                            <p>Move to trash</p>
+                                        </a>
+                                        <a class="editpost" href="{% url 'editPost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                            </svg>
+                                            <p>Edit Post</p>
+                                        </a>
+                                        <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                            </svg>
+                                            <p>Share</p>
+                                        </a>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                            </svg>
+                                            <p>Pin Post</p>
+                                        </a>
+                                        <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                            </svg>
+                                            <p>Copy link</p>
+                                        </a>
+                                    </ul>
+                                {% else %}
+                                    <ul>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                            </svg>
+                                            <p>Hide</p>
+                                        </a>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" />
+                                            </svg>
+                                            <p>Report</p>
+                                        </a>
+                                        <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                            </svg>
+                                            <p>Share</p>
+                                        </a>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                                            </svg>
+                                            <p>If something broken? Let us know.</p>
+                                        </a>
+                                        <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                            </svg>
+                                            <p>Copy link</p>
+                                        </a>
+                                    </ul>
+                                {% endif %}
+                            </div>
+
+                            <div class="post_sure_modal">
+                                <div class="post_sure_container">
+                                    <h5>Are you sure, you want to delete this post?</h5>
+                                    <div class="post_sure_option">
+                                        <a href="{% url 'deletePost' post_id=post.id %}">Yes</a>
+                                        <a class="post_btn">No</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="edit_post">
+                                <div class="edit_post_modal_close">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <input class="input_text" name="caption" type="text" value="{{post.caption}}">
+                                    <div class="post_caption" contenteditable="true">{{post.caption}}</div>
+                                    <input type="submit" value="Updated Post">
+                                </form>
+                            </div>
+
+                            <div class="sharePost">
+                                <div class="share_post_modal_close">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                                <h3>Share to</h3>
+                                <div class="share_container">
+                                    <ul>
+                                        <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                            </svg>
+                                            <p>Copy link</p>
+                                        </a>
+                                        <a href="{% url 'sharePost' post_id=post.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                            </svg>
+                                            <p>share to bacbok</p>
+                                        </a>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                                            </svg>
+                                            <p>share to groups</p>
+                                        </a>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                            <p>Friends Timeline</p>
+                                        </a>
+                                    </ul>
+                                    <button type="button">share to other apps...</button>
+                                </div>
+                            </div>
+
+                            {% if post.caption|length > 200 %}
+                                <div class="caption_container">
+                                    <p class="post_caption">{{post.caption}}</p>
+                                </div>
+                            {% else %}
+                                <div class="caption_container">
+                                    <p class="post_caption">{{post.caption}}</p>
+                                </div>
+                            {% endif %}
+
+                            {% if post.image.count > 1 %}
+                                <div class="post_wrapper">
+                                    <svg id="chevback" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                    </svg>
+                                
+                                    <div class="image_wrapper">
+                                        {% if post.image %}
+                                            {% for img_obj in post.image.all %}
+                                                <a href="{{ img_obj.image.url }}">
+                                                    <img class="post_image" src="{{ img_obj.image.url }}" alt="">
+                                                </a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+
+                                    <svg id="chevfront" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </div>
+                            {% elif post.image.count == 0 %}
+                                <div class="post_wrapper">
+                                    <div class="no_image">
+                                        {% if post.image %}
+                                            {% for img_obj in post.image.all %}
+                                                <a href="{{ img_obj.image.url }}">
+                                                    <img class="post_image" src="{{ img_obj.image.url }}" alt="">
+                                                </a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="post_wrapper">
+                                    <div class="image_wrapper">
+                                        {% if post.image %}
+                                            {% for img_obj in post.image.all %}
+                                                <a href="{{ img_obj.image.url }}">
+                                                    <img class="post_image" src="{{ img_obj.image.url }}" alt="">
+                                                </a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <ul class="post_wrapper_option">
+                                <a href="{% url 'postlikes' post_id=post.id %}" id="liked">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>
+                                    <p>Likes</p>
+                                    <span id="likedcount-{{post.id}}">{{ post.likes.count }}</span>
+                                </a>
+                                
+                                <a href="{% url 'postcomment' post_id=post.id %}" id="comment">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
+                                    </svg>
+                                    <p>Comment {{post.comments.count}}</p>
+                                </a>
+                                <a class="sharepost2" href="{% url 'sharePost' post_id=post.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                    </svg>
+                                    <p>Share {{post.share}}</p>
+                                </a>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+                                    </svg>
+                                    <p>Tweet</p>
+                                </a>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+            <div class="third">
+                <div class="follow_suggest">
+                    <h4>Follow People</h4>
+            
+                    {% for profile in user_not_follow %}
+                        {% if not profile.user.username == request.user.username %}
+                            <div class="follow_container">
+                                <div class="follow_inner">
+                                    <a href="{% url 'profile' username=profile.user.username %}">
+                                        <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
+                                        <div class="follow_info">
+                                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+                                            <p>@{{ profile.user.username }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a class="home_followBtn" href="{% url 'follow' profile_id=profile.id %}" class="home_follow">Follow</a>
+                    
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+                <div class="trending">
+                    <h4>Trending Topics</h4>
+                    <p>No trending topics today. Start a conversion!</p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+    <script src="{% static 'js/profile.js'%}"></script>
+{% endblock %}

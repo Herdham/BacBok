@@ -1,0 +1,71 @@
+{% extends "auth/base.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>bacbok</title>
+    <link rel='stylesheet', href="{% static 'css/signup.css' %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="POST" id="signupForm">
+            {% csrf_token %}
+            
+            <h2>Bacbok</h2>
+            <p>signup with bacbok and connect with your friends and families</p>
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="errors">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+            
+            <p style="display: none;" id="error"></p>
+            <div class="type_text">
+                <input type="email" id="email" name="email" value="{{form.email.value|default:''}}" placeholder="your email" required autocomplete="off"/>
+                {% for email_error in form.email.errors %}
+                    <p class="errors">{{email_error}}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="type_text">
+                <input type="text" id="username" name="username" value="{{form.username.value|default:''}}" placeholder="your username" autocomplete="off" required/>
+                {% for user_error in form.username.errors %}
+                    <p class="errors">{{user_error}}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="type_password">
+                <input type="password" id="pass1" name="password1" value="{{form.password1.value|default:''}}" placeholder="enter your password" required/>
+                <input type="password" id="pass2" name="password2" value="{{form.password2.value|default:''}}" placeholder="confirm password" required/>
+            </div>
+
+            <div id="type_checkbox">
+                <p>check password</p>
+                <input type="checkbox" id="checkbox"/>
+            </div>
+
+            <p class="terms">By clicking on Join you agree to our <a href="#">terms and conditions</a> and you have read out <a href="#">data policy</a></p>
+
+            <div id="join">
+                <button id="signupBtn" disabled type="submit"><p>Join</p><ion-icon name="arrow-forward-outline"></ion-icon></button>
+            </div>
+
+            <div id="options">
+                <span>Already have an account?</span>
+                <ul>
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                    <li><a href="{% url 'account_reset_password' %}">Forget Password?</a></li>
+                </ul>
+            </div>
+
+        </form>
+    </div>
+    <script src="{% static 'js/signup.js' %}"></script>
+{% endblock  %}
