@@ -1,0 +1,202 @@
+<<<<<<< HEAD
+=======
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-main: #0B1020;
+    --bg-card: #161B2E;
+
+    --primary: #7C3AED;
+    --secondary: #3B82F6;
+
+    --text-main: #FFFFFF;
+    --text-secondary: #9CA3AF;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: auto;
+    padding: 10px;
+}
+
+.container h2{
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: #7C3AED;
+}
+
+.container p{
+    text-align: center;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.container form .errors{
+    color: red;
+    text-align: left;
+}
+
+.container .type_text input{
+    padding: 10px;
+    margin-bottom: 7px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: linear-gradient(135deg, #7C3AED, #3B82F6);
+    color: #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .type_text input::placeholder {
+    color: #FFFFFF;
+    font-size: 9px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* .container input{
+    padding: 8px;
+    margin-bottom: 7px;
+    width: 100%;
+} */
+
+.container .type_password{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .type_password input {
+    padding: 10px;
+    margin-bottom: 7px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .type_password input::placeholder {
+    font-size: 9px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .type_password #pass1 {
+    margin-right: 10px;
+}
+
+.container #helpful{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container #helpful .checkbox{
+    display: flex;
+    align-items: center;
+}
+
+.container #helpful .checkbox input {
+    margin-left: 10px;
+}
+
+.container #join input{
+    padding: 8px;
+    margin-bottom: 7px;
+    width: 100%;
+}
+
+.container form #type_checkbox{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.container form #type_checkbox p{
+    margin-right: 5px;
+    margin-bottom: 0px;
+    font-size: 9px;
+}
+
+.container .terms{
+    font-size: 9px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.container .terms a{
+    text-decoration: none;
+    color: #3B82F6;
+}
+
+.container form #join button{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: #dddddd;
+    color: #0B1020;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.container form #join button p{
+    margin-right: 5px;
+}
+
+.container form #options span{
+    font-size: 10px;
+}
+
+.container form #options ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container form #options ul li{
+    list-style: none;
+}
+
+.container form #options ul li a{
+    text-decoration: none;
+    color: #161B2E;
+    font-size: 10px;
+}
+
+
+>>>>>>> 6431328d52b86dcdd97352024acc7766295b0363

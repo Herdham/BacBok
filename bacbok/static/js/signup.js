@@ -1,184 +1,174 @@
-// GSAP Initial Animations
-document.addEventListener('DOMContentLoaded', () => {
-    const tl = gsap.timeline({
-        defaults: { ease: "power3.out" }
-    });
+const checkBox = document.getElementById("checkbox")
+const pass1 = document.getElementById("pass1")
+const pass2 = document.getElementById("pass2")
 
-    tl.from('.bg-shape', {
-        duration: 1.5,
-        scale: 0,
-        opacity: 0,
-        stagger: 0.2
-    })
-    .from('.auth-card', {
-        duration: 0.8,
-        y: 60,
-        opacity: 0,
-        rotationX: 10
-    }, "-=0.5")
-    .from('.logo-icon', {
-        duration: 0.6,
-        scale: 0,
-        rotation: -180,
-        opacity: 0
-    }, "-=0.3")
-    .from('.auth-header h1', {
-        duration: 0.5,
-        y: 30,
-        opacity: 0
-    }, "-=0.2")
-    .from('.subtitle', {
-        duration: 0.5,
-        y: 20,
-        opacity: 0
-    }, "-=0.2")
-    .from('.input-group', {
-        duration: 0.5,
-        y: 30,
-        opacity: 0,
-        stagger: 0.1
-    }, "-=0.2")
-    .from('.form-options, .terms-container', {
-        duration: 0.5,
-        y: 20,
-        opacity: 0,
-        stagger: 0.1
-    }, "-=0.2")
-    .from('.submit-btn', {
-        duration: 0.5,
-        y: 20,
-        opacity: 0,
-        scale: 0.9
-    }, "-=0.2")
-    .from('.auth-footer', {
-        duration: 0.5,
-        y: 20,
-        opacity: 0
-    }, "-=0.2");
-});
-
-// DOM Elements
-const signupForm = document.getElementById('signupForm');
-const signupBtn = document.getElementById('signupBtn');
-const emailInput = document.getElementById('email');
-const usernameInput = document.getElementById('username');
-const pass1Input = document.getElementById('pass1');
-const pass2Input = document.getElementById('pass2');
-const showPasswordCheckbox = document.getElementById('showPassword');
-const errorDiv = document.getElementById('error');
-const errorMessage = document.getElementById('errorMessage');
-
-// Password Toggle
-document.querySelectorAll('.toggle-password').forEach(button => {
-    button.addEventListener('click', () => {
-        const targetId = button.getAttribute('data-target');
-        const input = document.getElementById(targetId);
-        const icon = button.querySelector('ion-icon');
-        
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.setAttribute('name', 'eye-outline');
-        } else {
-            input.type = 'password';
-            icon.setAttribute('name', 'eye-off-outline');
-        }
-        
-        // Animation
-        gsap.from(input, {
-            duration: 0.3,
-            scale: 0.95,
-            ease: "back.out(1.7)"
-        });
-    });
-});
-
-// Show All Passwords Toggle
-showPasswordCheckbox.addEventListener('change', () => {
-    const type = showPasswordCheckbox.checked ? 'text' : 'password';
-    pass1Input.type = type;
-    pass2Input.type = type;
-    
-    document.querySelectorAll('.toggle-password ion-icon').forEach(icon => {
-        icon.setAttribute('name', showPasswordCheckbox.checked ? 'eye-outline' : 'eye-off-outline');
-    });
-});
-
-// Input Focus Animations
-document.querySelectorAll('.form-input').forEach(input => {
-    input.addEventListener('focus', () => {
-        gsap.to(input.parentElement.querySelector('.input-icon'), {
-            duration: 0.3,
-            scale: 1.2,
-            color: '#a29bfe',
-            ease: "back.out(1.7)"
-        });
-    });
-
-    input.addEventListener('blur', () => {
-        gsap.to(input.parentElement.querySelector('.input-icon'), {
-            duration: 0.3,
-            scale: 1,
-            color: '#6c6f85',
-            ease: "power2.out"
-        });
-    });
-});
-
-// Validation Functions
-function showError(element, message) {
-    errorDiv.style.display = 'flex';
-    errorMessage.textContent = message;
-    element.classList.add('error');
-    element.classList.remove('success');
-    
-    // Shake animation
-    element.classList.add('shake');
-    setTimeout(() => element.classList.remove('shake'), 300);
-    
-    gsap.from(errorDiv, {
-        duration: 0.3,
-        y: -10,
-        opacity: 0,
-        ease: "power2.out"
-    });
-}
-
-function showSuccess(element) {
-    errorDiv.style.display = 'none';
-    element.classList.remove('error');
-    element.classList.add('success');
-}
-
-function clearValidation(element) {
-    element.classList.remove('error', 'success');
-}
-
-// Password Strength Checker
-function checkPasswordStrength(password) {
-    let strength = 0;
-    
-    if (password.length >= 8) strength++;
-    if (password.match(/[A-Z]/)) strength++;
-    if (password.match(/[0-9]/)) strength++;
-    if (password.match(/[^A-Za-z0-9]/)) strength++;
-    
-    return strength;
-}
-
-function updatePasswordStrength(input, strengthFillId, strengthTextId) {
-    const password = input.value;
-    const strength = checkPasswordStrength(password);
-    const strengthFill = document.getElementById(strengthFillId);
-    const strengthText = document.getElementById(strengthTextId);
-    
-    const strengthColors = ['#ff6b6b', '#fdcb6e', '#a29bfe', '#00b894'];
-    const strengthLabels = ['Weak', 'Fair', 'Good', 'Strong'];
-    
-    if (password.length === 0) {
-        strengthFill.style.width = '0';
-        strengthText.textContent = '';
-        return;
+checkBox.addEventListener("click", function(e){
+    if (checkBox.checked) {
+        pass1.type = "text"
+        pass2.type = "text"
+    }else{
+        pass1.type = "password"
+        pass2.type = "password"
     }
+})
+
+const signupBtn = document.getElementById("signupBtn")
+const input_text = document.querySelectorAll(".type_text")
+const input_password = document.querySelectorAll(".type_password")
+const signupForm = document.getElementById("signupForm")
+
+
+signupBtn.addEventListener("submit", function(e){
+    signupBtn.disabled = true
+    signupBtn.style.backgroundColor = "#dddddd"
+    signupBtn.style.color = "#0B1020"
+})
+
+
+input_text.forEach(input => {
+    const parent = input.closest(".type_text")
+    const inputText = parent.querySelector("input")
+    inputText.addEventListener("input", function(e){
+        if (inputText.value == "") {
+            signupBtn.disabled = true
+            signupBtn.style.backgroundColor = "#dddddd"
+            signupBtn.style.color = "#0B1020"
+            signupBtn.style.cursor = "default"
+        }else{
+            signupBtn.disabled = false
+            signupBtn.style.backgroundColor = "#0B1020"
+            signupBtn.style.color = "#fff"
+            signupBtn.style.cursor = "pointer"
+        }
+    })
+})
+
+input_password.forEach(input => {
+    const parent = input.closest(".type_password")
+    const inputPassword = parent.querySelector("input")
+    inputPassword.addEventListener("input", function(e){
+        if (inputPassword.value == "") {
+            signupBtn.disabled = true
+            signupBtn.style.backgroundColor = "#dddddd"
+            signupBtn.style.color = "#0B1020"
+            signupBtn.style.cursor = "default"
+        }else{
+            signupBtn.disabled = false
+            signupBtn.style.backgroundColor = "#0B1020"
+            signupBtn.style.color = "#fff"
+            signupBtn.style.cursor = "pointer"
+        }
+    })
+})
+
+const email = document.getElementById("email")
+const username = document.getElementById("username")
+const error = document.getElementById("error")
+
+email.addEventListener("input", function(e){
+   if (email.validity.valueMissing){
+        error_msg(email, "email required, type a valid email")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+        signupBtn.style.cursor = "default"
+   }else if(email.validity.typeMismatch){
+        error_msg(email, "Invalid email address")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+       signupBtn.style.cursor = "default"
+    }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.toLowerCase().trim())){
+        error_msg(email, "Invalid email address")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+       signupBtn.style.cursor = "default"
+   }else{
+        clear_msg(email, "")
+        signupBtn.disabled = false
+        signupBtn.style.backgroundColor = "#0B1020"
+        signupBtn.style.color = "#fff"
+       signupBtn.style.cursor = "pointer"
+    }
+})
+
+username.addEventListener("input", function(e){
+    if (!(/^[A-Z][a-zA-Z0-9]{3,}$/.test(username.value))) {
+        error_msg(username, "Username name must start with capital letter and atleast 4 character")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+        signupBtn.style.cursor = "default"
+    }else{
+        clear_msg(username, "")
+        signupBtn.disabled = false
+        signupBtn.style.backgroundColor = "#0B1020"
+        signupBtn.style.color = "#fff"
+        signupBtn.style.cursor = "pointer"
+    }
+})
+
+pass1.addEventListener("input", function(e) {
+    if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9]{8,}$/.test(pass1.value))) {
+        error_msg(pass1, "password must be at least 8 character with number")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+        signupBtn.style.cursor = "default"
+    }else{
+        clear_msg(pass1, "")
+        signupBtn.disabled = false
+        signupBtn.style.backgroundColor = "#0B1020"
+        signupBtn.style.color = "#fff"
+        signupBtn.style.cursor = "pointer"
+    }
+})
+
+pass2.addEventListener("input", function(e) {
+    if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9]{8,}$/.test(pass2.value))) {
+        error_msg(pass2, "password must be at least 8 character with number")
+        signupBtn.disabled = true
+        signupBtn.style.backgroundColor = "#dddddd"
+        signupBtn.style.color = "#0B1020"
+        signupBtn.style.cursor = "default"
+    }else{
+        clear_msg(pass2, "")
+        signupBtn.disabled = false
+        signupBtn.style.backgroundColor = "#0B1020"
+        signupBtn.style.color = "#fff"
+        signupBtn.style.cursor = "pointer"
+    }
+})
+
+function error_msg(element, msg){
+    error.style.display = "block"
+    error.innerText = msg
+    error.style.textAlign = "center"
+    error.style.color = "red"
+    element.style.border = "1px solid red"
+}
+
+function clear_msg(element, msg){
+    error.style.display = "none"
+    element.style.border = "none"
+}
+
+signupForm.addEventListener("submit", (e) => {
+    if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value))) {
+        e.preventDefault()
+        error_msg(email, "invalids email address")
+    }else if(!(/^[A-Z][a-zA-Z0-9]{3,}$/.test(username.value))){
+        e.preventDefault()
+        error_msg(username, "Username name must start with capital letter and atleast 4 character")
+    }else if(!(/^(?=.*[a-zA-Z0-9])(?=.*\d)[a-zA-Z0-9]{8,}$/.test(pass1.value))){
+        e.preventDefault()
+        error_msg(pass1, "password must be at least 8 character with number")
+    } else if (!(/^(?=.*[a-zA-Z0-9])(?=.*\d)[a-zA-Z0-9]{8,}$/.test(pass2.value))){
+        e.preventDefault()
+        error_msg(pass2, "password must be at least 8 character with number")
+    }
+<<<<<<< HEAD
     
     const percentage = (strength / 4) * 100;
     strengthFill.style.width = `${percentage}%`;
@@ -310,3 +300,6 @@ signupForm.addEventListener('submit', (e) => {
         ease: "power2.out"
     });
 });
+=======
+})
+>>>>>>> 6431328d52b86dcdd97352024acc7766295b0363

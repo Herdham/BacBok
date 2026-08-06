@@ -69,6 +69,7 @@ body {
     background: linear-gradient(135deg, #7C3AED, #3B82F6);
     color: #ccc;
     border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container #type_text input::placeholder {
@@ -85,6 +86,7 @@ body {
     outline: none;
     background-color: #ccc;
     border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container #type_password input::placeholder {
@@ -134,19 +136,20 @@ body {
     padding: 8px;
     border: none;
     outline: none;
-    background-color: #0B1020;
-    color: #fff;
+    background-color: #dddddd;
+    color: #161B2E;
     margin-top: 10px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    padding-bottom: 0px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    font-family: 'Poppins', sans-serif
 }
 
 .container form #join button p {
     margin-right: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container form #options span {

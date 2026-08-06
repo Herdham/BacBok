@@ -23,8 +23,14 @@ liked.forEach(likedbtn => {
 
 //profile options
 const profile_option = document.querySelector(".user_option #profile_option")
+const profile_option_dropdown = document.querySelector(".profile_option_dropdown")
 profile_option.addEventListener("click", (e) => {
-    console.log("Working")
+    e.preventDefault()
+    if (profile_option_dropdown.classList.contains("dropdown_open")) {
+       profile_option_dropdown.classList.remove("dropdown_open") 
+    }else{
+        profile_option_dropdown.classList.add("dropdown_open")
+    }
 })
 
 //post_user_option
