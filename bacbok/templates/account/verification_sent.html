@@ -1,5 +1,4 @@
 {% extends "auth/base.html" %}
-
 {% load static %}
 
 {% block head %}
@@ -8,24 +7,221 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>bacbok</title>
-    <link rel='stylesheet', href="{% static 'css/verify_email.css' %}">
-{% endblock  %}
+    <title>Bacbok - Verify Email</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-card: rgba(19, 24, 66, 0.6);
+            --primary: #6C5CE7;
+            --primary-light: #a29bfe;
+            --secondary: #00cec9;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a3b1;
+            --border: rgba(108, 92, 231, 0.2);
+            --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: var(--shadow);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .email-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .container h3 {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .container > p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .confirm_email {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+
+        .errors {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .errors::before {
+            content: '⚠️';
+            font-size: 14px;
+        }
+
+        .login_option {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-top: 24px;
+            margin-bottom: 32px;
+        }
+
+        .login_option li a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(108, 92, 231, 0.1);
+        }
+
+        .login_option li a:hover {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .spam-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(253, 203, 110, 0.05);
+            border: 1px solid rgba(253, 203, 110, 0.15);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .spam-note ion-icon {
+            font-size: 20px;
+            color: #fdcb6e;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .spam-note p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
     <div class="container">
-        <p>Messages:</p>
+        <div class="email-icon">
+            <ion-icon name="mail-unread-outline"></ion-icon>
+        </div>
+        
+        <h3>Verify Your Email Address</h3>
+        
+        <p>We have sent an email to you for verification. Follow the link provided to finalize the signup process.</p>
+        
+        {% if messages %}
+        <p class="section-label">Messages</p>
         <ul class="confirm_email">
             {% for msg in messages %}
-                <li style="font-size: 12px;" class="errors">{{ msg }}</li>
+                <li class="errors">{{ msg }}</li>
             {% endfor %}
         </ul>
-        <p>Menu:</p>
+        {% endif %}
+        
+        <div class="spam-note">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <p>If you do not see the verification email in your main inbox, <strong>check your spam folder</strong>. Please contact us if you do not receive the verification email within a few minutes.</p>
+        </div>
+        
+        <p class="section-label">Menu</p>
         <ul class="login_option">
             <li><a href="{% url 'account_login' %}">Sign In</a></li>
             <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
         </ul>
-        <h3 style="text-align: center;">Verify Your Email Address</h3>
-        <p style="text-align: center;">We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.</p>
     </div>
-{% endblock  %}
+{% endblock %}

@@ -13,8 +13,1178 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <title>bacbok</title>
-    <link rel='stylesheet' , href="{% static 'css/comment_page.css' %}">
+    <style>
+     * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0a0e27;
+    --bg-card: #131842;
+    --bg-card-glass: rgba(19, 24, 66, 0.6);
+    --primary: #6C5CE7;
+    --primary-light: #a29bfe;
+    --secondary: #00cec9;
+    --accent: #fd79a8;
+    --text-main: #FFFFFF;
+    --text-secondary: #a0a3b1;
+    --text-muted: #6c6f85;
+    --border: rgba(108, 92, 231, 0.2);
+    --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+    --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-light);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 20px;
+}
+
+/* Navbar */
+.container .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 3%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(108, 92, 231, 0.15);
+    height: 60px;
+}
+
+.container .navbar .first h4 {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .first .logo h4 {
+    margin-right: 5px;
+}
+
+.container .navbar .second form {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-right: 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.container .navbar .second .search input {
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    width: 300px;
+    background: transparent;
+    color: var(--text-main);
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second .search input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-muted);
+}
+
+.container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.container .navbar .second .search button svg {
+    stroke: var(--text-muted);
+    width: 22px;
+    height: 22px;
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .second .search button svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .second form a svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .second form a {
+    color: var(--bg-main);
+    border: none;
+    cursor: pointer;
+}
+
+.container .navbar .second form .active svg {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .third {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .third a svg:nth-child(3) {
+    margin-right: 0px;
+}
+
+.container .navbar .third a svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+    border: 2px solid var(--border);
+}
+
+svg {
+    stroke: var(--text-muted);
+    width: 25px;
+    height: 25px;
+}
+
+/* Popup Modal */
+.container .popup {
+    width: 96%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.80);
+    position: fixed;
+    top: 0;
+    left: 2%;
+    z-index: 1000;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+}
+
+.container .popup .close ion-icon {
+    color: var(--bg-main);
+    font-size: 23px;
+    margin-left: 95%;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.container .popup .content {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    width: 500px;
+    height: auto;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--shadow);
+}
+
+.container .popup .content .content_owner {
+    display: flex;
+    align-items: center;
+}
+
+.container .popup .content .content_owner img {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.container .popup .content .content_owner .content_owner_info {
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.container .popup .content .content_owner .content_owner_info h5 {
+    color: var(--text-main);
+}
+
+.container .popup .content .content_owner .content_owner_info p {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.container .popup .content form input[type="text"] {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 8px;
+}
+
+.container .popup .content form input::placeholder {
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-muted);
+}
+
+.container .popup .content form #image_cancle {
+    color: var(--text-muted);
+    font-size: 20px;
+    margin-left: 87%;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: none;
+    margin-bottom: 10px;
+    position: absolute;
+}
+
+.container .popup .content form .showimage {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    display: none;
+}
+
+.container .popup .content form .add_to_post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.container .popup .content form .add_to_post button {
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+    background: var(--gradient-1);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.container .popup .content form .add_to_post ul {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container .popup .content form .add_to_post ul li {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.container .popup .content form .add_to_post ul li label ion-icon {
+    font-size: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container .popup .content form .add_to_post ul li label ion-icon:hover {
+    transform: scale(1.2);
+}
+
+.container .popup .content form .add_to_post ul li label #photo {
+    color: #00b894;
+}
+
+.container .popup .content form .add_to_post ul li label #tag {
+    color: var(--primary-light);
+}
+
+.container .popup .content form .add_to_post ul li label #location {
+    color: var(--accent);
+}
+
+.container .popup .content form input[type="submit"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: var(--gradient-1);
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container .popup .content form input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+}
+
+/* Main Layout */
+.container main {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+/* Left Sidebar */
+.container main .first {
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    width: 25%;
+    height: calc(100vh - 80px);
+    position: sticky;
+    top: 70px;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.container main .first ul a {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.container main .first ul .active {
+    background-color: rgba(108, 92, 231, 0.2);
+}
+
+.container main .first ul a:hover {
+    background-color: rgba(108, 92, 231, 0.15);
+}
+
+.container main .first ul a svg {
+    margin-right: 10px;
+    font-size: 20px;
+    stroke: var(--text-secondary);
+}
+
+.container main .first ul a p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.container main .first #create_post {
+    background: var(--gradient-1);
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px 15px;
+    margin-left: 8px;
+    width: 120px;
+    font-size: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.container main .first .signout {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container main .first .signout .signout_first {
+    display: flex;
+    align-items: center;
+}
+
+.container main .first .signout .signout_first img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container main .first .signout .signout_first .signout_info h5 {
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+.container main .first .signout .signout_first .signout_info p {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+/* Main Content */
+.container main .second {
+    flex: 1;
+    max-width: 680px;
+    padding: 0;
+    border-radius: 5px;
+}
+
+/* Post Container */
+.container main .second .post_container {
+    width: 100%;
+    border-radius: 8px;
+    background: var(--bg-card-glass);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;         
+    overflow: hidden;
+}
+
+.container main .second .post_container .post_owner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 12px;
+    margin-bottom: 0;
+}
+
+.container main .second .post_container .post_owner img {
+    border-radius: 50%;
+    align-self: flex-start;
+    margin-right: 10px;
+}
+
+.container main .second .post_container .post_owner .post_owner_info {
+    align-self: flex-start;
+    flex-grow: 1;
+}
+
+.container main .second .post_container .post_owner .post_owner_info .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.container main .second .post_container .post_owner .post_owner_info .info h5 {
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+.container main .second .post_container .post_owner .post_owner_info .info p {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.container main .second .post_container .post_owner svg {
+    align-self: flex-start;
+    cursor: pointer;
+    stroke: var(--text-muted);
+}
+
+.container main .second .post_container .caption_container {
+    display: flex;
+    cursor: pointer;
+    padding: 0 12px;
+}
+
+.container main .second .post_container .caption_container p {
+    color: var(--text-main);
+}
+
+.container main .second .post_container .post_caption {
+    color: var(--text-main);
+    line-height: 1.5;
+    font-size: 14px;                
+    padding: 8px 12px;
+    margin-bottom: 0;
+}
+
+.container main .second .post_container .post_wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.container main .second .post_container .post_wrapper #chevback,
+.container main .second .post_container .post_wrapper #chevfront {
+    background: rgba(255, 255, 255, 0.1);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container main .second .post_container .post_wrapper #chevback:hover,
+.container main .second .post_container .post_wrapper #chevfront:hover {
+    background: rgba(108, 92, 231, 0.3);
+}
+
+.container main .second .post_container .image_wrapper {
+   width: 100%;
+    max-height: 400px;           
+    overflow-x: auto;               
+    overflow-y: hidden;
+    display: flex;
+    gap: 2px;
+    padding: 0;
+    scroll-snap-type: x mandatory;
+}
+
+.container main .second .post_container .image_wrapper a {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    scroll-snap-type: x mandatory;
+}
+
+.container main .second .post_container .post_image {
+    height: 400px;                 
+    width: auto;
+    min-width: 60%;               
+    object-fit: cover;
+    border-radius: 0;
+    scroll-snap-align: start;
+}
+
+.container main .second .post_container .image_wrapper:only-child .post_image,
+.container main .second .post_container .image_wrapper a:only-child .post_image {
+    min-width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    background: #000;
+}
+
+/* Post Options Dropdown */
+.container main .second .post_container .post_option_container {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 10;
+    display: none;
+}
+
+.container main .second .post_container .post_option_container.display {
+    display: block;
+}
+
+.container main .second .post_container .post_option_container ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.container main .second .post_container .post_option_container ul a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.container main .second .post_container .post_option_container ul a:hover {
+    background: rgba(108, 92, 231, 0.15);
+}
+
+.container main .second .post_container .post_option_container ul a svg {
+    margin-right: 12px;
+    stroke: var(--text-secondary);
+}
+
+.container main .second .post_container .post_option_container ul a p {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* Post Action Buttons */
+.container main .second .post_container .post_wrapper_option {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: transparent;
+    border-top: 1px solid var(--border);
+    padding: 10px;
+}
+
+.container main .second .post_container .post_wrapper_option a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 8px;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    border-right: none;  
+    transition: background 0.3s ease;
+}
+
+.container main .second .post_container .post_wrapper_option a:last-child {
+    border-right: none;
+}
+
+.container main .second .post_container .post_wrapper_option a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.container main .second .post_container .post_wrapper_option a svg {
+    margin-right: 8px;
+    stroke: var(--text-secondary);
+    width: 18px;
+    height: 18px;
+}
+
+.container main .second .post_container .post_wrapper_option a p {
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+    margin-right: 4px;
+}
+
+/* Delete/Edit/Share Modals */
+.container .second .post_container .post_sure_modal,
+.container .second .post_container .post_video_sure_modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.container .second .post_container .post_sure_modal .post_sure_container,
+.container .second .post_container .post_video_sure_modal .post_sure_container {
+    width: 300px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.container .second .post_container .post_sure_modal .post_sure_container h5,
+.container .second .post_container .post_video_sure_modal .post_sure_container h5 {
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option,
+.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(1) {
+    background: #00b894;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(2) {
+    background: #ff6b6b;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Edit Post Modal */
+.container .second .edit_post {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    z-index: 20;
+    padding: 8px;
+    display: none;
+}
+
+.container .second .edit_post .edit_post_modal_close {
+    display: flex;
+    justify-content: right;
+    cursor: pointer;
+}
+
+.container .second .edit_post .edit_post_modal_close svg {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    stroke: var(--text-main);
+}
+
+.container .second .edit_post form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 8px;
+}
+
+.container .second .edit_post form .post_caption {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 8px;
+}
+
+.container .second .edit_post form input[type="submit"] {
+    border: none;
+    outline: none;
+    background: var(--gradient-1);
+    color: #fff;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Share Modal */
+.container .second .sharePost {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    z-index: 20;
+    padding: 20px;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container .second .sharePost .share_post_modal_close {
+    display: flex;
+    justify-content: right;
+    cursor: pointer;
+}
+
+.container .second .sharePost .share_post_modal_close svg {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    stroke: var(--text-main);
+}
+
+.container .second .sharePost h3 {
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.container .second .sharePost .share_container ul {
+    margin-bottom: 10px;
+}
+
+.container .second .sharePost .share_container ul a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s ease;
+}
+
+.container .second .sharePost .share_container ul a:hover {
+    background: rgba(108, 92, 231, 0.15);
+}
+
+.container .second .sharePost .share_container ul a:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.container .second .sharePost .share_container ul a:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: none;
+}
+
+.container .second .sharePost .share_container ul a svg {
+    stroke: var(--text-secondary);
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+.container .second .sharePost .share_container ul a p {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.container .second .sharePost .share_container button {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background: var(--gradient-1);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Comment Section */
+.container main .second .comment_upload {
+    margin-bottom: 10px;
+}
+
+.container main .second .comment_upload form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+
+.container main .second .comment_upload form textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-right: 5px;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+    padding: 10px 15px;
+    background: transparent;
+    color: var(--text-main);
+    font-size: 13px;
+}
+
+.container main .second .comment_upload form textarea::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.container main .second .comment_upload form button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 50%;
+    background: var(--gradient-1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.container main .second .comment_upload form button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+}
+
+.container main .second .comment_upload form button svg {
+    stroke: #fff;
+    width: 20px;
+    height: 20px;
+}
+
+.container main .second .post_container hr {
+    border-color: var(--border);
+    border-width: 1px;
+}
+
+
+.container main .second .post_container .comment_display {
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.container main .second .post_container .comment_display .comment_inner {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.container main .second .post_container .comment_display .comment_inner a img {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info h5 {
+    color: var(--text-main);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info p {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option a {
+    font-size: 11px;
+    text-decoration: none;
+    color: var(--primary-light);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option a:hover {
+    color: var(--secondary);
+}
+
+.container main .second .post_container .comment_display .comment_inner .comment_option svg {
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    stroke: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* Right Sidebar */
+.container main .third {
+    width: 25%;
+    position: sticky;
+    top: 70px;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.container main .third .follow_suggest {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    margin-bottom: 15px;
+}
+
+.container main .third .follow_suggest h4 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.container main .third .follow_suggest .follow_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.container main .third .follow_suggest .follow_container .follow_inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container main .third .follow_suggest .follow_container .follow_inner img {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+}
+
+.container main .third .follow_suggest .follow_container .follow_inner .follow_info h5 {
+    color: var(--text-main);
+    font-size: 13px;
+}
+
+.container main .third .follow_suggest .follow_container .follow_inner .follow_info p {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.container main .third .follow_suggest .follow_container a {
+    text-decoration: none;
+    background: var(--gradient-1);
+    color: #fff;
+    padding: 6px 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.container main .third .follow_suggest .follow_container a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
+}
+
+.container main .third .trending {
+    padding: 15px;
+    width: 100%;
+    border-radius: 12px;
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+}
+
+.container main .third .trending h4 {
+    margin-bottom: 8px;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.container main .third .trending p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container .navbar .second .search input {
+        width: 200px;
+    }
+    
+    .container .navbar .third a:nth-child(1),
+    .container .navbar .third a:nth-child(2) {
+        display: none;
+    }
+    
+    .container main .first {
+        width: 30%;
+    }
+    
+    .container main .third {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container .navbar {
+        padding: 8px 15px;
+    }
+    
+    .container .navbar .second .search input {
+        width: 120px;
+        padding: 8px 12px;
+    }
+    
+    .container main .first,
+    .container main .third {
+        display: none;
+    }
+    
+    .container main .second {
+        width: 100%;
+    }
+}
+    </style>
 {% endblock %}
 
 {% block content %}

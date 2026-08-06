@@ -1,25 +1,765 @@
 {% extends "chat/base.html" %}
-
 {% load static %}
 
 {% block head %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/chat_css/messanger.css' %}">
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <title>Bac</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <title>Bacbok - Messages</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main: #0a0e27;
+            --bg-card: #131842;
+            --bg-card-glass: rgba(19, 24, 66, 0.6);
+            --primary: #6C5CE7;
+            --primary-light: #a29bfe;
+            --secondary: #00cec9;
+            --accent: #fd79a8;
+            --text-main: #FFFFFF;
+            --text-secondary: #a0a3b1;
+            --text-muted: #6c6f85;
+            --border: rgba(108, 92, 231, 0.2);
+            --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+            --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary-light);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        svg {
+            stroke: var(--text-muted);
+            width: 25px;
+            height: 25px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ============ NAVBAR ============ */
+        .container .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            padding: 10px 3%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.15);
+            height: 60px;
+        }
+
+        .container .navbar .first h4 {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .container .navbar .first .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .navbar .first .logo h4 {
+            margin-right: 5px;
+        }
+
+        .container .navbar .second form {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .navbar .second .search {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-right: 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container .navbar .second .search input {
+            padding: 10px 16px;
+            border: none;
+            outline: none;
+            width: 300px;
+            background: transparent;
+            color: var(--text-main);
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container .navbar .second .search input::placeholder {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-muted);
+        }
+
+        .container .navbar .second form .search button {
+            border: none;
+            outline: none;
+            background: transparent;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .container .navbar .second .search button svg {
+            stroke: var(--text-muted);
+            width: 22px;
+            height: 22px;
+            transition: stroke 0.3s ease;
+        }
+
+        .container .navbar .second .search button svg:hover {
+            stroke: var(--primary-light);
+        }
+
+        .container .navbar .second form a svg {
+            margin-right: 20px;
+            width: 25px;
+            height: 25px;
+            margin-top: 8px;
+            stroke: var(--text-muted);
+            transition: stroke 0.3s ease;
+        }
+
+        .container .navbar .second form a svg:hover {
+            stroke: var(--primary-light);
+        }
+
+        .container .navbar .second form .active svg {
+            stroke: var(--primary-light);
+        }
+
+        .container .navbar .third {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .navbar .third a svg {
+            margin-right: 15px;
+            margin-top: 8px;
+            stroke: var(--text-muted);
+            transition: stroke 0.3s ease;
+        }
+
+        .container .navbar .third a svg:hover {
+            stroke: var(--primary-light);
+        }
+
+        .container .navbar .third a img {
+            border-radius: 50%;
+            margin-right: 15px;
+            margin-top: 8px;
+            border: 2px solid var(--border);
+        }
+
+        /* ============ MAIN LAYOUT ============ */
+        .container .main_container {
+            display: flex;
+            height: calc(100vh - 60px);
+            padding: 10px 3% 0;
+            gap: 15px;
+        }
+
+        /* ============ LEFT SIDEBAR - CHAT LIST ============ */
+        .container .main_container .first {
+            width: 30%;
+            min-width: 280px;
+            background: var(--bg-card-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .container .main_container .first .chat_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .container .main_container .first .chat_header h3 {
+            color: var(--text-main);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .container .main_container .first .chat_header .chats_option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container .main_container .first .chat_header .chats_option svg {
+            padding: 8px;
+            background: rgba(108, 92, 231, 0.15);
+            stroke: var(--text-secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            transition: all 0.3s ease;
+        }
+
+        .container .main_container .first .chat_header .chats_option svg:hover {
+            background: rgba(108, 92, 231, 0.3);
+            stroke: var(--primary-light);
+        }
+
+        .container .main_container .first .search_message {
+            margin-bottom: 10px;
+        }
+
+        .container .main_container .first .search_message form {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .container .main_container .first .search_message form input[type="text"] {
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            width: 100%;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container .main_container .first .search_message form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .container .main_container .first .search_message form button {
+            border: none;
+            outline: none;
+            background: var(--primary);
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .container .main_container .first .search_message form button:hover {
+            background: var(--primary-light);
+        }
+
+        .container .main_container .first .search_message form button svg {
+            stroke: #fff;
+            width: 18px;
+            height: 18px;
+        }
+
+        .container .main_container .first .message_option {
+            margin-bottom: 10px;
+        }
+
+        .container .main_container .first .message_option ul {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container .main_container .first .message_option ul a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            font-size: 12px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .container .main_container .first .message_option ul a:nth-child(1) {
+            background: rgba(108, 92, 231, 0.3);
+            color: var(--text-main);
+        }
+
+        .container .main_container .first .message_option ul a:hover {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--text-main);
+        }
+
+        .container .main_container .first .lastest_message {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .container .main_container .first .lastest_message .recent_message a {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .container .main_container .first .lastest_message .recent_message a:hover {
+            background: rgba(108, 92, 231, 0.15);
+        }
+
+        .container .main_container .first .lastest_message .recent_message a img {
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 2px solid var(--border);
+        }
+
+        .container .main_container .first .lastest_message .recent_message a .recent_info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .container .main_container .first .lastest_message .recent_message a .recent_info h4 {
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .container .main_container .first .lastest_message .recent_message a .recent_info p {
+            color: var(--text-muted);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ============ MIDDLE - MAIN AREA ============ */
+        .container .main_container .second {
+            flex: 1;
+            background: var(--bg-card-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .container .main_container .second .find_people {
+            display: none;
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .container .main_container .second .message_to {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container .main_container .second .message_to label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .container .main_container .second .message_to input[type="text"] {
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            color: var(--text-main);
+        }
+
+        .container .main_container .second .message_to input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .container .main_container .second .message_to .cancle_user {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 25px;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .container .main_container .second .message_to .cancle_user h5 {
+            color: var(--text-main);
+            font-size: 13px;
+        }
+
+        .container .main_container .second .message_to .cancle_user ion-icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .container .main_container .second .list_container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 350px;
+            height: auto;
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 12px;
+            padding: 10px;
+            display: none;
+            margin-top: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .container .main_container .second .list_container h4 {
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .container .main_container .second .list_container .list_wrapper .list_link {
+            text-decoration: none;
+        }
+
+        .container .main_container .second .list_container .list_wrapper .peoples_info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .container .main_container .second .list_container .list_wrapper .peoples_info:hover {
+            background: rgba(108, 92, 231, 0.15);
+        }
+
+        .container .main_container .second .list_container .list_wrapper .peoples_info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid var(--border);
+        }
+
+        .container .main_container .second .list_container .list_wrapper .peoples_info .peoples_info_data h4 {
+            margin-bottom: 2px;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .container .main_container .second .list_container .list_wrapper .peoples_info .peoples_info_data p {
+            font-size: 11px;
+            color: var(--primary-light);
+        }
+
+        /* No Message State */
+        .container .main_container .second .no_message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .container .main_container .second .no_message .wrapper svg {
+            padding: 15px;
+            background: rgba(108, 92, 231, 0.15);
+            stroke: var(--text-secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .container .main_container .second .no_message .wrapper svg:hover {
+            background: rgba(108, 92, 231, 0.3);
+            stroke: var(--primary-light);
+        }
+
+        .container .main_container .second .no_message .wrapper h3 {
+            color: var(--text-main);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .container .main_container .second .no_message .wrapper p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Chat Message Area */
+        .container .main_container .second .message {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .container .main_container .second .message .chat_message {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox {
+            flex: 1;
+            display: none;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .info_wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .info_wrapper .user_info img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-light);
+            margin-bottom: 10px;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .info_wrapper .user_info h4 {
+            color: var(--text-main);
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .info_wrapper .user_info p {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .info_wrapper .user_info p ion-icon {
+            font-size: 14px;
+        }
+
+        /* Sender Message */
+        .container .main_container .second .message .chat_message .chatBox .message_container .sender {
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .message_container .sender strong {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .message_container .sender span {
+            padding: 10px 14px;
+            background: var(--gradient-1);
+            color: #fff;
+            font-size: 13px;
+            max-width: 70%;
+            border-radius: 18px 18px 4px 18px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        /* Receiver Message */
+        .container .main_container .second .message .chat_message .chatBox .message_container .receive {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .message_container .receive strong {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .container .main_container .second .message .chat_message .chatBox .message_container .receive span {
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            font-size: 13px;
+            max-width: 70%;
+            border-radius: 18px 18px 18px 4px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        /* Message Input */
+        .container .main_container .second .message .chat_message .form {
+            display: none;
+            padding: 10px 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .container .main_container .second .message .chat_message .form form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 5px 10px;
+        }
+
+        .container .main_container .second .message .chat_message .form form input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+
+        .container .main_container .second .message .chat_message .form form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .container .main_container .second .message .chat_message .form form button {
+            border: none;
+            outline: none;
+            background: var(--gradient-1);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .container .main_container .second .message .chat_message .form form button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .container .main_container .second .message .chat_message .form form button ion-icon {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .container .navbar .second .search input {
+                width: 200px;
+            }
+
+            .container .navbar .third a:nth-child(1),
+            .container .navbar .third a:nth-child(2) {
+                display: none;
+            }
+
+            .container .main_container .first {
+                width: 35%;
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container .navbar {
+                padding: 8px 15px;
+            }
+
+            .container .navbar .second .search input {
+                width: 120px;
+                padding: 8px 12px;
+            }
+
+            .container .navbar .second form a svg {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .container .navbar .third a:nth-child(1),
+            .container .navbar .third a:nth-child(2) {
+                display: none;
+            }
+
+            .container .main_container {
+                padding: 5px;
+                gap: 0;
+            }
+
+            .container .main_container .first {
+                display: none;
+            }
+
+            .container .main_container .second {
+                border-radius: 0;
+            }
+        }
+    </style>
 {% endblock head %}
 
 {% block content %}
     <div class="container">
-
         <nav class="navbar">
             <div class="first">
                 <div class="logo">
@@ -30,49 +770,40 @@
             <div class="second">
                 <form action="search">
                     <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                     </a>
                     <div class="search">
                         <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
                         <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>
                         </button>
                     </div>
                     <a id="message_btn">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                         </svg>
                     </a>
                 </form>
             </div>
             <div class="third">
                 <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
                     </svg>
                 </a>
                 <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
                 <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                     </svg>
                 </a>
             </div>
@@ -84,23 +815,19 @@
                     <h3>Chats</h3>
                     <div class="chats_option">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                         </svg>
-                        <svg id="chatTo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                        <svg id="chatTo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
                     </div>
                 </div>
                 <div class="search_message">
                     <form action="">
-                        <input type="text" name="searchMessage" placeholder="Search Messanger" autocomplete="off">
+                        <input type="text" name="searchMessage" placeholder="Search Messenger" autocomplete="off">
                         <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>
                         </button>
                     </form>
@@ -133,6 +860,7 @@
                     {% endfor %}
                 </div>
             </div>
+            
             <div class="second">
                 <div class="find_people">
                     <div class="message_to">
@@ -141,18 +869,14 @@
                     </div>
                     <div class="list_container">
                         <h4>People</h4>
-                        <div class="list_wrapper">
-
-                        </div>
+                        <div class="list_wrapper"></div>
                     </div>
                 </div>
                 
                 <div class="no_message">
                     <div class="wrapper">
-                        <svg id="startChat" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
+                        <svg id="startChat" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                         </svg>
                         <h3>Your messages</h3>
                         <p>Select a conversation from the left sidebar or start a new message.</p>
@@ -162,9 +886,7 @@
                 <div class="message">
                     <div class="chat_message">
                         <div class="chatBox">
-                            <div class="info_wrapper">
-                                
-                            </div>
+                            <div class="info_wrapper"></div>
                             <div class="message_container"></div>
                             <div id="anchor"></div>
                         </div>

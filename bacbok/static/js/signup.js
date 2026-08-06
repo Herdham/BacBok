@@ -277,7 +277,7 @@ function updateButtonState() {
     
     const allValid = emailValid && usernameValid && pass1Valid && pass2Valid;
     
-    signupBtn.disabled = !allValid;
+   
     
     if (allValid) {
         gsap.to(signupBtn, {

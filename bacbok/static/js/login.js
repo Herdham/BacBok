@@ -54,29 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
         y: 20,
         opacity: 0
     }, "-=0.2");
-
-    // Alert animations
-    const alerts = document.querySelectorAll('.alert');
-    alerts.forEach(alert => {
-        gsap.from(alert, {
-            duration: 0.5,
-            x: -20,
-            opacity: 0,
-            ease: "back.out(1.7)"
-        });
-    });
 });
 
 // DOM Elements
 const loginForm = document.getElementById('loginForm');
 const loginBtn = document.getElementById('loginBtn');
-const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('pass1');
 const togglePasswordBtn = document.getElementById('togglePassword');
-const showPasswordCheckbox = document.getElementById('showPassword');
 
-// Password Toggle Functions
-function togglePasswordVisibility() {
+// Password Toggle
+togglePasswordBtn.addEventListener('click', () => {
     const isPassword = passwordInput.type === 'password';
     passwordInput.type = isPassword ? 'text' : 'password';
     
@@ -85,18 +72,18 @@ function togglePasswordVisibility() {
         icon.setAttribute('name', isPassword ? 'eye-outline' : 'eye-off-outline');
     }
     
-    showPasswordCheckbox.checked = !isPassword;
-    
-    gsap.from(passwordInput, {
-        duration: 0.3,
-        scale: 0.95,
-        ease: "back.out(1.7)"
-    });
-}
+    document.getElementById('showPassword').checked = !isPassword;
+});
 
-// Event Listeners for Password Toggle
-togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
-showPasswordCheckbox.addEventListener('change', togglePasswordVisibility);
+// Checkbox toggle
+document.getElementById('showPassword').addEventListener('change', function() {
+    passwordInput.type = this.checked ? 'text' : 'password';
+    
+    const icon = togglePasswordBtn.querySelector('ion-icon');
+    if (icon) {
+        icon.setAttribute('name', this.checked ? 'eye-outline' : 'eye-off-outline');
+    }
+}); // ← THIS WAS MISSING!
 
 // Input Focus Animations
 document.querySelectorAll('.form-input').forEach(input => {
@@ -108,15 +95,6 @@ document.querySelectorAll('.form-input').forEach(input => {
                 scale: 1.2,
                 color: '#a29bfe',
                 ease: "back.out(1.7)"
-            });
-        }
-        
-        const borderElement = input.parentElement.querySelector('.input-border');
-        if (borderElement) {
-            gsap.to(borderElement, {
-                duration: 0.3,
-                width: '100%',
-                ease: "power2.out"
             });
         }
     });
@@ -131,67 +109,11 @@ document.querySelectorAll('.form-input').forEach(input => {
                 ease: "power2.out"
             });
         }
-        
-        const borderElement = input.parentElement.querySelector('.input-border');
-        if (borderElement) {
-            gsap.to(borderElement, {
-                duration: 0.3,
-                width: '0%',
-                ease: "power2.out"
-            });
-        }
     });
 });
 
-// Form Validation
-function validateForm() {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const isValid = email !== '' && password !== '';
-    
-    loginBtn.disabled = !isValid;
-    
-    if (isValid) {
-        gsap.to(loginBtn, {
-            duration: 0.3,
-            scale: 1.02,
-            ease: "power2.out"
-        });
-    }
-}
-
-emailInput.addEventListener('input', validateForm);
-passwordInput.addEventListener('input', validateForm);
-
-// Form Submission with Ripple Effect
+// Form Submission - Loading state
 loginForm.addEventListener('submit', function(e) {
-    if (!loginBtn.disabled) {
-        gsap.to(loginBtn, {
-            duration: 0.3,
-            scale: 0.95,
-            ease: "power2.out"
-        });
-        
-        const circle = document.createElement('span');
-        const diameter = Math.max(loginBtn.clientWidth, loginBtn.clientHeight);
-        const radius = diameter / 2;
-        
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${loginBtn.clientWidth / 2 - radius}px`;
-        circle.style.top = `${loginBtn.clientHeight / 2 - radius}px`;
-        circle.style.position = 'absolute';
-        circle.style.borderRadius = '50%';
-        circle.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-        circle.style.transform = 'scale(0)';
-        circle.style.animation = 'ripple 0.6s ease-out';
-        circle.style.pointerEvents = 'none';
-        
-        loginBtn.appendChild(circle);
-        
-        setTimeout(() => {
-            if (circle && circle.parentNode) {
-                circle.remove();
-            }
-        }, 600);
-    }
+    loginBtn.classList.add('loading');
+    loginBtn.querySelector('.btn-text').textContent = 'Signing in...';
 });

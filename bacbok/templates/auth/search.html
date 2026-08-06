@@ -1,17 +1,367 @@
 {% extends 'auth/base.html' %}
-
 {% load static %}
-
 {% static "media" as mediaURL %}
 
 {% block head %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-<title>bacbok</title>
-<link rel='stylesheet' , href="{% static 'css/search.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<title>Bacbok - Search</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0a0e27;
+    --bg-card: #131842;
+    --bg-card-glass: rgba(19, 24, 66, 0.6);
+    --primary: #6C5CE7;
+    --primary-light: #a29bfe;
+    --secondary: #00cec9;
+    --accent: #fd79a8;
+    --text-main: #FFFFFF;
+    --text-secondary: #a0a3b1;
+    --text-muted: #6c6f85;
+    --border: rgba(108, 92, 231, 0.2);
+    --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+    --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+svg {
+    stroke: var(--bg-main);
+    width: 25px;
+    height: 25px;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-light);
+}
+
+.container {
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 20px;
+}
+
+/* Navbar */
+.container .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.container .navbar .first h4 {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .first .logo h4 {
+    margin-right: 5px;
+}
+
+.container .navbar .second form {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-right: 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.container .navbar .second .search input {
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    width: 300px;
+    background: transparent;
+    color: var(--text-main);
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second .search input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-muted);
+}
+
+.container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.container .navbar .second .search button svg {
+    stroke: var(--text-muted);
+    width: 22px;
+    height: 22px;
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .second .search button svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .second form a svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .second form .active svg {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .third {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+}
+
+.container .navbar .third a svg:hover {
+    stroke: var(--primary-light);
+}
+
+.container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+    border: 2px solid var(--border);
+}
+
+/* Main Layout */
+.container main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Search Container */
+.search_container {
+    width: 100%;
+    max-width: 650px;
+}
+
+.search_result {
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+}
+
+.search_result h3 {
+    color: var(--primary-light);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* User Profile Card */
+.user_profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+}
+
+.user_profile:hover {
+    background: rgba(108, 92, 231, 0.08);
+    border: 1px solid var(--border);
+    transform: translateX(5px);
+}
+
+.user_profile .first {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user_profile .first img {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s ease;
+}
+
+.user_profile:hover .first img {
+    border-color: var(--primary-light);
+}
+
+.profile_info a {
+    text-decoration: none;
+}
+
+.profile_info h5 {
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    transition: color 0.3s ease;
+}
+
+.profile_info h5:hover {
+    color: var(--primary-light);
+}
+
+.profile_info p {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* Action Buttons */
+.user_profile .last a {
+    padding: 10px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.user_profile .last a[href*="profile"] {
+    background: rgba(108, 92, 231, 0.15);
+    color: var(--primary-light);
+    border: 1px solid var(--border);
+}
+
+.user_profile .last a[href*="profile"]:hover {
+    background: rgba(108, 92, 231, 0.25);
+    transform: translateY(-2px);
+}
+
+.search_follow {
+    background: var(--gradient-1);
+    color: white !important;
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
+}
+
+.search_follow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.5);
+}
+
+/* No Results */
+.search_result > p {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 14px;
+}
+
+/* See All Link */
+.search_container > a {
+    background: var(--bg-card-glass) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border) !important;
+    color: var(--primary-light) !important;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.search_container > a:hover {
+    background: rgba(108, 92, 231, 0.15) !important;
+    border-color: var(--primary-light) !important;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container .navbar .second .search input {
+        width: 150px;
+    }
+    
+    .search_result {
+        padding: 20px;
+    }
+    
+    .user_profile {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .user_profile .last {
+        width: 100%;
+    }
+    
+    .user_profile .last a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -26,19 +376,15 @@
             <div class="second">
                 <form action="search">
                     <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                     </a>
                     <div class="search">
-                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
+                        <input type="text" placeholder="Search on Bacbok" name="search" autocomplete="off" required>
                         <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>
                         </button>
                     </div>
@@ -51,36 +397,30 @@
             </div>
             <div class="third">
                 <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
                     </svg>
                 </a>
                 <a href="profile/{{profile_user.user.username}}"><img width="30px" height="30px" src="{{profile_user.image.url}}" alt=""></a>
                 <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                     </svg>
                 </a>
             </div>
         </nav>
 
         <main>
-
             <div class="search_container">
                 <div class="search_result">
                     <h3>People</h3>
                     {% if profile %}
-                        {%for p in profile %}
+                        {% for p in profile %}
                             <div class="user_profile">
                                 <div class="first">
                                     <img width="40px" height="40px" src="{{p.image.url}}" alt="">
@@ -94,21 +434,20 @@
                                         <a href="{% url 'profile' username=p.user.username %}">View Profile</a>
                                     {% else %}
                                         {% if not p in request.user.users_acc.follow.all %}
-                                            <a href="{% url 'follow' profile_id=p.id %}" id="search_follow" class="search_follow">Follow</a>
+                                            <a href="{% url 'follow' profile_id=p.id %}" class="search_follow">Follow</a>
                                         {% else %}
-                                            <a href="#" id="search_follow" class="search_follow">Message</a>
+                                            <a href="#" class="search_follow">Message</a>
                                         {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
                     {% else %}
-                    <p style="font-size: 12px;">Result not found ........</p>
+                        <p>No results found...</p>
                     {% endif %}
                 </div>
-                <a href="#" style="background-color: #0B1020; width: 100%; display: block; text-align:center; padding: 8px; border-radius: 5px; text-decoration: none; color: #fff;font-size: 13px; font-family: 'Poppins' san-serif;">Sell All</a>
+                <a href="#">See All</a>
             </div>
-            
         </main>
     </div>
     <script src="{% static 'js/search.js' %}"></script>

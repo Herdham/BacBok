@@ -13,7 +13,418 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <title>bacbok</title>
-<link rel='stylesheet' , href="{% static 'css/setting.css' %}">
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0B1020;
+    --bg-card: #161B2E;
+    --primary: #7C3AED;
+    --secondary: #3B82F6;
+    --text-main: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+svg {
+    stroke: #0B1020;
+    width: 25px;
+    height: 25px;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9CA3AF;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #161B2E;
+}
+
+.container {
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 20px;
+}
+
+/* Navbar */
+.container .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.container .navbar .first h4 {
+    color: #7C3AED;
+    font-size: 20px;
+}
+
+.container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .first .logo h4 {
+    margin-right: 5px;
+}
+
+.container .navbar .second form {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.container .navbar .second .search input {
+    padding: 8px;
+    border: none;
+    outline: none;
+    width: 300px;
+    margin-right: 3px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second .search input::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background-color: #FFFFFF;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.container .navbar .second .search button svg {
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.container .navbar .second .search button svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+}
+
+.container .navbar .second form a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .second form .active svg {
+    stroke: #7C3AED;
+}
+
+.container .navbar .third {
+    display: flex;
+    align-items: center;
+}
+
+.container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+.container .navbar .third a svg:hover {
+    stroke: #7C3AED;
+}
+
+.container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+}
+
+/* Main Layout */
+.container main {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+.container main .first {
+    background-color: #FFFFFF;
+    width: 25%;
+    height: 100vh;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.container main .first ul a {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.container main .first ul .active {
+    background-color: #ccc;
+}
+
+.container main .first ul a:hover {
+    background-color: #ccc;
+}
+
+.container main .first ul a svg {
+    margin-right: 10px;
+    font-size: 20px;
+    stroke: #161B2E;
+}
+
+.container main .first ul a p {
+    font-size: 15px;
+    color: #161B2E;
+    margin-top: 6px;
+}
+
+.container main .first #create_post {
+    background-color: #7C3AED;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 6px;
+    margin-left: 8px;
+    width: 120px;
+    font-size: 12px;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+}
+
+.container main .first .signout {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container main .first .signout .signout_first {
+    display: flex;
+    align-items: center;
+}
+
+.container main .first .signout .signout_first img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container main .first .signout .signout_first .signout_info h5 {
+    font-size: 13px;
+    color: #0B1020;
+}
+
+.container main .first .signout .signout_first .signout_info p {
+    font-size: 10px;
+    color: #6c6f85;
+}
+
+/* Account Update Section */
+.account_update {
+    flex: 1;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 700px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.account_update h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border);
+}
+
+.setting_wrapper {
+    margin-bottom: 30px;
+}
+
+.setting_wrapper h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.fullname {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.fullname input {
+    flex: 1;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.fullname input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+.fullname input::placeholder {
+    color: #6c6f85;
+}
+
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+textarea::placeholder {
+    color: #6c6f85;
+}
+
+input[type="url"] {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+input[type="url"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+input[type="url"]::placeholder {
+    color: #6c6f85;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #7C3AED, #3B82F6);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container main .first {
+        display: none;
+    }
+    
+    .account_update {
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container .navbar .second .search input {
+        width: 150px;
+    }
+    
+    .fullname {
+        flex-direction: column;
+    }
+    
+    .account_update {
+        padding: 20px;
+    }
+    
+    .account_update h3 {
+        font-size: 20px;
+    }
+}
+</style>
 {% endblock %}
 
 {% block content %}

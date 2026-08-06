@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,7 +29,7 @@
     font-style: normal;
 }
 
-svg{
+svg {
     stroke: #0B1020;
     width: 25px;
     height: 25px;
@@ -54,43 +54,43 @@ svg{
     background-color: #161B2E;
 }
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
 }
 
-.container{
+.container {
     padding-left: 3%;
     padding-right: 3%;
     margin-bottom: 20px;
 }
 
-.container .navbar{
+.container .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); */
 }
 
-.container .navbar .first h4{
+.container .navbar .first h4 {
     color: #7C3AED;
     font-size: 20px;
 }
 
-.container .navbar .first .logo{
+.container .navbar .first .logo {
     display: flex;
     align-items: center;
 }
 
-.container .navbar .first .logo h4{
+.container .navbar .first .logo h4 {
     margin-right: 5px;
 }
 
-.container .navbar .second form{
+.container .navbar .second form {
     display: flex;
     align-items: center;
 }
 
-.container .navbar .second .search{
+.container .navbar .second .search {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
@@ -98,7 +98,7 @@ body{
     border-radius: 5px;
 }
 
-.container .navbar .second .search input{
+.container .navbar .second .search input {
     padding: 8px;
     border: none;
     outline: none;
@@ -112,7 +112,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.container .navbar .second form .search button{
+.container .navbar .second form .search button {
     border: none;
     outline: none;
     background-color: #FFFFFF;
@@ -120,7 +120,7 @@ body{
     cursor: pointer;
 }
 
-.container .navbar .second .search button svg{
+.container .navbar .second .search button svg {
     margin-right: 0px;
     margin-top: 0px;
     width: 22px;
@@ -131,14 +131,14 @@ body{
     stroke: #7C3AED;
 }
 
-.container .navbar .second form a svg{
+.container .navbar .second form a svg {
     margin-right: 20px;
     width: 25px;
     height: 25px;
     margin-top: 8px;
 }
 
-.container .navbar .second form a svg:hover{
+.container .navbar .second form a svg:hover {
     stroke: #7C3AED;
 }
 
@@ -153,17 +153,17 @@ body{
 }
 
 
-.container .navbar .third{
+.container .navbar .third {
     display: flex;
     align-items: center;
 }
 
-.container .navbar .third a svg{
+.container .navbar .third a svg {
     margin-right: 15px;
     margin-top: 8px;
 }
 
-.container .navbar .third a svg:nth-child(3){
+.container .navbar .third a svg:nth-child(3) {
     margin-right: 0px;
 }
 
@@ -175,13 +175,13 @@ body{
     stroke: #7C3AED;
 }
 
-.container .navbar .third a img{
+.container .navbar .third a img {
     border-radius: 50%;
     margin-right: 15px;
     margin-top: 8px;
 }
 
-.container .popup{
+.container .popup {
     width: 96%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.80);
@@ -194,7 +194,7 @@ body{
 }
 
 
-.container .popup .close svg{
+.container .popup .close svg {
     color: #0B1020;
     margin-left: 95%;
     padding: 10px;
@@ -205,7 +205,7 @@ body{
     height: 45px;
 }
 
-.container .popup .content{
+.container .popup .content {
     top: 50%;
     left: 50%;
     position: absolute;
@@ -217,26 +217,26 @@ body{
     padding: 10px;
 }
 
-.container .popup .content .content_owner{
+.container .popup .content .content_owner {
     display: flex;
     align-items: center;
 }
 
-.container .popup .content .content_owner img{
+.container .popup .content .content_owner img {
     border-radius: 50%;
     margin-right: 5px;
 }
 
-.container .popup .content .content_owner .content_owner_info{
+.container .popup .content .content_owner .content_owner_info {
     align-self: flex-start;
     margin-bottom: 10px;
 }
 
-.container .popup .content .content_owner .content_owner_info h5{
+.container .popup .content .content_owner .content_owner_info h5 {
     color: #0B1020;
 }
 
-.container .popup .content form input[type="text"]{
+.container .popup .content form input[type="text"] {
     border: none;
     outline: none;
     width: 100%;
@@ -247,12 +247,12 @@ body{
     margin-bottom: 8px;
 }
 
-.container .popup .content form input::placeholder{
+.container .popup .content form input::placeholder {
     font-size: 12px;
     font-family: 'Poppins', sans-serif;
 }
 
-.container .popup .content form #image_cancle{
+.container .popup .content form #image_cancle {
     color: #0B1020;
     margin-left: 87%;
     margin-top: 8px;
@@ -267,7 +267,7 @@ body{
     height: 40px;
 }
 
-.container .popup .content form .showimage{
+.container .popup .content form .showimage {
     width: 70px;
     height: 70px;
     border-radius: 5px;
@@ -277,7 +277,7 @@ body{
 
 
 
-.container .popup .content form .add_to_post{
+.container .popup .content form .add_to_post {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -287,7 +287,7 @@ body{
     margin-bottom: 5px;
 }
 
-.container .popup .content form .add_to_post button{
+.container .popup .content form .add_to_post button {
     border: none;
     outline: none;
     padding: 8px;
@@ -300,37 +300,37 @@ body{
     cursor: pointer;
 }
 
-.container .popup .content form .add_to_post ul{
+.container .popup .content form .add_to_post ul {
     display: flex;
     align-items: center;
 }
 
-.container .popup .content form .add_to_post ul li{
+.container .popup .content form .add_to_post ul li {
     display: flex;
     align-items: center;
     list-style: none;
     margin-right: 20px;
 }
 
-.container .popup .content form .add_to_post ul li label svg{
+.container .popup .content form .add_to_post ul li label svg {
     cursor: pointer;
     width: 30px;
     height: 30px;
 }
 
-.container .popup .content form .add_to_post ul li label #photo{
+.container .popup .content form .add_to_post ul li label #photo {
     stroke: green;
 }
 
-.container .popup .content form .add_to_post ul li label #tag{
+.container .popup .content form .add_to_post ul li label #tag {
     stroke: #3B82F6;
 }
 
-.container .popup .content form .add_to_post ul li label #location{
+.container .popup .content form .add_to_post ul li label #location {
     stroke: maroon;
 }
 
-.container .popup .content form input[type="submit"]{
+.container .popup .content form input[type="submit"] {
     width: 100%;
     border: none;
     outline: none;
@@ -342,7 +342,7 @@ body{
     cursor: pointer;
 }
 
-.container .status_modal{
+.container .status_modal {
     position: absolute;
     width: 95vw;
     height: 100vh;
@@ -353,12 +353,12 @@ body{
     display: none;
 }
 
-.container .status_modal .status_modal_close{
+.container .status_modal .status_modal_close {
     display: flex;
     justify-content: right;
 }
 
-.container .status_modal .status_modal_close svg{
+.container .status_modal .status_modal_close svg {
     color: #000;
     width: 35px;
     height: 35px;
@@ -368,7 +368,7 @@ body{
     cursor: pointer;
 }
 
-.container .status_modal .status_post{
+.container .status_modal .status_post {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -379,7 +379,7 @@ body{
     padding: 10px;
 }
 
-.container .status_modal .status_post .status_add{
+.container .status_modal .status_post .status_add {
     background: linear-gradient(130deg, #3B82F6, #7C3AED);
     width: 250px;
     height: 300px;
@@ -389,11 +389,11 @@ body{
     justify-content: center;
 }
 
-.container .status_modal .status_post .status_add label{
+.container .status_modal .status_post .status_add label {
     text-align: center;
 }
 
-.container .status_modal .status_post .status_add label svg{
+.container .status_modal .status_post .status_add label svg {
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
@@ -403,13 +403,13 @@ body{
     height: 40px;
 }
 
-.container .status_modal .status_post .status_add label p{
+.container .status_modal .status_post .status_add label p {
     color: #fff;
     font-size: 0.8rem;
     white-space: nowrap;
 }
 
-.container .status_modal .status_post form .status_post_wrapper{
+.container .status_modal .status_post form .status_post_wrapper {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -420,7 +420,7 @@ body{
 /* .container .status_modal .status_post .status_preview {
 } */
 
-.container .status_modal .status_post form .status_post_wrapper #image_discard{
+.container .status_modal .status_post form .status_post_wrapper #image_discard {
     align-self: flex-start;
     font-size: 23px;
     background-color: #0B1020;
@@ -433,7 +433,7 @@ body{
     height: 40px;
 }
 
-.container .status_modal .status_post form .add_text{
+.container .status_modal .status_post form .add_text {
     width: 100%;
     background-color: #fff;
     display: none;
@@ -442,7 +442,7 @@ body{
     border-radius: 25px;
 }
 
-.container .status_modal .status_post form .add_text input[type="text"]{
+.container .status_modal .status_post form .add_text input[type="text"] {
     width: 100%;
     padding: 8px;
     border: none;
@@ -454,18 +454,18 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.container .status_modal .status_post form .add_text input[type="text"]::placeholder{
+.container .status_modal .status_post form .add_text input[type="text"]::placeholder {
     font-size: 13px;
     font-family: 'Poppins', sans-serif;
 }
 
-.container .status_modal .status_post form .add_text button{
+.container .status_modal .status_post form .add_text button {
     border: none;
     outline: none;
     background: transparent;
 }
 
-.container .status_modal .status_post form .add_text button svg{
+.container .status_modal .status_post form .add_text button svg {
     padding: 8px;
     background-color: #3B82F6;
     stroke: #fff;
@@ -476,7 +476,7 @@ body{
 }
 
 
-.container .video_modal{
+.container .video_modal {
     background-color: rgba(0, 0, 0, 0.80);
     width: 96%;
     height: 100vh;
@@ -487,7 +487,7 @@ body{
     display: none;
 }
 
-.container .video_modal .close_modal{
+.container .video_modal .close_modal {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -495,7 +495,7 @@ body{
 }
 
 
-.container .video_modal .close_modal ion-icon{
+.container .video_modal .close_modal ion-icon {
     background-color: #fff;
     padding: 8px;
     font-size: 25px;
@@ -503,7 +503,7 @@ body{
     cursor: pointer;
 }
 
-.container .video_modal .upload_container{
+.container .video_modal .upload_container {
     align-items: center;
     background-color: #fff;
     padding: 10px;
@@ -516,16 +516,16 @@ body{
     border-radius: 5px;
 }
 
-.container .video_modal .upload_container h5{
+.container .video_modal .upload_container h5 {
     text-align: center;
     margin-bottom: 10px
 }
 
-.container .video_modal .upload_container .select_file{
+.container .video_modal .upload_container .select_file {
     text-align: center;
 }
 
-.container .video_modal .upload_container .select_file  label{
+.container .video_modal .upload_container .select_file label {
     border: 1px solid #ccc;
     width: 100%;
     padding: 10px;
@@ -535,17 +535,17 @@ body{
     cursor: pointer;
 }
 
-.container .video_modal .upload_container .select_file form label ion-icon{
+.container .video_modal .upload_container .select_file form label ion-icon {
     font-size: 70px;
     color: #7C3AED;
     cursor: pointer;
 }
 
-.container .video_modal .upload_container .select_file form label p{
+.container .video_modal .upload_container .select_file form label p {
     font-size: 14px;
 }
 
-.container .video_modal .upload_container .select_file form input[type="submit"]{
+.container .video_modal .upload_container .select_file form input[type="submit"] {
     width: 100%;
     padding: 8px;
     border: none;
@@ -558,7 +558,7 @@ body{
     cursor: pointer;
 }
 
-.container .video_modal .upload_container .select_file form input[type="text"]{
+.container .video_modal .upload_container .select_file form input[type="text"] {
     width: 100%;
     border: none;
     outline: none;
@@ -572,12 +572,12 @@ body{
     display: none;
 }
 
-.container .video_modal .upload_container .select_file form input[type="text"]::placeholder{
+.container .video_modal .upload_container .select_file form input[type="text"]::placeholder {
     font-size: 12px;
     font-family: 'Poppins', sans-serif;
 }
 
-.container .video_modal .upload_container .select_file form #video_discard{
+.container .video_modal .upload_container .select_file form #video_discard {
     margin-left: 92%;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -589,7 +589,7 @@ body{
     cursor: pointer;
 }
 
-.container .message_dropdown{
+.container .message_dropdown {
     position: absolute;
     display: none;
     justify-content: center;
@@ -602,11 +602,11 @@ body{
     padding: 8px;
 }
 
-.message_dropdown.open{
+.message_dropdown.open {
     display: flex;
 }
 
-.container .message_dropdown .message_wrapper{
+.container .message_dropdown .message_wrapper {
     width: 400px;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -621,33 +621,33 @@ body{
     margin-bottom: 3px;
 }
 
-.container .message_dropdown .message_wrapper .message_header{
+.container .message_dropdown .message_wrapper .message_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.container .message_dropdown .message_wrapper .message_header .message_option{
+.container .message_dropdown .message_wrapper .message_header .message_option {
     display: flex;
     align-items: center;
 }
 
-.container .message_dropdown .message_wrapper .message_header .message_option a{
+.container .message_dropdown .message_wrapper .message_header .message_option a {
     text-decoration: none;
     color: #161B2E;
     margin-right: 15px;
 }
 
-.container .message_dropdown .message_wrapper .message_header .message_option a:nth-child(3){
+.container .message_dropdown .message_wrapper .message_header .message_option a:nth-child(3) {
     margin-right: 0px;
 }
 
-.container .message_dropdown .message_wrapper .message_header .message_option a ion-icon{
+.container .message_dropdown .message_wrapper .message_header .message_option a ion-icon {
     font-size: 20px;
 }
 
-.container .message_dropdown .message_wrapper .message_search{
+.container .message_dropdown .message_wrapper .message_search {
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -656,12 +656,12 @@ body{
     margin-bottom: 15px;
 }
 
-.container .message_dropdown .message_wrapper .message_search svg{
+.container .message_dropdown .message_wrapper .message_search svg {
     margin-right: 8px;
     margin-left: 4px;
 }
 
-.container .message_dropdown .message_wrapper .message_search input{
+.container .message_dropdown .message_wrapper .message_search input {
     padding: 8px;
     border: none;
     outline: none;
@@ -672,31 +672,31 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.container .message_dropdown .message_wrapper .message_search input::placeholder{
+.container .message_dropdown .message_wrapper .message_search input::placeholder {
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
 }
 
-.container .message_dropdown .message_wrapper .message_categories{
+.container .message_dropdown .message_wrapper .message_categories {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.container .message_dropdown .message_wrapper .message_categories a{
+.container .message_dropdown .message_wrapper .message_categories a {
     text-decoration: none;
     color: #0B1020;
     padding: 8px;
 }
 
-.container .message_dropdown .message_wrapper .message_categories #active{
+.container .message_dropdown .message_wrapper .message_categories #active {
     background-color: #161B2E;
     color: #fff;
     border-radius: 25px;
 }
 
-.container .message_dropdown .message_wrapper .message_categories a:hover{
+.container .message_dropdown .message_wrapper .message_categories a:hover {
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     color: #161B2E;
@@ -704,11 +704,11 @@ body{
 }
 
 
-.container .message_dropdown .message_wrapper .chat_members a{
+.container .message_dropdown .message_wrapper .chat_members a {
     text-decoration: none;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -717,34 +717,34 @@ body{
     border-radius: 4px;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper img{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper img {
     border-radius: 50px;
     margin-right: 15px;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info {
     align-self: flex-start;
     margin-top: 10px;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info h4{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info h4 {
     color: #7C3AED;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info p{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info p {
     color: #161B2E;
 }
 
-.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info span{
+.container .message_dropdown .message_wrapper .chat_members .member_wrapper .member_info span {
     font-size: 12px;
     color: #3B82F6;
 }
 
-.container .message_dropdown .see_all{
+.container .message_dropdown .see_all {
     width: 400px;
 }
 
-.container .message_dropdown .see_all a{
+.container .message_dropdown .see_all a {
     padding: 8px;
     display: block;
     width: 100%;
@@ -757,13 +757,13 @@ body{
     color: #0B1020;
 }
 
-.container main{
+.container main {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
 
-.container main .first{
+.container main .first {
     background-color: #FFFFFF;
     width: 25%;
     height: 100vh;
@@ -777,7 +777,7 @@ body{
     margin-right: 20px;
 }
 
-.container main .first ul a{
+.container main .first ul a {
     display: flex;
     align-items: center;
     padding: 8px;
@@ -785,7 +785,7 @@ body{
     margin-bottom: 5px;
 }
 
-.container main .first ul .active{
+.container main .first ul .active {
     background-color: #ccc;
     border-radius: 5px;
 }
@@ -795,19 +795,19 @@ body{
     border-radius: 5px;
 }
 
-.container main .first ul a svg{
+.container main .first ul a svg {
     margin-right: 10px;
     font-size: 20px;
     stroke: #161B2E;
 }
 
-.container main .first ul a p{
+.container main .first ul a p {
     font-size: 15px;
     color: #161B2E;
     margin-top: 6px;
 }
 
-.container main .first #create_post{
+.container main .first #create_post {
     background-color: #7C3AED;
     color: #FFFFFF;
     text-decoration: none;
@@ -819,30 +819,30 @@ body{
     text-align: center;
 }
 
-.container main .first .signout{
+.container main .first .signout {
     margin-left: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.container main .first .signout .signout_first{
+.container main .first .signout .signout_first {
     display: flex;
     align-items: center;
 }
 
-.container main .first .signout .signout_first img{
+.container main .first .signout .signout_first img {
     border-radius: 50%;
     margin-right: 10px;
     align-self: flex-start;
 }
 
-.container main .first .signout .signout_first .signout_info p{
+.container main .first .signout .signout_first .signout_info p {
     font-size: 10px;
 }
 
 
-.container main .second{
+.container main .second {
     align-self: flex-start;
     width: 45%;
     margin-right: 20px;
@@ -873,7 +873,7 @@ body{
     background-color: #161B2E;
 }
 
-.container main .second .post{
+.container main .second .post {
     background-color: #161B2E;
     width: 100%;
     height: auto;
@@ -882,19 +882,19 @@ body{
     margin-bottom: 10px;
 }
 
-.container main .second .post .post_input{
+.container main .second .post .post_input {
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 10px;
 }
 
-.container main .second .post .post_input img{
+.container main .second .post .post_input img {
     border-radius: 50%;
     margin-right: 10px;
 }
 
-.container main .second .post .post_input input[type="text"]{
+.container main .second .post .post_input input[type="text"] {
     width: 100%;
     padding: 8px;
     border: none;
@@ -906,12 +906,12 @@ body{
     margin-right: 8px;
 }
 
-.container main .second .post .post_input input[type="text"]::placeholder{
+.container main .second .post .post_input input[type="text"]::placeholder {
     font-family: 'Poppins';
     font-size: 13px;
 }
 
-.container main .second .post .post_input button{
+.container main .second .post .post_input button {
     border: none;
     outline: none;
     background-color: #7C3AED;
@@ -922,13 +922,14 @@ body{
     width: 80px;
     font-family: 'Poppins', sans-serif;
 }
-.container main .second .post form .add_post .upload_option{
+
+.container main .second .post form .add_post .upload_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.container main .second .post form .add_post .upload_option button{
+.container main .second .post form .add_post .upload_option button {
     padding: 8px;
     background-color: rgba(0, 0, 0, 0.25);
     width: 100%;
@@ -943,27 +944,27 @@ body{
     cursor: pointer;
 }
 
-.container main .second .post form .add_post .upload_option button svg{
+.container main .second .post form .add_post .upload_option button svg {
     margin-right: 10px;
 }
 
-.container main .second .post form .add_post .upload_option button #photo{
+.container main .second .post form .add_post .upload_option button #photo {
     stroke: green;
 }
 
-.container main .second .post form .add_post .upload_option button #video{
+.container main .second .post form .add_post .upload_option button #video {
     stroke: red;
 }
 
-.container main .second .post form .add_post .upload_option button #live_video{
+.container main .second .post form .add_post .upload_option button #live_video {
     fill: #7C3AED;
 }
 
-.container main .second .post form .add_post .upload_option button #reel{
+.container main .second .post form .add_post .upload_option button #reel {
     stroke: maroon;
 }
 
-.container main .second .post form .add_post .upload_option button p{
+.container main .second .post form .add_post .upload_option button p {
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     color: #ddd;
@@ -1023,7 +1024,7 @@ body{
     color: #0B1020;
 } */
 
-.container main .second .status_container{
+.container main .second .status_container {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -1035,7 +1036,7 @@ body{
     border-right: 1px solid #ddd;
 }
 
-.container main .second .status_container #status_chevback{
+.container main .second .status_container #status_chevback {
     background-color: #fff;
     border: 1px solid #ccc;
     width: 40px;
@@ -1056,7 +1057,7 @@ body{
     padding: 8px;
 }
 
-.container main .second .status_container #status_chevfront{
+.container main .second .status_container #status_chevfront {
     background-color: #fff;
     border: 1px solid #ccc;
     width: 40px;
@@ -1067,25 +1068,25 @@ body{
     display: none;
 }
 
-.container main .second .status_container .status_wrapper{
+.container main .second .status_container .status_wrapper {
     display: flex;
 }
 
 
-.container main .second .status_container  .status_wrapper img{
+.container main .second .status_container .status_wrapper img {
     border-radius: 50%;
     margin-right: 8px;
     background: linear-gradient(130deg, #7C3AED,
-        #3B82F6);
+            #3B82F6);
     padding: 3px;
 }
 
 .container main .second .status_container .other img {
     background: linear-gradient(130deg, #7C3AED,
-                #3B82F6)
+            #3B82F6)
 }
 
-.container main .second .status_container .status_wrapper svg{
+.container main .second .status_container .status_wrapper svg {
     background-color: #7C3AED;
     stroke: #fff;
     padding: 6px;
@@ -1097,7 +1098,7 @@ body{
 }
 
 
-.container main .second .post_container{
+.container main .second .post_container {
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -1120,44 +1121,44 @@ body{
     border-top-right-radius: 8px;
 }
 
-.container main .second .post_container .post_owner img{
+.container main .second .post_container .post_owner img {
     border-radius: 50%;
     align-self: flex-start;
     margin-right: 10px;
 }
 
-.container main .second  .post_container .post_owner .post_owner_info{
+.container main .second .post_container .post_owner .post_owner_info {
     align-self: flex-start;
     flex-grow: 1;
 }
 
-.container main .second .post_container .post_owner .post_owner_info .info{
+.container main .second .post_container .post_owner .post_owner_info .info {
     display: flex;
     flex-direction: column;
 }
 
-.container main .second .post_container .post_owner .post_owner_info .info h5{
+.container main .second .post_container .post_owner .post_owner_info .info h5 {
     font-size: 12px;
 }
 
-.container main .second .post_container .post_owner .post_owner_info .info p{
+.container main .second .post_container .post_owner .post_owner_info .info p {
     font-size: 10px;
 }
 
-.container main .second .post_container .caption_container{
+.container main .second .post_container .caption_container {
     display: flex;
     cursor: pointer;
 }
 
-.container main .second .post_container .caption_container p{
+.container main .second .post_container .caption_container p {
     align-self: flex-end;
 }
 
-.container main .second .post_container .caption_container strong{
+.container main .second .post_container .caption_container strong {
     font-size: 12px;
 }
 
-.container main .second .post_container .post_caption{
+.container main .second .post_container .post_caption {
     font-size: 11px;
     position: relative;
     padding-left: 8px;
@@ -1166,18 +1167,18 @@ body{
     margin-bottom: 8px;
 }
 
-.container main .second .post_container .post_owner svg{
+.container main .second .post_container .post_owner svg {
     align-self: flex-start;
     cursor: pointer;
 }
 
-.container main .second .post_container .post_wrapper{
+.container main .second .post_container .post_wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
 }
 
-.container main .second .post_container .post_wrapper #chevback{
+.container main .second .post_container .post_wrapper #chevback {
     margin-right: 20px;
     background-color: #fff;
     width: 35px;
@@ -1188,7 +1189,7 @@ body{
     transition: 0.1s;
 }
 
-.container main .second .post_container .post_wrapper #chevfront{
+.container main .second .post_container .post_wrapper #chevfront {
     margin-left: 20px;
     background-color: #fff;
     width: 35px;
@@ -1199,7 +1200,7 @@ body{
     margin-right: 3px;
 }
 
-.container main .second .post_container .image_wrapper{
+.container main .second .post_container .image_wrapper {
     width: 100%;
     overflow-x: hidden;
     aspect-ratio: 1 / 1;
@@ -1207,7 +1208,7 @@ body{
     display: flex;
 }
 
-.container main .second .post_container .image_wrapper  a{
+.container main .second .post_container .image_wrapper a {
     display: block;
     width: 100%;
     height: 100%;
@@ -1217,14 +1218,14 @@ body{
     margin-right: 5px;
 }
 
-.container main .second .post_container .post_image{
+.container main .second .post_container .post_image {
     height: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.container main .second .post_container .no_image{
+.container main .second .post_container .no_image {
     width: 100%;
     overflow-x: hidden;
     aspect-ratio: 1 / 1;
@@ -1232,11 +1233,11 @@ body{
     display: none;
 }
 
-.container main .second .post_container .no_image.show{
+.container main .second .post_container .no_image.show {
     display: flex;
 }
 
-.container main .second .post_container .no_image  a{
+.container main .second .post_container .no_image a {
     display: block;
     width: 100%;
     height: 100%;
@@ -1246,7 +1247,7 @@ body{
     margin-right: 5px;
 }
 
-.container main .second .post_container .post_option_container{
+.container main .second .post_container .post_option_container {
     position: absolute;
     width: 100%;
     height: auto;
@@ -1255,7 +1256,7 @@ body{
     display: none;
 }
 
-.container main .second .post_container .post_option_container.display{
+.container main .second .post_container .post_option_container.display {
     display: block;
 }
 
@@ -1264,7 +1265,7 @@ body{
     flex-direction: column;
 }
 
-.container main .second .post_container .post_option_container ul a{
+.container main .second .post_container .post_option_container ul a {
     display: flex;
     align-items: center;
     padding: 8px;
@@ -1273,11 +1274,11 @@ body{
     text-decoration: none;
 }
 
-.container main .second .post_container .post_option_container ul a svg{
+.container main .second .post_container .post_option_container ul a svg {
     margin-right: 15px;
 }
 
-.container main .second .post_container .post_option_container ul a p{
+.container main .second .post_container .post_option_container ul a p {
     color: #0B1020;
     font-weight: 400;
     font-size: 12px;
@@ -1291,14 +1292,14 @@ body{
     position: relative;
 }
 
-.container main .second .post_container .post_video{
+.container main .second .post_container .post_video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     width: 100%;
 }
 
-.container main .second .post_container .video_wrapper .video_pause{
+.container main .second .post_container .video_wrapper .video_pause {
     width: 100%;
     position: absolute;
     top: 50%;
@@ -1309,7 +1310,7 @@ body{
     justify-content: center;
 }
 
-.container main .second .post_container .video_wrapper .video_pause .pause{
+.container main .second .post_container .video_wrapper .video_pause .pause {
     stroke: #161B2E;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -1320,7 +1321,7 @@ body{
     height: 40px;
 }
 
-.container main .second .post_container .post_wrapper_option{
+.container main .second .post_container .post_wrapper_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1331,7 +1332,7 @@ body{
     border-bottom-right-radius: 8px;
 }
 
-.container main .second .post_container .post_wrapper_option a{
+.container main .second .post_container .post_wrapper_option a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -1349,14 +1350,14 @@ body{
     border-radius: 5px;
 }
 
-.container main .second .post_container .post_wrapper_option a svg{
+.container main .second .post_container .post_wrapper_option a svg {
     margin-right: 10px;
     stroke: #0B1020;
     width: 20px;
     height: 20px;
 }
 
-.container main .second .post_container .post_wrapper_option a p{
+.container main .second .post_container .post_wrapper_option a p {
     color: #0B1020;
     margin-right: 5px;
     font-size: 12px;
@@ -1469,7 +1470,7 @@ body{
     cursor: pointer;
 }
 
-.container .second .edit_post{
+.container .second .edit_post {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1481,13 +1482,13 @@ body{
     display: none;
 }
 
-.container .second .edit_post .edit_post_modal_close{
+.container .second .edit_post .edit_post_modal_close {
     display: flex;
     justify-content: right;
     cursor: pointer
 }
 
-.container .second .edit_post .edit_post_modal_close svg{
+.container .second .edit_post .edit_post_modal_close svg {
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
@@ -1495,7 +1496,7 @@ body{
     height: 35px;
 }
 
-.container .second .edit_post form{
+.container .second .edit_post form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1504,7 +1505,7 @@ body{
     padding: 8px;
 }
 
-.container .second .edit_post form .post_caption{
+.container .second .edit_post form .post_caption {
     width: 100%;
     height: auto;
     max-height: 150px;
@@ -1520,7 +1521,7 @@ body{
     border-radius: 6px;
 }
 
-.container .second .edit_post form .input_text{
+.container .second .edit_post form .input_text {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -1532,7 +1533,7 @@ body{
     display: none;
 }
 
-.container .second .edit_post form input[type="submit"]{
+.container .second .edit_post form input[type="submit"] {
     border: none;
     outline: none;
     background-color: #3B82F6;
@@ -1543,7 +1544,7 @@ body{
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
-} 
+}
 
 .container .second .sharePost {
     position: absolute;
@@ -1558,7 +1559,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
+
 }
 
 .container .second .sharePost .share_post_modal_close {
@@ -1575,17 +1576,17 @@ body{
     height: 35px;
 }
 
-.container .second .sharePost h3{
+.container .second .sharePost h3 {
     margin-bottom: 10px;
     color: #fff;
 }
 
 
-.container .second .sharePost .share_container ul{
+.container .second .sharePost .share_container ul {
     margin-bottom: 8px;
 }
 
-.container .second .sharePost .share_container ul a{
+.container .second .sharePost .share_container ul a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -1594,30 +1595,30 @@ body{
     background-color: #fff;
 }
 
-.container .second .sharePost .share_container ul a:nth-child(1){
+.container .second .sharePost .share_container ul a:nth-child(1) {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-.container .second .sharePost .share_container ul a:nth-child(4){
+.container .second .sharePost .share_container ul a:nth-child(4) {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.container .second .sharePost .share_container ul a svg{
+.container .second .sharePost .share_container ul a svg {
     color: #161B2E;
     width: 25px;
     height: 25px;
     margin-right: 8px;
 }
 
-.container .second .sharePost .share_container ul a p{
+.container .second .sharePost .share_container ul a p {
     font-size: 12px;
     color: #0B1020;
     font-family: 'Poppins', sans-serif;
 }
 
-.container .second .sharePost .share_container button{
+.container .second .sharePost .share_container button {
     border: none;
     outline: none;
     width: 100%;
@@ -1630,56 +1631,56 @@ body{
     cursor: pointer;
 }
 
-.container main .third{
+.container main .third {
     align-self: flex-start;
     width: 25%;
     padding: 10px;
     height: auto;
 }
 
-.container main .third .follow_suggest{
+.container main .third .follow_suggest {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
 }
 
-.container main .third .follow_suggest h4{
+.container main .third .follow_suggest h4 {
     font-family: 13px;
     margin-bottom: 7px;
     color: #7C3AED;
 }
 
-.container main .third .follow_suggest .follow_container{
+.container main .third .follow_suggest .follow_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-.container main .third .follow_suggest .follow_container .follow_inner a{
+.container main .third .follow_suggest .follow_container .follow_inner a {
     display: flex;
     align-items: center;
     text-decoration: none;
 }
 
-.container main .third .follow_suggest .follow_container .follow_inner a img{
+.container main .third .follow_suggest .follow_container .follow_inner a img {
     align-self: flex-start;
     border-radius: 50%;
     margin-right: 10px;
     border: 1px dashed #fff;
 }
 
-.container main .third .follow_suggest .follow_container .follow_inner a .follow_info h5{
+.container main .third .follow_suggest .follow_container .follow_inner a .follow_info h5 {
     color: #0B1020;
 }
 
-.container main .third .follow_suggest .follow_container .follow_inner a .follow_info p{
+.container main .third .follow_suggest .follow_container .follow_inner a .follow_info p {
     font-size: 12px;
     color: #0B1020;
 }
 
 
-.container main .third .follow_suggest .follow_container .home_followBtn{
+.container main .third .follow_suggest .follow_container .home_followBtn {
     align-self: flex-start;
     text-decoration: none;
     background-color: #3B82F6;
@@ -1693,22 +1694,22 @@ body{
     border-radius: 5px;
 }
 
-.container main .third .follow_suggest .follow_container .home_followBtn:hover{
+.container main .third .follow_suggest .follow_container .home_followBtn:hover {
     background-color: #0B1020;
     color: #fff;
 }
 
-.container main .third .trending{
+.container main .third .trending {
     padding: 8px;
     width: 100%;
     border-radius: 5px;
     background-color: #ccc;
 }
 
-.container main .third .trending h4{
+.container main .third .trending h4 {
     margin-bottom: 5px;
 }
 
-.container main .third .trending p{
+.container main .third .trending p {
     font-size: 12px;
 }
