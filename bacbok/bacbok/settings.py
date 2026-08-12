@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)^b(5)@!swjdn$lt6wg91xy375q+)(v_7z+xw6v!4mql7k+2j5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["bacbbo.onrender.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["bacbok.com", "www.bacbok.com", "bacbbo.onrender.com", "localhost", "127.0.0.1"]
 
 AUTH_USER_MODEL = 'app.UserAccount'
 
