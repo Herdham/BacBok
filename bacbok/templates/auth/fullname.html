@@ -9,7 +9,13 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>bacbok</title>
-    <link rel='stylesheet', href="{% static 'css/login.css' %}">
+    <style>
+        /* Inherit theme tokens from auth/base.html */
+        body{ font-family: 'Poppins', sans-serif; }
+        .container{ max-width: 720px; margin: 40px auto; padding: 24px; }
+        input{ padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); }
+        #loginBtn{ background: var(--gradient-1); color: var(--text-main); border: none; padding: 12px 18px; border-radius: 10px; cursor: pointer; }
+    </style>
 {% endblock  %}
 
 {% block content %}

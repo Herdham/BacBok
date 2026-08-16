@@ -1,69 +1,62 @@
-{% extends "auth/base.html" %}
+{% extends "auth/base.html" %} {% load static %} {% block head %}
 
-{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
-{% block head %}
-<<<<<<< HEAD
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+<script src="{% static 'js/anim-init.js' %}"></script>
+<script>
+  if (window.initLoginAnimations) initLoginAnimations();
+</script>
 
 <title>Bacbok - Sign In</title>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<!-- viewport provided by auth/base.html -->
 
 <style>
-    * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-:root {
-    --bg-primary: #0a0e27;
-    --bg-secondary: #131842;
-    --bg-card: rgba(19, 24, 66, 0.6);
-    --primary: #6C5CE7;
-    --primary-light: #a29bfe;
-    --secondary: #00cec9;
-    --accent: #fd79a8;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a3b1;
-    --text-muted: #6c6f85;
-    --success: #00b894;
-    --error: #ff6b6b;
-    --border: rgba(108, 92, 231, 0.2);
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
-    --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
-}
+  /* Theme tokens supplied by auth/base.html */
 
-body {
-    font-family: 'Poppins', sans-serif;
+  body {
+    font-family: "Poppins", sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
-}
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-/* Background Animation */
-.auth-wrapper {
+  /* Background Animation */
+  .auth-wrapper {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 20px;
-}
+    padding: 16px;
+  }
 
-.auth-background {
+  .auth-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -71,205 +64,215 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 0;
-}
+  }
 
-.bg-shape {
+  .bg-shape {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.15;
     animation: float 20s infinite ease-in-out;
-}
+  }
 
-.bg-shape-1 {
-    width: 600px;
-    height: 600px;
-    background: var(--primary);
-    top: -200px;
-    right: -200px;
-    animation-delay: 0s;
-}
-
-.bg-shape-2 {
+  .bg-shape-1 {
     width: 500px;
     height: 500px;
-    background: var(--secondary);
-    bottom: -150px;
-    left: -150px;
-    animation-delay: -7s;
-}
+    background: var(--primary);
+    top: -150px;
+    right: -150px;
+    animation-delay: 0s;
+  }
 
-.bg-shape-3 {
+  .bg-shape-2 {
     width: 400px;
     height: 400px;
+    background: var(--secondary);
+    bottom: -120px;
+    left: -120px;
+    animation-delay: -7s;
+  }
+
+  .bg-shape-3 {
+    width: 300px;
+    height: 300px;
     background: var(--accent);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation-delay: -14s;
-}
+  }
 
-@keyframes float {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
     }
     33% {
-        transform: translate(30px, -30px) scale(1.1);
+      transform: translate(30px, -30px) scale(1.1);
     }
     66% {
-        transform: translate(-20px, 20px) scale(0.9);
+      transform: translate(-20px, 20px) scale(0.9);
     }
-}
+  }
 
-/* Auth Container */
-.auth-container {
+  /* Auth Container */
+  .auth-container {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 440px;
+    max-width: 400px;
     perspective: 1000px;
-}
+    padding: 0 4px;
+  }
 
-.auth-card {
+  .auth-card {
     background: var(--bg-card);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 48px 40px;
+    border-radius: 20px;
+    padding: 40px 32px;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
-}
+  }
 
-.auth-card:hover {
-    transform: translateY(-5px);
-}
+  .auth-card:hover {
+    transform: translateY(-3px);
+  }
 
-/* Header */
-.auth-header {
+  /* Header */
+  .auth-header {
     text-align: center;
-    margin-bottom: 40px;
-}
+    margin-bottom: 32px;
+  }
 
-.logo-icon {
-    width: 70px;
-    height: 70px;
+  .logo-icon {
+    width: 60px;
+    height: 60px;
     background: var(--gradient-1);
-    border-radius: 20px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 32px;
+    margin: 0 auto 16px;
+    font-size: 28px;
     box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
-}
+  }
 
-.auth-header h1 {
-    font-size: 32px;
+  .auth-header h1 {
+    font-size: 28px;
     font-weight: 700;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 12px;
-}
+    margin-bottom: 8px;
+  }
 
-.subtitle {
+  .subtitle {
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.6;
-}
+  }
 
-/* Alert Messages */
-.alert-container {
-    margin-bottom: 24px;
-}
+  /* Alert Messages */
+  .alert-container {
+    margin-bottom: 20px;
+  }
 
-.alert {
+  .alert {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 13px;
-    margin-bottom: 10px;
-}
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
 
-.alert-error {
+  .alert-error {
     background: rgba(255, 107, 107, 0.1);
     border: 1px solid rgba(255, 107, 107, 0.2);
     color: var(--error);
-}
+  }
 
-.alert ion-icon {
-    font-size: 20px;
+  .alert ion-icon {
+    font-size: 18px;
     flex-shrink: 0;
-}
+  }
 
-/* Form Elements */
-.auth-form {
+  /* Form Elements */
+  .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-}
+    gap: 20px;
+  }
 
-.input-group {
+  .input-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-}
+    gap: 6px;
+  }
 
-.input-label {
-    font-size: 13px;
+  .input-label {
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
+  }
 
-.input-wrapper {
+  .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
-}
+  }
 
-.input-icon {
+  .input-icon {
     position: absolute;
-    left: 16px;
+    left: 14px;
     color: var(--text-muted);
-    font-size: 20px;
+    font-size: 18px;
     z-index: 1;
     transition: color 0.3s ease;
-}
+  }
 
-.form-input {
+  /* vertically center absolute icons */
+  .input-icon {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .form-input {
     width: 100%;
-    padding: 14px 16px 14px 48px;
+    padding: 12px 52px 12px 44px;
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--text-primary);
     font-size: 14px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     transition: all 0.3s ease;
     outline: none;
-}
+    min-height: 48px;
+  }
 
-.form-input::placeholder {
+  .form-input::placeholder {
     color: var(--text-muted);
-    font-size: 13px;
-}
+    font-size: 12px;
+  }
 
-.form-input:focus {
+  .form-input:focus {
     border-color: var(--primary);
     background: rgba(108, 92, 231, 0.05);
     box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
-}
+  }
 
-.form-input:focus ~ .input-border {
+  .form-input:focus ~ .input-border {
     width: 100%;
-}
+  }
 
-.input-border {
+  .input-border {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -277,98 +280,78 @@ body {
     height: 2px;
     background: var(--gradient-1);
     transition: width 0.3s ease;
-}
+  }
 
-/* Password Toggle */
-.toggle-password {
+  /* Password Toggle */
+  .toggle-password {
     position: absolute;
-    right: 16px;
+    right: 8px;
     background: none;
     border: none;
     color: var(--text-muted);
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 8px;
     transition: color 0.3s ease;
-    z-index: 1;
-}
+    z-index: 2;
+    min-width: 40px;
+    min-height: 40px;
+    justify-content: center;
+  }
 
-.toggle-password:hover {
+  .toggle-password {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .toggle-password:hover {
     color: var(--primary-light);
-}
+  }
 
-/* Form Options */
-.form-options {
+  .toggle-password ion-icon {
+    font-size: 20px;
+  }
+
+  .toggle-password ion-icon {
+    display: block;
+    line-height: 1;
+  }
+
+  /* Form Options */
+  .form-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+  }
 
-.checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    user-select: none;
-}
+  /* Checkbox UI removed; keeping form-options and forgot-link styles */
 
-.checkbox-wrapper input[type="checkbox"] {
-    display: none;
-}
-
-.checkmark {
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--text-muted);
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.checkbox-wrapper input[type="checkbox"]:checked + .checkmark {
-    background: var(--primary);
-    border-color: var(--primary);
-}
-
-.checkbox-wrapper input[type="checkbox"]:checked + .checkmark::after {
-    content: '\2713';
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.checkbox-text {
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-
-.forgot-link {
+  .forgot-link {
     font-size: 12px;
     color: var(--primary-light);
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
-}
+    padding: 4px 0;
+  }
 
-.forgot-link:hover {
+  .forgot-link:hover {
     color: var(--secondary);
-}
+  }
 
-/* Submit Button */
-.submit-btn {
+  /* Submit Button */
+  .submit-btn {
     width: 100%;
-    padding: 16px;
-    background: var(--gradient-1);    
+    padding: 14px 16px;
+    background: var(--gradient-1);
     border: none;
-    border-radius: 12px;
-    color: white;                     
-    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -378,49 +361,54 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
-}
+    min-height: 50px;
+  }
 
-.submit-btn:hover {
+  .submit-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 40px rgba(108, 92, 231, 0.4);
-}
+  }
 
-.submit-btn:not(:disabled) {
-    opacity: 1;                      
-}
+  .submit-btn:not(:disabled) {
+    opacity: 1;
+  }
 
-.submit-btn:not(:disabled):hover {
+  .submit-btn:not(:disabled):hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 40px rgba(108, 92, 231, 0.4);
-}
+  }
 
-.submit-btn:not(:disabled):active {
+  .submit-btn:not(:disabled):active {
     transform: translateY(0);
-}
+  }
 
-.submit-btn:not(:disabled) {
+  .submit-btn:not(:disabled) {
     background: var(--gradient-1);
     color: white;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
-}
+  }
 
-.submit-btn.loading {
+  .submit-btn.loading {
     pointer-events: none;
     opacity: 0.7;
-}
+  }
 
-.submit-btn.loading .btn-icon {
+  .submit-btn.loading .btn-icon {
     animation: spin 1s linear infinite;
-}
+  }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-.submit-btn::before {
-    content: '';
+  .submit-btn::before {
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -429,51 +417,55 @@ body {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
+    transition:
+      width 0.6s,
+      height 0.6s;
+  }
 
-.submit-btn:not(:disabled):active::before {
+  .submit-btn:not(:disabled):active::before {
     width: 300px;
     height: 300px;
-}
+  }
 
-.btn-text {
+  .btn-text {
     position: relative;
     z-index: 1;
-}
+  }
 
-.btn-icon {
-    font-size: 20px;
+  .btn-icon {
+    font-size: 18px;
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
-}
+  }
 
-.submit-btn:not(:disabled):hover .btn-icon {
+  .submit-btn:not(:disabled):hover .btn-icon {
     transform: translateX(5px);
-}
+  }
 
-/* Auth Footer */
-.auth-footer {
+  /* Auth Footer */
+  .auth-footer {
     text-align: center;
-    margin-top: 8px;
-}
+    margin-top: 4px;
+  }
 
-.auth-footer p {
+  .auth-footer p {
     color: var(--text-secondary);
-    font-size: 14px;
-}
+    font-size: 13px;
+  }
 
-.signup-link {
+  .signup-link {
     color: var(--primary-light);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
     position: relative;
-}
+    padding: 4px 0;
+    display: inline-block;
+  }
 
-.signup-link::after {
-    content: '';
+  .signup-link::after {
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -481,191 +473,571 @@ body {
     height: 2px;
     background: var(--gradient-1);
     transition: width 0.3s ease;
-}
+  }
 
-.signup-link:hover {
+  .signup-link:hover {
     color: var(--secondary);
-}
+  }
 
-.signup-link:hover::after {
+  .signup-link:hover::after {
     width: 100%;
-}
+  }
 
-/* Responsive Design */
-@media (max-width: 480px) {
+  /* ============================================
+       RESPONSIVE BREAKPOINTS
+       ============================================ */
+
+  /* Mobile (320px - 480px) */
+  @media (max-width: 480px) {
+    .auth-wrapper {
+      padding: 12px;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
     .auth-card {
-        padding: 32px 24px;
-        border-radius: 20px;
+      padding: 24px 16px;
+      border-radius: 16px;
     }
-    
-    .auth-header h1 {
-        font-size: 28px;
-    }
-    
-    .logo-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-    }
-    
-    .form-options {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-    }
-}
 
-/* Ripple Animation */
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
+    .auth-header {
+      margin-bottom: 24px;
     }
-}
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+
+    .auth-header h1 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      padding: 0 4px;
+    }
+
+    .auth-form {
+      gap: 16px;
+    }
+
+    .input-label {
+      font-size: 11px;
+    }
+
+    .form-input {
+      padding: 10px 48px 10px 38px;
+      font-size: 14px;
+      min-height: 44px;
+      border-radius: 10px;
+    }
+
+    .input-icon {
+      font-size: 16px;
+      left: 12px;
+    }
+
+    .form-options {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .checkbox-text {
+      font-size: 12px;
+    }
+
+    .forgot-link {
+      font-size: 12px;
+    }
+
+    .submit-btn {
+      padding: 14px;
+      font-size: 14px;
+      min-height: 46px;
+      border-radius: 10px;
+    }
+
+    .auth-footer p {
+      font-size: 12px;
+    }
+
+    .alert {
+      padding: 10px 14px;
+      font-size: 12px;
+      border-radius: 10px;
+      gap: 10px;
+    }
+
+    .alert ion-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .bg-shape-1 {
+      width: 250px;
+      height: 250px;
+      top: -80px;
+      right: -80px;
+    }
+
+    .bg-shape-2 {
+      width: 200px;
+      height: 200px;
+      bottom: -60px;
+      left: -60px;
+    }
+
+    .bg-shape-3 {
+      width: 150px;
+      height: 150px;
+    }
+
+    .bg-shape {
+      filter: blur(50px) !important;
+    }
+  }
+
+  /* Small Tablets (481px - 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .auth-wrapper {
+      padding: 20px;
+    }
+
+    .auth-card {
+      padding: 32px 24px;
+      border-radius: 20px;
+    }
+
+    .auth-container {
+      max-width: 400px;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      font-size: 26px;
+    }
+
+    .auth-header h1 {
+      font-size: 26px;
+    }
+
+    .form-input {
+      min-height: 46px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      min-height: 48px;
+      padding: 14px;
+    }
+
+    .form-options {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  /* Tablets & Small Laptops (769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .auth-container {
+      max-width: 380px;
+    }
+
+    .auth-card {
+      padding: 36px 28px;
+      border-radius: 20px;
+    }
+
+    .auth-header h1 {
+      font-size: 26px;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      font-size: 26px;
+    }
+
+    .form-options {
+      flex-direction: row;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+
+  /* Large Screens (1025px+) - REDUCED SIZE */
+  @media (min-width: 1025px) {
+    .auth-container {
+      max-width: 380px;
+    }
+
+    .auth-card {
+      padding: 36px 28px;
+      border-radius: 20px;
+    }
+
+    .auth-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      font-size: 26px;
+      border-radius: 16px;
+    }
+
+    .auth-header h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .auth-header {
+      margin-bottom: 28px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+    }
+
+    .auth-form {
+      gap: 18px;
+    }
+
+    .form-input {
+      min-height: 46px;
+      padding: 11px 52px 11px 44px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
+    .input-icon {
+      font-size: 18px;
+      left: 14px;
+    }
+
+    .input-label {
+      font-size: 12px;
+    }
+
+    .submit-btn {
+      min-height: 48px;
+      padding: 14px 16px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
+    .btn-icon {
+      font-size: 18px;
+    }
+
+    .auth-footer p {
+      font-size: 13px;
+    }
+
+    .form-options {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .checkbox-text {
+      font-size: 12px;
+    }
+
+    .forgot-link {
+      font-size: 12px;
+    }
+
+    .alert {
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+
+    .bg-shape-1 {
+      width: 400px;
+      height: 400px;
+      top: -120px;
+      right: -120px;
+    }
+
+    .bg-shape-2 {
+      width: 350px;
+      height: 350px;
+      bottom: -100px;
+      left: -100px;
+    }
+
+    .bg-shape-3 {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  /* Landscape Phone Fixes */
+  @media (max-height: 600px) and (orientation: landscape) {
+    .auth-wrapper {
+      align-items: flex-start;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .auth-card {
+      padding: 16px 20px;
+      border-radius: 14px;
+    }
+
+    .auth-header {
+      margin-bottom: 14px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+    }
+
+    .auth-header h1 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 11px;
+    }
+
+    .auth-form {
+      gap: 12px;
+    }
+
+    .input-label {
+      font-size: 10px;
+    }
+
+    .form-input {
+      padding: 8px 10px 8px 34px;
+      font-size: 13px;
+      min-height: 38px;
+      border-radius: 8px;
+    }
+
+    .input-icon {
+      font-size: 14px;
+      left: 10px;
+    }
+
+    .form-options {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .submit-btn {
+      padding: 10px 14px;
+      font-size: 13px;
+      min-height: 40px;
+      border-radius: 8px;
+    }
+
+    .auth-footer p {
+      font-size: 12px;
+    }
+
+    .alert {
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+
+    .bg-shape-1,
+    .bg-shape-2,
+    .bg-shape-3 {
+      display: none;
+    }
+  }
+
+  /* Dark Mode Compatibility */
+  /* Reduced Motion (Accessibility) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .bg-shape {
+      animation: none !important;
+    }
+
+    .auth-card:hover {
+      transform: none !important;
+    }
+
+    .submit-btn:not(:disabled):hover {
+      transform: none !important;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .auth-background {
+      display: none !important;
+    }
+
+    .auth-card {
+      background: white !important;
+      color: black !important;
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+    }
+
+    .auth-header h1 {
+      -webkit-text-fill-color: #333 !important;
+      background: none !important;
+      color: #333 !important;
+    }
+
+    .submit-btn {
+      background: #333 !important;
+      color: white !important;
+      box-shadow: none !important;
+    }
+
+    .form-input {
+      border-color: #ccc !important;
+      color: #333 !important;
+      background: #f5f5f5 !important;
+    }
+  }
 </style>
 
-{% endblock head %}
-
-{% block content %}
+{% endblock head %} {% block content %}
 <main class="auth-wrapper">
-    <div class="auth-background" aria-hidden="true">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-    </div>
+  <div class="auth-background" aria-hidden="true">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+  </div>
 
-    <section class="auth-container">
-        <article class="auth-card">
-            <header class="auth-header">
-                <div class="logo-icon" aria-hidden="true">
-                    <ion-icon name="chatbubbles-outline"></ion-icon>
-                </div>
-                <h1 >Bacbok</h1>
-                <p class="subtitle">Sign in to connect with your friends and family</p>
-            </header>
+  <section class="auth-container">
+    <article class="auth-card">
+      <header class="auth-header">
+        <div class="logo-icon" aria-hidden="true">
+          <ion-icon name="chatbubbles-outline"></ion-icon>
+        </div>
+        <h1>Bacbok</h1>
+        <p class="subtitle">Sign in to connect with your friends and family</p>
+      </header>
+      <form action="" method="POST" class="auth-form" id="loginForm" novalidate>
+        {% csrf_token %} {% if messages %}
+        <div class="alert-container">
+          {% for msg in messages %}
+          <div class="alert alert-error" role="alert">
+            <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+            <span>{{ msg }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %} {% for error in form.non_field_errors %}
+        <div class="alert alert-error" role="alert">
+          <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+          <span>{{ error }}</span>
+        </div>
+        {% endfor %}
 
-            <form action="" method="POST" class="auth-form" id="loginForm" novalidate>
-                {% csrf_token %}
+        <!-- Email Field -->
+        <div class="input-group">
+          <label class="input-label" for="email">Email Address</label>
+          <div class="input-wrapper">
+            <ion-icon
+              name="mail-outline"
+              class="input-icon"
+              aria-hidden="true"
+            ></ion-icon>
+            <input
+              type="email"
+              id="email"
+              name="login"
+              placeholder="Enter your email"
+              required
+              class="form-input"
+              autocomplete="email"
+              aria-required="true"
+            />
+            <div class="input-border"></div>
+          </div>
+        </div>
 
-                {% if messages %}
-                <div class="alert-container">
-                    {% for msg in messages %}
-                    <div class="alert alert-error" role="alert">
-                        <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
-                        <span>{{ msg }}</span>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endif %}
+        <!-- Password Field -->
+        <div class="input-group">
+          <label class="input-label" for="pass1">Password</label>
+          <div class="input-wrapper">
+            <ion-icon
+              name="lock-closed-outline"
+              class="input-icon"
+              aria-hidden="true"
+            ></ion-icon>
+            <input
+              type="password"
+              id="pass1"
+              name="password"
+              placeholder="Enter your password"
+              required
+              class="form-input"
+              autocomplete="current-password"
+              aria-required="true"
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              id="togglePassword"
+              aria-label="Toggle password visibility"
+            >
+              <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
+            </button>
+            <div class="input-border"></div>
+          </div>
+        </div>
 
-                {% for error in form.non_field_errors %}
-                <div class="alert alert-error" role="alert">
-                    <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
-                    <span>{{ error }}</span>
-                </div>
-                {% endfor %}
+        <!-- Form Options -->
+        <div class="form-options">
+          <a href="{% url 'account_reset_password' %}" class="forgot-link"
+            >Forgot password?</a
+          >
+        </div>
 
-                <div class="input-group">
-                    <label class="input-label" for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <ion-icon name="mail-outline" class="input-icon" aria-hidden="true"></ion-icon>
-                        <input type="email" id="email" name="login" placeholder="Enter your email" required
-                            autocomplete="email" class="form-input" aria-required="true">
-                        <div class="input-border"></div>
-                    </div>
-                </div>
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" id="loginBtn">
+          <span class="btn-text">Sign In</span>
+          <ion-icon
+            name="arrow-forward-outline"
+            class="btn-icon"
+            aria-hidden="true"
+          ></ion-icon>
+        </button>
 
-                <div class="input-group">
-                    <label class="input-label" for="pass1">Password</label>
-                    <div class="input-wrapper">
-                        <ion-icon name="lock-closed-outline" class="input-icon" aria-hidden="true"></ion-icon>
-                        <input type="password" id="pass1" name="password" placeholder="Enter your password" required
-                            class="form-input" autocomplete="current-password" aria-required="true">
-                        <button type="button" class="toggle-password" id="togglePassword"
-                            aria-label="Toggle password visibility">
-                            <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
-                        </button>
-                        <div class="input-border"></div>
-                    </div>
-                </div>
-
-                <div class="form-options">
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" id="showPassword">
-                        <span class="checkmark"></span>
-                        <span class="checkbox-text">Show password</span>
-                    </label>
-                    <a href="{% url 'account_reset_password' %}" class="forgot-link">Forgot password?</a>
-                </div>
-
-                <button type="submit" class="submit-btn" id="loginBtn">
-                    <span class="btn-text">Sign In</span>
-                    <ion-icon name="arrow-forward-outline" class="btn-icon" aria-hidden="true"></ion-icon>
-                </button>
-
-                <footer class="auth-footer">
-                    <p>Don't have an account? <a href="{% url 'account_signup' %}" class="signup-link">Create
-                            Account</a></p>
-                </footer>
-            </form>
-        </article>
-    </section>
+        <!-- Footer -->
+        <footer class="auth-footer">
+          <p>
+            Don't have an account?
+            <a href="{% url 'account_signup' %}" class="signup-link"
+              >Create Account</a
+            >
+          </p>
+        </footer>
+      </form>
+    </article>
+  </section>
 </main>
 <script src="{% static 'js/login.js' %}"></script>
 {% endblock content %}
-=======
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>bacbok</title>
-    <link rel='stylesheet', href="{% static 'css/login.css' %}">
-{% endblock  %}
-
-{% block content %}
-    <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-
-            <h2>Bacbok</h2>
-            <p>login into bacbok and connect with your friends and families</p>
-
-            {% for msg in messages %}
-                <p class="errors">{{ msg }}</p>
-            {% endfor %}
-
-            {% for error in form.non_field_errors %}
-                <p class="errors">{{ error }}</p>
-            {% endfor %}
-
-            <div id="type_text">
-                <input type="email" id="email" name="login" placeholder="your email" required autocomplete="off">
-            </div>
-
-            <div id="type_password">
-                <input type="password" id="pass1" name="password" placeholder="enter your password" required/>
-            </div>
-
-            <div id="type_checkbox">
-                <p>check password</p>
-                <input type="checkbox" id="checkbox"/>
-            </div>
-            
-            <div id="join">
-                <button id="loginBtn" disabled type="submit"><p>Login</p><ion-icon name="arrow-forward-outline"></ion-icon></button>
-            </div>
-
-            <div id="options">
-                <span>Dont have an account?</span>
-                <ul>
-                    <li><a href="{% url 'account_signup' %}">Register</a></li>
-                    <li><a href="{% url 'account_reset_password' %}">Forget Password?</a></li>
-                </ul>
-            </div>
-
-        </form>
-    </div>
-    <script src="{% static 'js/login.js' %}"></script>
-{% endblock  %}
->>>>>>> 6431328d52b86dcdd97352024acc7766295b0363

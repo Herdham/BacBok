@@ -1,87 +1,80 @@
-{% extends 'auth/base.html' %}
-
-{% load static %}
-
-{% static "media" as mediaURL %}
-
-{% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-    <title>bacbok</title>
-    <style>
-        * {
+{% extends 'auth/base.html' %} {% load static %} {% static "media" as mediaURL
+%} {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<title>bacbok</title>
+<style>
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-:root {
-    --bg-main: #0B1020;
-    --bg-card: #161B2E;
+  /* Theme tokens centralized in auth/base.html */
 
-    --primary: #7C3AED;
-    --secondary: #3B82F6;
-
-    --text-main: #FFFFFF;
-    --text-secondary: #9CA3AF;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
-}
+  }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
-}
+  }
 
-svg {
-    stroke: #0B1020;
+  svg {
+    stroke: #0b1020;
     width: 25px;
     height: 25px;
-}
+  }
 
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     height: 6px;
     width: 6px;
-}
+  }
 
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
+  }
 
-::-webkit-scrollbar-thumb {
-    background: #9CA3AF;
+  ::-webkit-scrollbar-thumb {
+    background: #9ca3af;
     border-radius: 6px;
-}
+  }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: #161B2E;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #161b2e;
+  }
 
-body {
-    font-family: 'Poppins', sans-serif;
-}
+  body {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container {
+  .container {
     padding-left: 1%;
     padding-right: 1%;
     margin-bottom: 20px;
-}
+  }
 
-.container .navbar {
+  .container .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -93,212 +86,208 @@ body {
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); */
     padding-left: 8px;
     padding-right: 8px;
-}
+  }
 
-.container .navbar .first h4 {
-    color: #7C3AED;
+  .container .navbar .first h4 {
+    color: #7c3aed;
     font-size: 20px;
-}
+  }
 
-.container .navbar .first .logo {
+  .container .navbar .first .logo {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .first .logo h4 {
+  .container .navbar .first .logo h4 {
     margin-right: 5px;
-}
+  }
 
-.container .navbar .second form {
+  .container .navbar .second form {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .second .search {
+  .container .navbar .second .search {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
     margin-right: 20px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input {
+  .container .navbar .second .search input {
     padding: 8px;
     border: none;
     outline: none;
     width: 300px;
     margin-right: 3px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input::placeholder {
-    font-family: 'Poppins', sans-serif;
-}
+  .container .navbar .second .search input::placeholder {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .navbar .second form .search button {
+  .container .navbar .second form .search button {
     border: none;
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin-right: 5px;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second .search button svg {
+  .container .navbar .second .search button svg {
     margin-right: 0px;
     margin-top: 0px;
     width: 22px;
     height: 22px;
-}
+  }
 
-.container .navbar .second .search button svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second .search button svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a svg {
+  .container .navbar .second form a svg {
     margin-right: 20px;
     width: 25px;
     height: 25px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .second form a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a {
-    color: #0B1020;
+  .container .navbar .second form a {
+    color: #0b1020;
     border: none;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second form .active svg {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form .active svg {
+    stroke: #7c3aed;
+  }
 
-
-.container .navbar .third {
+  .container .navbar .third {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .third a svg {
+  .container .navbar .third a svg {
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .third a svg:nth-child(3) {
+  .container .navbar .third a svg:nth-child(3) {
     margin-right: 0px;
-}
+  }
 
-.container .navbar .third svg {
-    stroke: #0B1020;
-}
+  .container .navbar .third svg {
+    stroke: #0b1020;
+  }
 
-.container .navbar .third a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .third a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .third a img {
+  .container .navbar .third a img {
     border-radius: 50%;
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .popup {
+  .container .popup {
     width: 96%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     margin-right: 3%;
     z-index: 10;
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
+  }
 
-
-.container .popup .close ion-icon {
-    color: #0B1020;
+  .container .popup .close ion-icon {
+    color: #0b1020;
     font-size: 23px;
     margin-left: 95%;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
-}
+  }
 
-.container .popup .content {
+  .container .popup .content {
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
     width: 500px;
     height: auto;
     border-radius: 5px;
     padding: 10px;
-}
+  }
 
-.container .popup .content .content_owner {
+  .container .popup .content .content_owner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content .content_owner img {
+  .container .popup .content .content_owner img {
     border-radius: 50%;
     margin-right: 5px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info {
+  .container .popup .content .content_owner .content_owner_info {
     align-self: flex-start;
     margin-bottom: 10px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info h5 {
-    color: #0B1020;
-}
+  .container .popup .content .content_owner .content_owner_info h5 {
+    color: #0b1020;
+  }
 
-.container .popup .content form input[type="text"] {
+  .container .popup .content form input[type="text"] {
     border: none;
     outline: none;
     width: 100%;
     padding: 8px;
     background-color: #fff;
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 8px;
-}
+  }
 
-.container .popup .content form input::placeholder {
+  .container .popup .content form input::placeholder {
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .popup .content form #image_cancle {
-    color: #0B1020;
+  .container .popup .content form #image_cancle {
+    color: #0b1020;
     font-size: 20px;
     margin-left: 87%;
     margin-top: 8px;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
     display: none;
     margin-bottom: 10px;
     position: absolute;
-}
+  }
 
-.container .popup .content form .showimage {
+  .container .popup .content form .showimage {
     width: 70px;
     height: 70px;
     border-radius: 5px;
     margin-bottom: 6px;
     display: none;
-}
+  }
 
-
-
-.container .popup .content form .add_to_post {
+  .container .popup .content form .add_to_post {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -306,88 +295,88 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
-}
+  }
 
-.container .popup .content form .add_to_post button {
+  .container .popup .content form .add_to_post button {
     border: none;
     outline: none;
     padding: 8px;
-    background-color: #0B1020;
+    background-color: #0b1020;
     color: #fff;
     width: 150px;
     border-radius: 4px;
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul {
+  .container .popup .content form .add_to_post ul {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content form .add_to_post ul li {
+  .container .popup .content form .add_to_post ul li {
     display: flex;
     align-items: center;
     list-style: none;
     margin-right: 20px;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label ion-icon {
+  .container .popup .content form .add_to_post ul li label ion-icon {
     font-size: 25px;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #photo {
+  .container .popup .content form .add_to_post ul li label #photo {
     color: green;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #tag {
-    color: #3B82F6;
-}
+  .container .popup .content form .add_to_post ul li label #tag {
+    color: #3b82f6;
+  }
 
-.container .popup .content form .add_to_post ul li label #location {
+  .container .popup .content form .add_to_post ul li label #location {
     color: maroon;
-}
+  }
 
-.container .popup .content form input[type="submit"] {
+  .container .popup .content form input[type="submit"] {
     width: 100%;
     border: none;
     outline: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 8px;
     border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-.container .status_modal {
+  .container .status_modal {
     position: absolute;
     width: 95vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 20;
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
+  }
 
-.container .status_modal .status_modal_close {
+  .container .status_modal .status_modal_close {
     display: flex;
     justify-content: right;
-}
+  }
 
-.container .status_modal .status_modal_close ion-icon {
+  .container .status_modal .status_modal_close ion-icon {
     color: #000;
     font-size: 25px;
     padding: 8px;
     border-radius: 50px;
     background-color: #fff;
     cursor: pointer;
-}
+  }
 
-.container .status_modal .status_post {
+  .container .status_modal .status_post {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -396,68 +385,72 @@ body {
     background-color: #fff;
     border-radius: 5px;
     padding: 10px;
-}
+  }
 
-.container .status_modal .status_post .status_add {
-    background: linear-gradient(130deg, #3B82F6, #7C3AED);
+  .container .status_modal .status_post .status_add {
+    background: linear-gradient(130deg, #3b82f6, #7c3aed);
     width: 250px;
     height: 300px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+  }
 
-.container .status_modal .status_post .status_add label {
+  .container .status_modal .status_post .status_add label {
     text-align: center;
-}
+  }
 
-.container .status_modal .status_post .status_add label ion-icon {
+  .container .status_modal .status_post .status_add label ion-icon {
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
     font-size: 25px;
     cursor: pointer;
-}
+  }
 
-.container .status_modal .status_post .status_add label p {
+  .container .status_modal .status_post .status_add label p {
     color: #fff;
     font-size: 0.8rem;
     white-space: nowrap;
-}
+  }
 
-.container .status_modal .status_post form .status_post_wrapper {
+  .container .status_modal .status_post form .status_post_wrapper {
     display: flex;
     align-items: center;
     gap: 5px;
     margin-bottom: 8px;
-}
+  }
 
-
-/* .container .status_modal .status_post .status_preview {
+  /* .container .status_modal .status_post .status_preview {
 } */
 
-.container .status_modal .status_post form .status_post_wrapper #image_discard {
+  .container
+    .status_modal
+    .status_post
+    form
+    .status_post_wrapper
+    #image_discard {
     align-self: flex-start;
     font-size: 23px;
-    background-color: #0B1020;
+    background-color: #0b1020;
     padding: 8px;
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
     display: none;
-}
+  }
 
-.container .status_modal .status_post form .add_text {
+  .container .status_modal .status_post form .add_text {
     width: 100%;
     background-color: #fff;
     display: none;
     align-items: center;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
-}
+  }
 
-.container .status_modal .status_post form .add_text input[type="text"] {
+  .container .status_modal .status_post form .add_text input[type="text"] {
     width: 100%;
     padding: 8px;
     border: none;
@@ -466,38 +459,42 @@ body {
     border-radius: 25px;
     margin-right: 5px;
     font-size: 13px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .status_modal .status_post form .add_text input[type="text"]::placeholder {
+  .container
+    .status_modal
+    .status_post
+    form
+    .add_text
+    input[type="text"]::placeholder {
     font-size: 13px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .status_modal .status_post form .add_text button {
+  .container .status_modal .status_post form .add_text button {
     border: none;
     outline: none;
     background: transparent;
-}
+  }
 
-.container .status_modal .status_post form .add_text button ion-icon {
+  .container .status_modal .status_post form .add_text button ion-icon {
     padding: 8px;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     cursor: pointer;
     border-radius: 25px;
     font-size: 15px;
-}
+  }
 
-
-.container main {
+  .container main {
     display: flex;
     align-items: center;
     margin-top: 10px;
-}
+  }
 
-.container main .first {
-    background-color: #FFFFFF;
+  .container main .first {
+    background-color: #ffffff;
     width: 30%;
     height: 90vh;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -510,73 +507,71 @@ body {
     position: fixed;
     top: 0;
     margin-top: 60px;
-}
+  }
 
-.container main .first h2{
+  .container main .first h2 {
     margin-bottom: 10px;
-}
+  }
 
-.container main .first p{
+  .container main .first p {
     margin-bottom: 10px;
-}
+  }
 
-.container main .first a{
+  .container main .first a {
     display: flex;
     align-items: center;
     text-decoration: none;
     margin-bottom: 20px;
-}
+  }
 
-.container main .first a svg{
+  .container main .first a svg {
     margin-right: 10px;
     padding: 15px;
     cursor: pointer;
     background-color: #ccc;
     border-radius: 50%;
-    stroke: #161B2E;
+    stroke: #161b2e;
     width: 70px;
     height: 70px;
-}
+  }
 
-.container main .first a .create_status{
+  .container main .first a .create_status {
     align-self: center;
-}
+  }
 
-
-.container main .first a .create_status h3, p{
+  .container main .first a .create_status h3,
+  p {
     font-size: 14px;
-    color: #7C3AED;
-}
+    color: #7c3aed;
+  }
 
-.container main .first #all_stories{
+  .container main .first #all_stories {
     margin-bottom: 8px;
-}
+  }
 
-
-.container main .first .status_wrapper a{
+  .container main .first .status_wrapper a {
     display: flex;
     align-items: center;
     background-color: #ddd;
     padding: 6px;
     border-radius: 5px;
-}
+  }
 
-.container main .first .status_wrapper a img{
+  .container main .first .status_wrapper a img {
     margin-right: 8px;
     border-radius: 50%;
-}
+  }
 
-.container main .first .status_wrapper a .info h5{
-    color: #161B2E;
-}
+  .container main .first .status_wrapper a .info h5 {
+    color: #161b2e;
+  }
 
-.container main .first .status_wrapper a .info p{
+  .container main .first .status_wrapper a .info p {
     font-size: 12px;
-    color: #3B82F6
-}
+    color: #3b82f6;
+  }
 
-
-.container main .second {
+  .container main .second {
     align-self: flex-start;
     width: 100%;
     margin-right: 20px;
@@ -587,80 +582,100 @@ body {
     justify-content: center;
     margin-left: 32%;
     margin-top: 40px;
-}
+  }
 
-.container main .second .status_view_container{
-    display: flex; 
-}
+  .container main .second .status_view_container {
+    display: flex;
+  }
 
-.container main .second .status_view_container .status_view{
+  .container main .second .status_view_container .status_view {
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     width: 400px;
     height: auto;
     border-radius: 5px;
     position: relative;
-}
+  }
 
-.container main .second .status_view_container ion-icon{
+  .container main .second .status_view_container ion-icon {
     align-self: center;
-}
+  }
 
-.container main .second .status_view_container #chevback{
+  .container main .second .status_view_container #chevback {
     margin-top: -50px;
     color: #fff;
     margin-right: 10px;
     font-size: 25px;
     padding: 8px;
     border-radius: 50%;
-    background-color: #161B2E;
+    background-color: #161b2e;
     cursor: pointer;
-}
+  }
 
-.container main .second .status_view_container #chevfront{
+  .container main .second .status_view_container #chevfront {
     margin-top: -50px;
     color: #fff;
     margin-left: 10px;
     font-size: 25px;
     padding: 8px;
     border-radius: 50%;
-    background-color: #161B2E;
+    background-color: #161b2e;
     cursor: pointer;
-}
+  }
 
-.container main .second .status_view_container .status_view .heading{
+  .container main .second .status_view_container .status_view .heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #161B2E;
+    background-color: #161b2e;
     padding-top: 10px;
     padding-left: 5px;
     padding-right: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
+  }
 
-.container main .second .status_view_container .status_view .heading .heading_info{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .heading
+    .heading_info {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-}
+  }
 
-.container main .second .status_view_container .status_view .heading .heading_info img{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .heading
+    .heading_info
+    img {
     border-radius: 50px;
     margin-right: 10px;
-}
+  }
 
-.container main .second .status_view_container .status_view .heading .heading_info h5{
-    color: #0B1020;
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .heading
+    .heading_info
+    h5 {
+    color: #0b1020;
     align-self: flex-start;
     white-space: nowrap;
     padding: 5px;
     border-radius: 4px;
     background-color: #fff;
-}
+  }
 
-.container main .second .status_view_container .status_view .heading svg{
+  .container main .second .status_view_container .status_view .heading svg {
     cursor: pointer;
     padding: 8px;
     background-color: #fff;
@@ -670,23 +685,39 @@ body {
     align-self: flex-start;
     width: 35px;
     height: 35px;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_container{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_container {
     overflow-x: hidden;
     aspect-ratio: 4 / 5;
     display: flex;
     width: 100%;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_image_wrapper{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_image_wrapper {
     position: relative;
     aspect-ratio: 4 / 5;
     width: 100%;
     margin-right: 5px;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_image_wrapper #status_image{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_image_wrapper
+    #status_image {
     width: 100%;
     height: 100%;
     border-bottom-left-radius: 5px;
@@ -694,11 +725,11 @@ body {
     display: flex;
     align-items: center;
     object-fit: cover;
-}
+  }
 
-.container main .second .status_view_container .status_view #caption{
+  .container main .second .status_view_container .status_view #caption {
     margin-left: 8px;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     margin-right: 8px;
     padding: 6px;
     border-radius: 25px;
@@ -709,9 +740,15 @@ body {
     width: 95%;
     color: #fff;
     margin-top: -490px;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_container .add_story{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_container
+    .add_story {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -722,294 +759,451 @@ body {
     padding: 8px;
     border-radius: 25px;
     cursor: pointer;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_container .add_story svg{
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_container
+    .add_story
+    svg {
     width: 30px;
     height: 30px;
     margin-right: 10px;
-}
+  }
 
-.container main .second .status_view_container .status_view .status_container .add_story p{
-    color: #0B1020;
-}
+  .container
+    main
+    .second
+    .status_view_container
+    .status_view
+    .status_container
+    .add_story
+    p {
+    color: #0b1020;
+  }
 
-.container main .third {
+  .container main .third {
     align-self: flex-start;
     width: 25%;
     padding: 10px;
     height: auto;
-}
+  }
 
-.container main .third .follow_suggest {
+  .container main .third .follow_suggest {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-}
+  }
 
-.container main .third .follow_suggest h4 {
+  .container main .third .follow_suggest h4 {
     font-family: 13px;
     margin-bottom: 7px;
-    color: #7C3AED;
-}
+    color: #7c3aed;
+  }
 
-.container main .third .follow_suggest .follow_container {
+  .container main .third .follow_suggest .follow_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner {
+  .container main .third .follow_suggest .follow_container .follow_inner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner img {
+  .container main .third .follow_suggest .follow_container .follow_inner img {
     align-self: flex-start;
     border-radius: 50%;
     margin-right: 10px;
     border: 1px dashed #fff;
-}
+  }
 
-
-.container main .third .follow_suggest .follow_container a {
+  .container main .third .follow_suggest .follow_container a {
     align-self: flex-start;
     text-decoration: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 6px;
     width: 100px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 10px;
     text-align: center;
     border-radius: 5px;
-}
+  }
 
-.container main .third .trending {
+  .container main .third .trending {
     padding: 8px;
     width: 100%;
     border-radius: 5px;
     background-color: #ccc;
-}
+  }
 
-.container main .third .trending h4 {
+  .container main .third .trending h4 {
     margin-bottom: 5px;
-}
-    </style>
-{% endblock %}
-
-{% block content %}
-    <div class="container">
-        <nav class="navbar">
-            <div class="first">
-                <div class="logo">
-                    <h4>Bacbok</h4>
-                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
-                </div>
-            </div>
-            <div class="second">
-                <form action="search">
-                    <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                    </a>
-                    <div class="search">
-                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <a id="message_btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                    </a>
-                </form>
-            </div>
-            <div class="third">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-                    </svg>
-                </a>
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
-                <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                    </svg>
-                </a>
-            </div>
-        </nav>
-        
-        <div class="popup">
-            <div class="close">
-                <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
-            </div>
-            <div class="content">
-                <div class="content_owner">
-                    <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
-                    <div class="content_owner_info">
-                        <h5>{{ profile.fullname }}</h5>
-                        <p>@{{ profile.user.username }}</p>
-                    </div>
-                </div>
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <p id="errors" style="text-align: center;color: red;">{{ message }}</p>
-                    <input type="text" name="post_caption" placeholder="What's on your mind,{{profile.user.username}}?" autocomplete="off">
-                    <ion-icon name="close-outline" id="image_cancle"></ion-icon>
-                    <div class="showimage_wrapper">
-                        
-                    </div>
-
-                    <div class="add_to_post">
-                        <button type="button">Add to your post</button>
-                        <ul>
-                            <li>
-                                <label for="contentimage">
-                                    <ion-icon name="images-outline" id="photo"></ion-icon>
-                                </label>
-                                <input type="file" name="post_image" id="contentimage" style="display: none;" multiple>
-                            </li>
-                            <li>
-                                <label for="contenttag">
-                                    <ion-icon name="person-add-outline" id="tag"></ion-icon>
-                                </label>
-                                <input type="file" name="content_image" id="contenttag" style="display: none;">
-                            </li>
-                            <li>
-                                <label for="contentlocation">
-                                    <ion-icon name="location-outline" id="location"></ion-icon>
-                                </label>
-                                <input type="file" name="content_image" id="contentlocation" style="display: none;">
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="submit" name="content_upload" value="Upload">
-                </form>
-            </div>
-        </div>
-
-        <div class="status_modal">
-            <div class="status_modal_close">
-                <ion-icon name="close-outline"></ion-icon>
-            </div>
-            <div class="status_post">
-                <form action="" id="status_story" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="status_post_wrapper">
-                        <div class="status_add">
-                            <label for="status_image">
-                                <ion-icon name="image-outline"></ion-icon>
-                                <p>Create a photo story</p>
-                            </label>
-                            <input type="file" name="statusImages" id="status_image" style="display: none;"/>
-                        </div>
-                        <div class="status_preview">
-                            <!-- <img id="status_preview" alt=""> -->
-                        </div>
-                        <ion-icon name="close-outline" id="image_discard"></ion-icon>
-                    </div>
-                    <div class="add_text">
-                        <input type="text" id="status_text" placeholder="Add text to post" name="statusText" autocomplete="off"/>
-                        <button type="submit" name="status_submit"><ion-icon name="send-outline"></ion-icon></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <main>
-            <div class="first">
-                <h2>Stories</h2>
-                <p>Your Story</p>
-
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    <div class="create_status">
-                        <h3>Create a story here</h3>
-                        <p>Shared a story or re-write an article</p>
-                    </div>
-                </a>
-
-                <h3 id="all_stories">All Stories</h3>
-
-                <div class="status_wrapper">
-                    {% for user in users %}
-                        {% if user.user_status %}
-                            <a href="{% url 'status' username=user.username %}">
-                                <img width="60px" height="60px" src="{{user.users_acc.image.url}}" alt="">
-                                <div class="info">
-                                    <h5>{{user.users_acc.fullname}}</h5>
-                                    <p>@{{user.username}} | time: {{user.status.last.created_at|time:"H:i a"}}</p>
-                                </div>
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="second">
-                <div class="status_view_container">
-                    <ion-icon name="chevron-back-outline" id="chevback"></ion-icon>
-                    <div class="status_view">
-                        <div class="heading">
-                            <div class="heading_info">
-                                <a href="{% url 'profile' username=user_obj.username %}"><img width="30px" height="30px" src="{{user_obj.users_acc.image.url}}" alt=""></a>
-                                
-                                <h5>{{user_obj.users_acc.fullname}}</h5>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                            </svg>
-
-                        </div>
-                        <div class="status_container">
-
-                            {% for status in status_obj %}
-                                {% if status.expires_at > now %}
-                                    <div class="status_image_wrapper">
-                                        <img id="status_image" src="{{status.image.url}}" alt="">
-                                        <p id="caption">{{status.caption}}</p>
-                                    </div>
-                                {% endif %}
-                            {% empty %}
-                                <div class="add_story">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                    </svg>
-                                    <p>No story add one</p>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <ion-icon name="chevron-forward-outline" id="chevfront"></ion-icon>
-                </div>
-            </div>
-
-        </main>
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container">
+  <nav class="navbar">
+    <div class="first">
+      <div class="logo">
+        <h4>Bacbok</h4>
+        <img
+          width="40px"
+          height="40px"
+          src="{% static 'image/bacbok.png' %}"
+          alt=""
+        />
+      </div>
     </div>
-    <script src="{% static 'js/status.js' %}"></script>
+    <div class="second">
+      <form action="search">
+        <a href="{% url 'home' %}" class="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="search on bacbok"
+            name="search"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <a id="message_btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+        </a>
+      </form>
+    </div>
+    <div class="third">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+          />
+        </svg>
+      </a>
+      <a href="profile/{{profile.user.username}}"
+        ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+      /></a>
+      <a href="{% url 'logout' %}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="popup">
+    <div class="close">
+      <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+    </div>
+    <div class="content">
+      <div class="content_owner">
+        <a href="profile/{{profile.user.username}}"
+          ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+        /></a>
+        <div class="content_owner_info">
+          <h5>{{ profile.fullname }}</h5>
+          <p>@{{ profile.user.username }}</p>
+        </div>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p id="errors" style="text-align: center; color: red">{{ message }}</p>
+        <input
+          type="text"
+          name="post_caption"
+          placeholder="What's on your mind,{{profile.user.username}}?"
+          autocomplete="off"
+        />
+        <ion-icon name="close-outline" id="image_cancle"></ion-icon>
+        <div class="showimage_wrapper"></div>
+
+        <div class="add_to_post">
+          <button type="button">Add to your post</button>
+          <ul>
+            <li>
+              <label for="contentimage">
+                <ion-icon name="images-outline" id="photo"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="post_image"
+                id="contentimage"
+                style="display: none"
+                multiple
+              />
+            </li>
+            <li>
+              <label for="contenttag">
+                <ion-icon name="person-add-outline" id="tag"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contenttag"
+                style="display: none"
+              />
+            </li>
+            <li>
+              <label for="contentlocation">
+                <ion-icon name="location-outline" id="location"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contentlocation"
+                style="display: none"
+              />
+            </li>
+          </ul>
+        </div>
+        <input type="submit" name="content_upload" value="Upload" />
+      </form>
+    </div>
+  </div>
+
+  <div class="status_modal">
+    <div class="status_modal_close">
+      <ion-icon name="close-outline"></ion-icon>
+    </div>
+    <div class="status_post">
+      <form
+        action=""
+        id="status_story"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div class="status_post_wrapper">
+          <div class="status_add">
+            <label for="status_image">
+              <ion-icon name="image-outline"></ion-icon>
+              <p>Create a photo story</p>
+            </label>
+            <input
+              type="file"
+              name="statusImages"
+              id="status_image"
+              style="display: none"
+            />
+          </div>
+          <div class="status_preview">
+            <!-- <img id="status_preview" alt=""> -->
+          </div>
+          <ion-icon name="close-outline" id="image_discard"></ion-icon>
+        </div>
+        <div class="add_text">
+          <input
+            type="text"
+            id="status_text"
+            placeholder="Add text to post"
+            name="statusText"
+            autocomplete="off"
+          />
+          <button type="submit" name="status_submit">
+            <ion-icon name="send-outline"></ion-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <div class="first">
+      <h2>Stories</h2>
+      <p>Your Story</p>
+
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+        <div class="create_status">
+          <h3>Create a story here</h3>
+          <p>Shared a story or re-write an article</p>
+        </div>
+      </a>
+
+      <h3 id="all_stories">All Stories</h3>
+
+      <div class="status_wrapper">
+        {% for user in users %} {% if user.user_status %}
+        <a href="{% url 'status' username=user.username %}">
+          <img
+            width="60px"
+            height="60px"
+            src="{{user.users_acc.image.url}}"
+            alt=""
+          />
+          <div class="info">
+            <h5>{{user.users_acc.fullname}}</h5>
+            <p>
+              @{{user.username}} | time: {{user.status.last.created_at|time:"H:i
+              a"}}
+            </p>
+          </div>
+        </a>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+
+    <div class="second">
+      <div class="status_view_container">
+        <ion-icon name="chevron-back-outline" id="chevback"></ion-icon>
+        <div class="status_view">
+          <div class="heading">
+            <div class="heading_info">
+              <a href="{% url 'profile' username=user_obj.username %}"
+                ><img
+                  width="30px"
+                  height="30px"
+                  src="{{user_obj.users_acc.image.url}}"
+                  alt=""
+              /></a>
+
+              <h5>{{user_obj.users_acc.fullname}}</h5>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
+          </div>
+          <div class="status_container">
+            {% for status in status_obj %} {% if status.expires_at > now %}
+            <div class="status_image_wrapper">
+              <img id="status_image" src="{{status.image.url}}" alt="" />
+              <p id="caption">{{status.caption}}</p>
+            </div>
+            {% endif %} {% empty %}
+            <div class="add_story">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+              <p>No story add one</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <ion-icon name="chevron-forward-outline" id="chevfront"></ion-icon>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="{% static 'js/status.js' %}"></script>
 {% endblock %}

@@ -1,676 +1,838 @@
-{% extends 'chat/base.html' %}
-{% load static %}
-
-{% block head %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bacbok - Friends</title>
-    
-    <script src="{% static 'js/htmx/htmx.min.js' %}"></script>
-    <script src="{% static 'js/jquery/jquery-4.0.0.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-    <title>Bacbok</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-main: #0a0e27;
-            --bg-card: #131842;
-            --bg-card-glass: rgba(19, 24, 66, 0.6);
-            --primary: #6C5CE7;
-            --primary-light: #a29bfe;
-            --secondary: #00cec9;
-            --accent: #fd79a8;
-            --text-main: #FFFFFF;
-            --text-secondary: #a0a3b1;
-            --text-muted: #6c6f85;
-            --border: rgba(108, 92, 231, 0.2);
-            --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
-            --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        ::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--text-muted);
-            border-radius: 6px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: var(--primary-light);
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            src: url('../../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'Poppins';
-            src: url('../../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-main);
-            color: var(--text-main);
-            min-height: 100vh;
-        }
-
-        svg {
-            stroke: var(--text-muted);
-            width: 25px;
-            height: 25px;
-        }
-
-        .container {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        /* ============ NAVBAR ============ */
-        .container .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            width: 100%;
-            padding: 10px 3%;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(108, 92, 231, 0.15);
-            height: 60px;
-        }
-
-        .container .navbar .first h4 {
-            color: var(--primary);
-            font-size: 20px;
-        }
-
-        .container .navbar .first .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .container .navbar .first .logo h4 {
-            margin-right: 5px;
-        }
-
-        .container .navbar .second form {
-            display: flex;
-            align-items: center;
-        }
-
-        .container .navbar .second .search {
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-right: 20px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .container .navbar .second .search input {
-            padding: 10px 16px;
-            border: none;
-            outline: none;
-            width: 300px;
-            background: transparent;
-            color: var(--text-main);
-            border-radius: 25px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container .navbar .second .search input::placeholder {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-muted);
-        }
-
-        .container .navbar .second form .search button {
-            border: none;
-            outline: none;
-            background: transparent;
-            margin-right: 8px;
-            cursor: pointer;
-        }
-
-        .container .navbar .second .search button svg {
-            stroke: var(--text-muted);
-            width: 22px;
-            height: 22px;
-            transition: stroke 0.3s ease;
-        }
-
-        .container .navbar .second .search button svg:hover {
-            stroke: var(--primary-light);
-        }
-
-        .container .navbar .second form a svg {
-            margin-right: 20px;
-            width: 25px;
-            height: 25px;
-            margin-top: 8px;
-            stroke: var(--text-muted);
-            transition: stroke 0.3s ease;
-        }
-
-        .container .navbar .second form a svg:hover {
-            stroke: var(--primary-light);
-        }
-
-        .container .navbar .second form a {
-            color: var(--bg-main);
-            border: none;
-            cursor: pointer;
-        }
-
-        .container .navbar .second form .active svg {
-            stroke: var(--primary-light);
-        }
-
-        .container .navbar .third {
-            display: flex;
-            align-items: center;
-        }
-
-        .container .navbar .third a svg {
-            margin-right: 15px;
-            margin-top: 8px;
-            stroke: var(--text-muted);
-            transition: stroke 0.3s ease;
-        }
-
-        .container .navbar .third a svg:nth-child(3) {
-            margin-right: 0px;
-        }
-
-        .container .navbar .third a svg:hover {
-            stroke: var(--primary-light);
-        }
-
-        .container .navbar .third a img {
-            border-radius: 50%;
-            margin-right: 15px;
-            margin-top: 8px;
-            border: 2px solid var(--border);
-        }
-
-        /* ============ MAIN LAYOUT ============ */
-        .container main {
-            display: flex;
-            align-items: flex-start;
-            margin-top: 20px;
-            padding: 0 3%;
-            gap: 20px;
-        }
-
-        /* ============ LEFT SIDEBAR ============ */
-        .container main .first {
-            width: 30%;
-            min-width: 250px;
-            background: var(--bg-card-glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            height: calc(100vh - 100px);
-            position: sticky;
-            top: 80px;
-            overflow-y: auto;
-            flex-shrink: 0;
-        }
-
-        .container main .first .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .container main .first .header h2 {
-            color: var(--text-main);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .container main .first .header a {
-            text-decoration: none;
-        }
-
-        .container main .first .header a svg {
-            fill: var(--primary-light);
-            stroke: none;
-            width: 40px;
-            height: 40px;
-            padding: 8px;
-            background: rgba(108, 92, 231, 0.15);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .container main .first .header a svg:hover {
-            background: rgba(108, 92, 231, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .container main .first .friend_list ul {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .container main .first .friend_list ul a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .container main .first .friend_list ul a .list_inner {
-            display: flex;
-            align-items: center;
-        }
-
-        .container main .first .friend_list ul a:nth-child(1) {
-            background: rgba(108, 92, 231, 0.2);
-            border-radius: 8px;
-        }
-
-        .container main .first .friend_list ul a:nth-child(1) .list_inner svg {
-            stroke: var(--text-main);
-            margin-right: 15px;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-1);
-            padding: 8px;
-            border-radius: 50%;
-        }
-
-        .container main .first .friend_list ul a .list_inner svg {
-            stroke: var(--text-secondary);
-            margin-right: 15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .container main .first .friend_list ul a .list_inner p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .container main .first .friend_list ul a:hover {
-            background: rgba(108, 92, 231, 0.1);
-            border-radius: 8px;
-        }
-
-        .container main .first .friend_list ul a:hover .list_inner p {
-            color: var(--text-main);
-        }
-
-        .container main .first .friend_list ul a svg:last-child {
-            stroke: var(--text-muted);
-            width: 20px;
-            height: 20px;
-        }
-
-        /* ============ MAIN CONTENT ============ */
-        .container main .second {
-            flex: 1;
-            padding: 10px;
-            border-radius: 12px;
-            min-height: 100vh;
-        }
-
-        .container main .second h4 {
-            margin-bottom: 25px;
-            color: var(--text-main);
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .container main .second .all_user_to_follow {
-            display: flex;
-            align-items: stretch;
-            width: 100%;
-            padding: 8px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        /* ============ USER CARDS ============ */
-        .container main .second .all_user_to_follow .card {
-            width: 200px;
-            height: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .container main .second .all_user_to_follow .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.3);
-            border-color: var(--primary-light);
-        }
-
-        .container main .second .all_user_to_follow .card img {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .container main .second .all_user_to_follow .card .card_info {
-            padding: 15px;
-        }
-
-        .container main .second .all_user_to_follow .card .card_info .user_details {
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .container main .second .all_user_to_follow .card .card_info .user_details h3 {
-            font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--text-main);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .container main .second .all_user_to_follow .card .card_info .user_details p {
-            font-size: 11px;
-            color: var(--text-secondary);
-        }
-
-        .container main .second .all_user_to_follow .card .card_info button {
-            border: none;
-            outline: none;
-            padding: 10px;
-            width: 100%;
-            background: var(--gradient-1);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
-        }
-
-        .container main .second .all_user_to_follow .card .card_info button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.5);
-        }
-
-        /* ============ RESPONSIVE - TABLET ============ */
-        @media (max-width: 1024px) {
-            .container .navbar .second .search input {
-                width: 200px;
-            }
-
-            .container .navbar .third a:nth-child(1),
-            .container .navbar .third a:nth-child(2) {
-                display: none;
-            }
-
-            .container main .first {
-                width: 35%;
-            }
-
-            .container main .second .all_user_to_follow .card {
-                width: calc(50% - 10px);
-            }
-        }
-
-        /* ============ RESPONSIVE - MOBILE ============ */
-        @media (max-width: 768px) {
-            .container .navbar {
-                padding: 8px 15px;
-            }
-
-            .container .navbar .second .search input {
-                width: 120px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-
-            .container .navbar .second form a svg {
-                margin-right: 10px;
-                width: 22px;
-                height: 22px;
-            }
-
-            .container .navbar .third a:nth-child(1),
-            .container .navbar .third a:nth-child(2) {
-                display: none;
-            }
-
-            .container .navbar .third a img {
-                width: 25px !important;
-                height: 25px !important;
-            }
-
-            /* Hide sidebar on mobile */
-            .container main .first {
-                display: none;
-            }
-
-            .container main {
-                padding: 0 10px;
-            }
-
-            .container main .second {
-                width: 100%;
-                padding: 0;
-            }
-
-            .container main .second h4 {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-
-            .container main .second .all_user_to_follow {
-                gap: 10px;
-            }
-
-            .container main .second .all_user_to_follow .card {
-                width: calc(50% - 5px);
-            }
-
-            .container main .second .all_user_to_follow .card img {
-                height: 150px;
-            }
-
-            .container main .second .all_user_to_follow .card .card_info {
-                padding: 10px;
-            }
-
-            .container main .second .all_user_to_follow .card .card_info .user_details h3 {
-                font-size: 12px;
-            }
-        }
-
-        /* ============ SMALL MOBILE ============ */
-        @media (max-width: 480px) {
-            .container .navbar .first h4 {
-                font-size: 16px;
-            }
-
-            .container .navbar .first .logo img {
-                width: 30px !important;
-                height: 30px !important;
-            }
-
-            .container .navbar .second .search input {
-                width: 80px;
-                font-size: 11px;
-            }
-
-            .container main .second .all_user_to_follow .card {
-                width: 100%;
-            }
-        }
-    </style>
-{% endblock head %}
-
-{% block content %}
-    <div class="container">
-        <nav class="navbar">
-            <div class="first">
-                <div class="logo">
-                    <h4>Bacbok</h4>
-                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
-                </div>
-            </div>
-            <div class="second">
-                <form action="search">
-                    <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                    </a>
-                    <div class="search">
-                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <a id="message_btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                    </a>
-                </form>
-            </div>
-            <div class="third">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-                    </svg>
-                </a>
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
-                <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                    </svg>
-                </a>
-            </div>
-        </nav>
-
-        <main>
-            <div class="first">
-                <div class="header">
-                    <h2>Friends</h2>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                            <path fill-rule="evenodd" d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="friend_list">
-                    <ul>
-                        <a href="{% url 'friend' %}">
-                            <div class="list_inner">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                                </svg>
-                                <p>Home</p>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </a>
-                        <a href="#">
-                            <div class="list_inner">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                                </svg>
-                                <p>Friends Suggestion</p>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </a>
-                        <a href="#">
-                            <div class="list_inner">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <p>Unfollow</p>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-            <div class="second">
-                <h4>People to Follow</h4>
-
-                <div class="all_user_to_follow">
-                    {% for user in users %}
-                        {% if user.users_acc not in profile.follow.all %}
-                            <div class="card">
-                                <img width="200px" height="200px" src="{{user.users_acc.image.url}}" alt="">
-                                <div class="card_info">
-                                    <div class="user_details">
-                                        <h3>{{user.users_acc.fullname}}</h3>
-                                        <p>@{{user.username}}</p>
-                                    </div>
-                                    <button class="card_btn" draggable="true" hx-get="/friend_request/{{user.id}}" hx-trigger="click" hx-target="this" type="button">Follow</button>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </main>
+{% extends 'chat/base.html' %} {% load static %} {% block head %}
+<meta charset="UTF-8" />
+<!-- viewport provided by auth/base.html -->
+<title>Bacbok - Friends</title>
+
+<script src="{% static 'js/htmx/htmx.min.js' %}"></script>
+<script src="{% static 'js/jquery/jquery-4.0.0.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<title>Bacbok</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Theme tokens come from chat/base.html */
+
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-light);
+  }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url("../../assets/fonts/Poppins/Poppins-Regular.ttf")
+      format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url("../../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+  }
+
+  svg {
+    stroke: var(--text-muted);
+    width: 25px;
+    height: 25px;
+  }
+
+  .container {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  /* ============ NAVBAR ============ */
+  .container .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 10px 3%;
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(108, 92, 231, 0.15);
+    height: 60px;
+  }
+
+  .container .navbar .first h4 {
+    color: var(--primary);
+    font-size: 20px;
+  }
+
+  .container .navbar .first .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .container .navbar .first .logo h4 {
+    margin-right: 5px;
+  }
+
+  .container .navbar .second form {
+    display: flex;
+    align-items: center;
+  }
+
+  .container .navbar .second .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-right: 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .container .navbar .second .search input {
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    width: 300px;
+    background: transparent;
+    color: var(--text-main);
+    border-radius: 25px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .container .navbar .second .search input::placeholder {
+    font-family: "Poppins", sans-serif;
+    color: var(--text-muted);
+  }
+
+  .container .navbar .second form .search button {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  .container .navbar .second .search button svg {
+    stroke: var(--text-muted);
+    width: 22px;
+    height: 22px;
+    transition: stroke 0.3s ease;
+  }
+
+  .container .navbar .second .search button svg:hover {
+    stroke: var(--primary-light);
+  }
+
+  .container .navbar .second form a svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+  }
+
+  .container .navbar .second form a svg:hover {
+    stroke: var(--primary-light);
+  }
+
+  .container .navbar .second form a {
+    color: var(--bg-main);
+    border: none;
+    cursor: pointer;
+  }
+
+  .container .navbar .second form .active svg {
+    stroke: var(--primary-light);
+  }
+
+  .container .navbar .third {
+    display: flex;
+    align-items: center;
+  }
+
+  .container .navbar .third a svg {
+    margin-right: 15px;
+    margin-top: 8px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s ease;
+  }
+
+  .container .navbar .third a svg:nth-child(3) {
+    margin-right: 0px;
+  }
+
+  .container .navbar .third a svg:hover {
+    stroke: var(--primary-light);
+  }
+
+  .container .navbar .third a img {
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 8px;
+    border: 2px solid var(--border);
+  }
+
+  /* ============ MAIN LAYOUT ============ */
+  .container main {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 0 3%;
+    gap: 20px;
+  }
+
+  /* ============ LEFT SIDEBAR ============ */
+  .container main .first {
+    width: 30%;
+    min-width: 250px;
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    height: calc(100vh - 100px);
+    position: sticky;
+    top: 80px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .container main .first .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .container main .first .header h2 {
+    color: var(--text-main);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .container main .first .header a {
+    text-decoration: none;
+  }
+
+  .container main .first .header a svg {
+    fill: var(--primary-light);
+    stroke: none;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: rgba(108, 92, 231, 0.15);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .container main .first .header a svg:hover {
+    background: rgba(108, 92, 231, 0.3);
+    transform: rotate(90deg);
+  }
+
+  .container main .first .friend_list ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .container main .first .friend_list ul a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .container main .first .friend_list ul a .list_inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .container main .first .friend_list ul a:nth-child(1) {
+    background: rgba(108, 92, 231, 0.2);
+    border-radius: 8px;
+  }
+
+  .container main .first .friend_list ul a:nth-child(1) .list_inner svg {
+    stroke: var(--text-main);
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-1);
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .container main .first .friend_list ul a .list_inner svg {
+    stroke: var(--text-secondary);
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .container main .first .friend_list ul a .list_inner p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .container main .first .friend_list ul a:hover {
+    background: rgba(108, 92, 231, 0.1);
+    border-radius: 8px;
+  }
+
+  .container main .first .friend_list ul a:hover .list_inner p {
+    color: var(--text-main);
+  }
+
+  .container main .first .friend_list ul a svg:last-child {
+    stroke: var(--text-muted);
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  .container main .second {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    min-height: 100vh;
+  }
+
+  .container main .second h4 {
+    margin-bottom: 25px;
+    color: var(--text-main);
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .container main .second .all_user_to_follow {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    padding: 8px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  /* ============ USER CARDS ============ */
+  .container main .second .all_user_to_follow .card {
+    width: 200px;
+    height: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .container main .second .all_user_to_follow .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(108, 92, 231, 0.3);
+    border-color: var(--primary-light);
+  }
+
+  .container main .second .all_user_to_follow .card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .container main .second .all_user_to_follow .card .card_info {
+    padding: 15px;
+  }
+
+  .container main .second .all_user_to_follow .card .card_info .user_details {
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .container
+    main
+    .second
+    .all_user_to_follow
+    .card
+    .card_info
+    .user_details
+    h3 {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .container main .second .all_user_to_follow .card .card_info .user_details p {
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .container main .second .all_user_to_follow .card .card_info button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    background: var(--gradient-1);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
+  }
+
+  .container main .second .all_user_to_follow .card .card_info button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.5);
+  }
+
+  /* ============ RESPONSIVE - TABLET ============ */
+  @media (max-width: 1024px) {
+    .container .navbar .second .search input {
+      width: 200px;
+    }
+
+    .container .navbar .third a:nth-child(1),
+    .container .navbar .third a:nth-child(2) {
+      display: none;
+    }
+
+    .container main .first {
+      width: 35%;
+    }
+
+    .container main .second .all_user_to_follow .card {
+      width: calc(50% - 10px);
+    }
+  }
+
+  /* ============ RESPONSIVE - MOBILE ============ */
+  @media (max-width: 768px) {
+    .container .navbar {
+      padding: 8px 15px;
+    }
+
+    .container .navbar .second .search input {
+      width: 120px;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .container .navbar .second form a svg {
+      margin-right: 10px;
+      width: 22px;
+      height: 22px;
+    }
+
+    .container .navbar .third a:nth-child(1),
+    .container .navbar .third a:nth-child(2) {
+      display: none;
+    }
+
+    .container .navbar .third a img {
+      width: 25px !important;
+      height: 25px !important;
+    }
+
+    /* Hide sidebar on mobile */
+    .container main .first {
+      display: none;
+    }
+
+    .container main {
+      padding: 0 10px;
+    }
+
+    .container main .second {
+      width: 100%;
+      padding: 0;
+    }
+
+    .container main .second h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .container main .second .all_user_to_follow {
+      gap: 10px;
+    }
+
+    .container main .second .all_user_to_follow .card {
+      width: calc(50% - 5px);
+    }
+
+    .container main .second .all_user_to_follow .card img {
+      height: 150px;
+    }
+
+    .container main .second .all_user_to_follow .card .card_info {
+      padding: 10px;
+    }
+
+    .container
+      main
+      .second
+      .all_user_to_follow
+      .card
+      .card_info
+      .user_details
+      h3 {
+      font-size: 12px;
+    }
+  }
+
+  /* ============ SMALL MOBILE ============ */
+  @media (max-width: 480px) {
+    .container .navbar .first h4 {
+      font-size: 16px;
+    }
+
+    .container .navbar .first .logo img {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    .container .navbar .second .search input {
+      width: 80px;
+      font-size: 11px;
+    }
+
+    .container main .second .all_user_to_follow .card {
+      width: 100%;
+    }
+  }
+</style>
+{% endblock head %} {% block content %}
+<div class="container">
+  <nav class="navbar">
+    <div class="first">
+      <div class="logo">
+        <h4>Bacbok</h4>
+        <img
+          width="40px"
+          height="40px"
+          src="{% static 'image/bacbok.png' %}"
+          alt=""
+        />
+      </div>
     </div>
-    <script src="{% static 'js/chat_js/friends.js' %}"></script>
+    <div class="second">
+      <form action="search">
+        <a href="{% url 'home' %}" class="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="search on bacbok"
+            name="search"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <a id="message_btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+        </a>
+      </form>
+    </div>
+    <div class="third">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+          />
+        </svg>
+      </a>
+      <a href="profile/{{profile.user.username}}"
+        ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+      /></a>
+      <a href="{% url 'logout' %}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="first">
+      <div class="header">
+        <h2>Friends</h2>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="size-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <div class="friend_list">
+        <ul>
+          <a href="{% url 'friend' %}">
+            <div class="list_inner">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                />
+              </svg>
+              <p>Home</p>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </a>
+          <a href="#">
+            <div class="list_inner">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                />
+              </svg>
+              <p>Friends Suggestion</p>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </a>
+          <a href="#">
+            <div class="list_inner">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <p>Unfollow</p>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="second">
+      <h4>People to Follow</h4>
+
+      <div class="all_user_to_follow">
+        {% for user in users %} {% if user.users_acc not in profile.follow.all
+        %}
+        <div class="card">
+          <img
+            width="200px"
+            height="200px"
+            src="{{user.users_acc.image.url}}"
+            alt=""
+          />
+          <div class="card_info">
+            <div class="user_details">
+              <h3>{{user.users_acc.fullname}}</h3>
+              <p>@{{user.username}}</p>
+            </div>
+            <button
+              class="card_btn"
+              draggable="true"
+              hx-get="/friend_request/{{user.id}}"
+              hx-trigger="click"
+              hx-target="this"
+              type="button"
+            >
+              Follow
+            </button>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+<script src="{% static 'js/chat_js/friends.js' %}"></script>
 {% endblock content %}

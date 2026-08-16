@@ -1,35 +1,86 @@
-{% extends "auth/base.html" %}
-
-{% load static %}
-
-{% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>bacbok</title>
-    <style>
-      
-
-    </style>
-{% endblock  %}
-
-{% block content %}
-    <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <p>Messages:</p>
-            <ul class="confirm_email">
-                <h3 style="text-align: center;">Confirm Email Address</h3>
-                <p>Please confirm that {{email}} is an email address for you.</p>
-            </ul>
-            <p>Menu:</p>
-            <ul class="login_option">
-                <li><a href="{% url 'account_login' %}">Sign In</a></li>
-                <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-            </ul>
-            <input type="submit" value="Confirm">
-        </form>
-    </div>
-{% endblock  %}
+{% extends "auth/base.html" %} {% load static %} {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<title>bacbok</title>
+<style>
+  /* Page-level styles inherit theme variables from base templates */
+  body {
+    font-family: "Poppins", sans-serif;
+    padding: 20px;
+  }
+  .container {
+    max-width: 640px;
+    margin: 48px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .confirm_email h3 {
+    text-align: center;
+    margin-bottom: 8px;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .confirm_email p {
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+  .login_option {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .login_option a {
+    color: var(--primary-light);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(108, 92, 231, 0.08);
+  }
+  input[type="submit"] {
+    display: block;
+    margin: 18px auto 0;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <p>Messages:</p>
+    <ul class="confirm_email">
+      <h3 style="text-align: center">Confirm Email Address</h3>
+      <p>Please confirm that {{email}} is an email address for you.</p>
+    </ul>
+    <p>Menu:</p>
+    <ul class="login_option">
+      <li><a href="{% url 'account_login' %}">Sign In</a></li>
+      <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+    </ul>
+    <input type="submit" value="Confirm" />
+  </form>
+</div>
+{% endblock %}

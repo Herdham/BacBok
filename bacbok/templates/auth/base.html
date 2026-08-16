@@ -1,15 +1,171 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 
 <html>
-<head>
-    {% block head %}
-    {% endblock head %}
-</head>
-<body>
-    {% block content %}
-    
-    {% endblock content %}    
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        /* Light theme as the default */
+        --bg-primary: #f0f2f5;
+        --bg-secondary: #ffffff;
+        --bg-card: #ffffff;
+        --primary: #6c5ce7;
+        --primary-light: #7c6df0;
+        --secondary: #00cec9;
+        --accent: #fd79a8;
+        --text-primary: #1a1a2e;
+        --text-secondary: #65676b;
+        --text-muted: #8a8d91;
+        --border: rgba(0, 0, 0, 0.1);
+        --gradient-1: linear-gradient(135deg, #6c5ce7 0%, #00cec9 100%);
+        --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6c5ce7 100%);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Dark overrides when data-theme="dark" is set on <html> */
+      [data-theme="dark"] {
+        --bg-primary: #0a0e27;
+        --bg-secondary: #131842;
+        --bg-card: rgba(19, 24, 66, 0.6);
+        --primary: #6c5ce7;
+        --primary-light: #a29bfe;
+        --secondary: #00cec9;
+        --accent: #fd79a8;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a3b1;
+        --text-muted: #6c6f85;
+        --border: rgba(108, 92, 231, 0.2);
+        --gradient-1: linear-gradient(135deg, #6c5ce7 0%, #00cec9 100%);
+        --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6c5ce7 100%);
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+      }
+      /* Global responsive helpers */
+      img,
+      picture,
+      video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      :focus {
+        outline: none;
+      }
+
+      :focus-visible {
+        outline: 3px solid rgba(108, 92, 231, 0.25);
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+
+      /* utility responsive container */
+      .responsive-container {
+        width: 100%;
+        max-width: 1120px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      /* Hide large decorative blurred shapes on very small screens */
+      @media (max-width: 480px) {
+        .bg-shape {
+          display: none !important;
+        }
+      }
+      /* Generic stacking for narrow screens: force common column/sidebar classes to full width */
+      @media (max-width: 768px) {
+        [class*="sidebar"],
+        [class*="left"],
+        [class*="right"],
+        [class*="main"],
+        [class*="content"],
+        [class*="col"],
+        [class*="wrap"],
+        [class~="first"],
+        [class~="second"],
+        [class~="third"],
+        [class*="_container"] {
+          display: block !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          float: none !important;
+        }
+
+        /* Reduce heavy backdrops slightly */
+        .bg-shape-1 {
+          width: clamp(120px, 40vw, 360px) !important;
+          height: clamp(120px, 40vw, 360px) !important;
+        }
+        .bg-shape-2 {
+          width: clamp(100px, 32vw, 280px) !important;
+          height: clamp(100px, 32vw, 280px) !important;
+        }
+        .bg-shape-3 {
+          width: clamp(80px, 24vw, 220px) !important;
+          height: clamp(80px, 24vw, 220px) !important;
+        }
+      }
+    </style>
+    <!-- initialize stored theme early to avoid FOUC -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("bacbok_theme");
+          if (t) document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+    {% block head %} {% endblock head %}
+  </head>
+  <body>
+    <!-- theme toggle button (visible on most pages) -->
+    <button
+      id="themeToggleBtn"
+      aria-pressed="false"
+      aria-label="Toggle theme"
+      style="
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 9999;
+        border-radius: 999px;
+        padding: 8px 10px;
+        border: none;
+        background: rgba(255, 255, 255, 0.03);
+        color: inherit;
+        backdrop-filter: blur(6px);
+      "
+    >
+      🌓
+    </button>
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
+    <script>
+      (function () {
+        if (window.bacbokTheme) {
+          window.bacbokTheme.initTheme();
+          var btn = document.getElementById("themeToggleBtn");
+          if (btn) {
+            btn.addEventListener("click", function () {
+              window.bacbokTheme.toggleTheme();
+            });
+            var cur =
+              document.documentElement.getAttribute("data-theme") || "dark";
+            btn.setAttribute("aria-pressed", cur === "dark");
+          }
+        }
+      })();
+    </script>
+    {% block content %} {% endblock content %}
+  </body>
 </html>

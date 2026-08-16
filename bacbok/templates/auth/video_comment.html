@@ -1,297 +1,286 @@
-{% extends 'auth/base.html' %}
-
-{% load static %}
-
-{% static "media" as mediaURL %}
-
-{% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-    <title>bacbok</title>
-    <style>
-        * {
+{% extends 'auth/base.html' %} {% load static %} {% static "media" as mediaURL
+%} {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<title>bacbok</title>
+<style>
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-:root {
-    --bg-main: #0B1020;
-    --bg-card: #161B2E;
+  /* Theme tokens centralized in auth/base.html */
 
-    --primary: #7C3AED;
-    --secondary: #3B82F6;
-
-    --text-main: #FFFFFF;
-    --text-secondary: #9CA3AF;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
-}
+  }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
-}
+  }
 
-svg {
-    stroke: #0B1020;
+  svg {
+    stroke: #0b1020;
     width: 25px;
     height: 25px;
-}
+  }
 
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     height: 6px;
     width: 6px;
-}
+  }
 
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
+  }
 
-::-webkit-scrollbar-thumb {
-    background: #9CA3AF;
+  ::-webkit-scrollbar-thumb {
+    background: #9ca3af;
     border-radius: 6px;
-}
+  }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: #161B2E;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #161b2e;
+  }
 
-body {
-    font-family: 'Poppins', sans-serif;
-}
+  body {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container {
+  .container {
     padding-left: 3%;
     padding-right: 3%;
     margin-bottom: 20px;
-}
+  }
 
-.container .navbar {
+  .container .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); */
-}
+  }
 
-.container .navbar .first h4 {
-    color: #7C3AED;
+  .container .navbar .first h4 {
+    color: #7c3aed;
     font-size: 20px;
-}
+  }
 
-.container .navbar .first .logo {
+  .container .navbar .first .logo {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .first .logo h4 {
+  .container .navbar .first .logo h4 {
     margin-right: 5px;
-}
+  }
 
-.container .navbar .second form {
+  .container .navbar .second form {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .second .search {
+  .container .navbar .second .search {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
     margin-right: 20px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input {
+  .container .navbar .second .search input {
     padding: 8px;
     border: none;
     outline: none;
     width: 300px;
     margin-right: 3px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input::placeholder {
-    font-family: 'Poppins', sans-serif;
-}
+  .container .navbar .second .search input::placeholder {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .navbar .second form .search button {
+  .container .navbar .second form .search button {
     border: none;
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin-right: 5px;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second .search button svg {
+  .container .navbar .second .search button svg {
     margin-right: 0px;
     margin-top: 0px;
     width: 22px;
     height: 22px;
-}
+  }
 
-.container .navbar .second .search button svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second .search button svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a svg {
+  .container .navbar .second form a svg {
     margin-right: 20px;
     width: 25px;
     height: 25px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .second form a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a {
-    color: #0B1020;
+  .container .navbar .second form a {
+    color: #0b1020;
     border: none;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second form .active svg {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form .active svg {
+    stroke: #7c3aed;
+  }
 
-
-.container .navbar .third {
+  .container .navbar .third {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .third a svg {
+  .container .navbar .third a svg {
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .third a svg:nth-child(3) {
+  .container .navbar .third a svg:nth-child(3) {
     margin-right: 0px;
-}
+  }
 
-.container .navbar .third svg {
-    stroke: #0B1020;
-}
+  .container .navbar .third svg {
+    stroke: #0b1020;
+  }
 
-.container .navbar .third a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .third a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .third a img {
+  .container .navbar .third a img {
     border-radius: 50%;
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .popup {
+  .container .popup {
     width: 96%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     margin-right: 3%;
     z-index: 10;
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
+  }
 
-
-.container .popup .close ion-icon {
-    color: #0B1020;
+  .container .popup .close ion-icon {
+    color: #0b1020;
     font-size: 23px;
     margin-left: 95%;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
-}
+  }
 
-.container .popup .content {
+  .container .popup .content {
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
     width: 500px;
     height: auto;
     border-radius: 5px;
     padding: 10px;
-}
+  }
 
-.container .popup .content .content_owner {
+  .container .popup .content .content_owner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content .content_owner img {
+  .container .popup .content .content_owner img {
     border-radius: 50%;
     margin-right: 5px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info {
+  .container .popup .content .content_owner .content_owner_info {
     align-self: flex-start;
     margin-bottom: 10px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info h5 {
-    color: #0B1020;
-}
+  .container .popup .content .content_owner .content_owner_info h5 {
+    color: #0b1020;
+  }
 
-.container .popup .content form input[type="text"] {
+  .container .popup .content form input[type="text"] {
     border: none;
     outline: none;
     width: 100%;
     padding: 8px;
     background-color: #fff;
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 8px;
-}
+  }
 
-.container .popup .content form input::placeholder {
+  .container .popup .content form input::placeholder {
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .popup .content form #image_cancle {
-    color: #0B1020;
+  .container .popup .content form #image_cancle {
+    color: #0b1020;
     font-size: 20px;
     margin-left: 87%;
     margin-top: 8px;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
     display: none;
     margin-bottom: 10px;
     position: absolute;
-}
+  }
 
-.container .popup .content form .showimage {
+  .container .popup .content form .showimage {
     width: 70px;
     height: 70px;
     border-radius: 5px;
     margin-bottom: 6px;
     display: none;
-}
+  }
 
-
-
-.container .popup .content form .add_to_post {
+  .container .popup .content form .add_to_post {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -299,71 +288,70 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
-}
+  }
 
-.container .popup .content form .add_to_post button {
+  .container .popup .content form .add_to_post button {
     border: none;
     outline: none;
     padding: 8px;
-    background-color: #0B1020;
+    background-color: #0b1020;
     color: #fff;
     width: 150px;
     border-radius: 4px;
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul {
+  .container .popup .content form .add_to_post ul {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content form .add_to_post ul li {
+  .container .popup .content form .add_to_post ul li {
     display: flex;
     align-items: center;
     list-style: none;
     margin-right: 20px;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label ion-icon {
+  .container .popup .content form .add_to_post ul li label ion-icon {
     font-size: 25px;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #photo {
+  .container .popup .content form .add_to_post ul li label #photo {
     color: green;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #tag {
-    color: #3B82F6;
-}
+  .container .popup .content form .add_to_post ul li label #tag {
+    color: #3b82f6;
+  }
 
-.container .popup .content form .add_to_post ul li label #location {
+  .container .popup .content form .add_to_post ul li label #location {
     color: maroon;
-}
+  }
 
-.container .popup .content form input[type="submit"] {
+  .container .popup .content form input[type="submit"] {
     width: 100%;
     border: none;
     outline: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 8px;
     border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-
-.container main {
+  .container main {
     display: flex;
     align-items: center;
     margin-top: 10px;
-}
+  }
 
-.container main .first {
-    background-color: #FFFFFF;
+  .container main .first {
+    background-color: #ffffff;
     width: 25%;
     height: 100vh;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -374,41 +362,41 @@ body {
     flex-direction: column;
     overflow-y: auto;
     margin-right: 20px;
-}
+  }
 
-.container main .first ul a {
+  .container main .first ul a {
     display: flex;
     align-items: center;
     padding: 8px;
     text-decoration: none;
     margin-bottom: 5px;
-}
+  }
 
-.container main .first ul .active {
+  .container main .first ul .active {
     background-color: #ccc;
     border-radius: 5px;
-}
+  }
 
-.container main .first ul a:hover {
+  .container main .first ul a:hover {
     background-color: #ccc;
     border-radius: 5px;
-}
+  }
 
-.container main .first ul a svg {
+  .container main .first ul a svg {
     margin-right: 10px;
     font-size: 20px;
-    stroke: #161B2E;
-}
+    stroke: #161b2e;
+  }
 
-.container main .first ul a p {
+  .container main .first ul a p {
     font-size: 15px;
-    color: #161B2E;
+    color: #161b2e;
     margin-top: 6px;
-}
+  }
 
-.container main .first #create_post {
-    background-color: #7C3AED;
-    color: #FFFFFF;
+  .container main .first #create_post {
+    background-color: #7c3aed;
+    color: #ffffff;
     text-decoration: none;
     padding: 6px;
     margin-left: 8px;
@@ -416,32 +404,31 @@ body {
     font-size: 12px;
     border-radius: 5px;
     text-align: center;
-}
+  }
 
-.container main .first .signout {
+  .container main .first .signout {
     margin-left: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.container main .first .signout .signout_first {
+  .container main .first .signout .signout_first {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .first .signout .signout_first img {
+  .container main .first .signout .signout_first img {
     border-radius: 50%;
     margin-right: 10px;
     align-self: flex-start;
-}
+  }
 
-.container main .first .signout .signout_first .signout_info p {
+  .container main .first .signout .signout_first .signout_info p {
     font-size: 10px;
-}
+  }
 
-
-.container main .second {
+  .container main .second {
     align-self: flex-start;
     width: 45%;
     margin-right: 20px;
@@ -449,28 +436,27 @@ body {
     height: 100vh;
     padding: 10px;
     border-radius: 5px;
-}
+  }
 
-
-.container main .second::-webkit-scrollbar {
+  .container main .second::-webkit-scrollbar {
     height: 0px;
     width: 0px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-track {
+  .container main .second::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-thumb {
-    background: #9CA3AF;
+  .container main .second::-webkit-scrollbar-thumb {
+    background: #9ca3af;
     border-radius: 6px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-thumb:hover {
-    background-color: #161B2E;
-}
-.container main .second .post_container {
+  .container main .second::-webkit-scrollbar-thumb:hover {
+    background-color: #161b2e;
+  }
+  .container main .second .post_container {
     width: 100%;
     height: auto;
     max-height: 550px;
@@ -480,9 +466,9 @@ body {
     margin-bottom: 15px;
     position: relative;
     overflow-y: auto;
-}
+  }
 
-.container main .second .post_container .post_owner {
+  .container main .second .post_container .post_owner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -492,65 +478,72 @@ body {
     padding: 8px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
+  }
 
-.container main .second .post_container .post_owner img {
+  .container main .second .post_container .post_owner img {
     border-radius: 50%;
     align-self: flex-start;
     margin-right: 10px;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info {
+  .container main .second .post_container .post_owner .post_owner_info {
     align-self: flex-start;
     flex-grow: 1;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info {
+  .container main .second .post_container .post_owner .post_owner_info .info {
     display: flex;
     flex-direction: column;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info h5 {
+  .container
+    main
+    .second
+    .post_container
+    .post_owner
+    .post_owner_info
+    .info
+    h5 {
     font-size: 12px;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info p {
+  .container main .second .post_container .post_owner .post_owner_info .info p {
     font-size: 10px;
-}
+  }
 
-.container main .second .post_container .caption_container {
+  .container main .second .post_container .caption_container {
     display: flex;
     cursor: pointer;
-}
+  }
 
-.container main .second .post_container .caption_container p {
+  .container main .second .post_container .caption_container p {
     align-self: flex-end;
-}
+  }
 
-.container main .second .post_container .caption_container strong {
+  .container main .second .post_container .caption_container strong {
     font-size: 12px;
-}
+  }
 
-.container main .second .post_container .post_caption {
+  .container main .second .post_container .post_caption {
     font-size: 11px;
     position: relative;
     padding-left: 8px;
     padding-right: 8px;
     margin-top: -5px;
-}
+  }
 
-.container main .second .post_container .post_owner svg {
+  .container main .second .post_container .post_owner svg {
     align-self: flex-start;
     cursor: pointer;
-}
+  }
 
-.container main .second .post_container .post_wrapper {
+  .container main .second .post_container .post_wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-}
+  }
 
-.container main .second .post_container .post_wrapper #chevback {
+  .container main .second .post_container .post_wrapper #chevback {
     margin-right: 20px;
     background-color: #fff;
     width: 35px;
@@ -559,9 +552,9 @@ body {
     cursor: pointer;
     margin-left: 3px;
     transition: 0.1s;
-}
+  }
 
-.container main .second .post_container .post_wrapper #chevfront {
+  .container main .second .post_container .post_wrapper #chevfront {
     margin-left: 20px;
     background-color: #fff;
     width: 35px;
@@ -570,17 +563,17 @@ body {
     cursor: pointer;
     transition: 0.1s;
     margin-right: 3px;
-}
+  }
 
-.container main .second .post_container .image_wrapper {
+  .container main .second .post_container .image_wrapper {
     width: 100%;
     overflow-x: hidden;
     aspect-ratio: 1 / 1;
     padding: 8px;
     display: flex;
-}
+  }
 
-.container main .second .post_container .image_wrapper a {
+  .container main .second .post_container .image_wrapper a {
     display: block;
     width: 100%;
     height: 100%;
@@ -588,70 +581,69 @@ body {
     object-fit: cover;
     scroll-snap-type: x mandatory;
     margin-right: 5px;
-}
+  }
 
-
-.container main .second .post_container .post_image {
+  .container main .second .post_container .post_image {
     height: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 5px;
-}
+  }
 
-.container main .second .post_container .post_option_container {
+  .container main .second .post_container .post_option_container {
     position: absolute;
     width: 100%;
     height: auto;
     z-index: 10;
     margin-top: -10px;
     display: none;
-}
+  }
 
-.container main .second .post_container .post_option_container.display {
+  .container main .second .post_container .post_option_container.display {
     display: block;
-}
+  }
 
-.container main .second .post_container .post_option_container ul {
+  .container main .second .post_container .post_option_container ul {
     display: flex;
     flex-direction: column;
-}
+  }
 
-.container main .second .post_container .post_option_container ul a {
+  .container main .second .post_container .post_option_container ul a {
     display: flex;
     align-items: center;
     padding: 8px;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     text-decoration: none;
-}
+  }
 
-.container main .second .post_container .post_option_container ul a svg {
+  .container main .second .post_container .post_option_container ul a svg {
     margin-right: 15px;
-}
+  }
 
-.container main .second .post_container .post_option_container ul a p {
-    color: #0B1020;
+  .container main .second .post_container .post_option_container ul a p {
+    color: #0b1020;
     font-weight: 400;
     font-size: 12px;
-}
+  }
 
-.container main .second .post_container .video_wrapper {
+  .container main .second .post_container .video_wrapper {
     width: 100%;
     overflow-x: hidden;
     aspect-ratio: 16 /9;
     padding: 8px;
     display: flex;
     position: relative;
-}
+  }
 
-.container main .second .post_container .post_video {
+  .container main .second .post_container .post_video {
     width: 100%;
     border-radius: 5px;
     height: 100%;
     margin-right: 5px;
-}
+  }
 
-.container main .second .post_container .video_wrapper .video_pause {
+  .container main .second .post_container .video_wrapper .video_pause {
     width: 100%;
     position: absolute;
     top: 50%;
@@ -660,10 +652,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
 
-.container main .second .post_container .video_wrapper .video_pause .pause {
-    stroke: #161B2E;
+  .container main .second .post_container .video_wrapper .video_pause .pause {
+    stroke: #161b2e;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     padding: 8px;
@@ -671,15 +663,15 @@ body {
     display: none;
     width: 40px;
     height: 40px;
-}
+  }
 
-.container main .second .post_container .video_wrapper video {
+  .container main .second .post_container .video_wrapper video {
     object-fit: cover;
     width: 100%;
     border-radius: 8px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option {
+  .container main .second .post_container .post_wrapper_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -688,9 +680,9 @@ body {
     padding: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a {
+  .container main .second .post_container .post_wrapper_option a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -701,32 +693,32 @@ body {
     border-right: 2px solid #ddd;
     margin: 3px;
     margin-right: 3px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a:hover {
+  .container main .second .post_container .post_wrapper_option a:hover {
     background-color: #ccc;
     border-radius: 5px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a svg {
+  .container main .second .post_container .post_wrapper_option a svg {
     margin-right: 10px;
-    stroke: #0B1020;
+    stroke: #0b1020;
     width: 20px;
     height: 20px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a p {
-    color: #0B1020;
+  .container main .second .post_container .post_wrapper_option a p {
+    color: #0b1020;
     margin-right: 5px;
     font-size: 12px;
     white-space: nowrap;
-}
+  }
 
-.container .second .post_container .post_sure_modal {
+  .container .second .post_container .post_sure_modal {
     position: absolute;
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 20;
     padding: 10px;
     display: none;
@@ -735,139 +727,194 @@ body {
     aspect-ratio: 1 / 1;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container {
+  .container .second .post_container .post_sure_modal .post_sure_container {
     width: 300px;
     height: auto;
     background-color: #fff;
     padding: 8px;
     border-radius: 6px;
     text-align: center;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container h5 {
+  .container .second .post_container .post_sure_modal .post_sure_container h5 {
     margin-bottom: 10px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a {
     width: 100%;
     padding: 8px;
     text-decoration: none;
     font-size: 12px;
     border-radius: 4px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(1) {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(1) {
     background-color: green;
     color: #fff;
     margin-right: 5px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(2) {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(2) {
     background-color: maroon;
     color: #fff;
     cursor: pointer;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal {
+  .container .second .post_container .post_video_sure_modal {
     position: absolute;
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 20;
     padding: 10px;
     display: none;
     align-items: center;
     justify-content: center;
     aspect-ratio: 16 / 9;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container {
     width: 300px;
     height: auto;
     background-color: #fff;
     padding: 8px;
     border-radius: 6px;
     text-align: center;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container h5 {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    h5 {
     margin-bottom: 10px;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    .post_sure_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option a {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a {
     width: 100%;
     padding: 8px;
     text-decoration: none;
     font-size: 12px;
     border-radius: 4px;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option a:nth-child(1) {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(1) {
     background-color: green;
     color: #fff;
     margin-right: 5px;
-}
+  }
 
-.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option a:nth-child(2) {
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(2) {
     background-color: maroon;
     color: #fff;
     cursor: pointer;
-}
+  }
 
-.container .second .edit_post {
+  .container .second .edit_post {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     aspect-ratio: 1 / 1;
     z-index: 20;
     padding: 8px;
     display: none;
-}
+  }
 
-.container .second .edit_post .edit_post_modal_close {
+  .container .second .edit_post .edit_post_modal_close {
     display: flex;
     justify-content: right;
-    cursor: pointer
-}
+    cursor: pointer;
+  }
 
-.container .second .edit_post .edit_post_modal_close svg {
+  .container .second .edit_post .edit_post_modal_close svg {
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
     width: 35px;
     height: 35px;
-}
+  }
 
-.container .second .edit_post form {
+  .container .second .edit_post form {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     padding: 8px;
-}
+  }
 
-.container .second .edit_post form .post_caption {
+  .container .second .edit_post form .post_caption {
     width: 100%;
     height: auto;
     max-height: 150px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     padding: 8px;
     margin-bottom: 8px;
@@ -877,9 +924,9 @@ body {
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 6px;
-}
+  }
 
-.container .second .edit_post form .input_text {
+  .container .second .edit_post form .input_text {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -889,26 +936,26 @@ body {
     box-shadow: 0px 0px 0px 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     display: none;
-}
+  }
 
-.container .second .edit_post form input[type="submit"] {
+  .container .second .edit_post form input[type="submit"] {
     border: none;
     outline: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 8px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 13px;
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
-}
+  }
 
-.container .second .sharePost {
+  .container .second .sharePost {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     aspect-ratio: 1 / 1;
     z-index: 20;
@@ -917,34 +964,32 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
 
-}
-
-.container .second .sharePost .share_post_modal_close {
+  .container .second .sharePost .share_post_modal_close {
     display: flex;
     justify-content: right;
-    cursor: pointer
-}
+    cursor: pointer;
+  }
 
-.container .second .sharePost .share_post_modal_close svg {
+  .container .second .sharePost .share_post_modal_close svg {
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
     width: 35px;
     height: 35px;
-}
+  }
 
-.container .second .sharePost h3 {
+  .container .second .sharePost h3 {
     margin-bottom: 10px;
     color: #fff;
-}
+  }
 
-
-.container .second .sharePost .share_container ul {
+  .container .second .sharePost .share_container ul {
     margin-bottom: 8px;
-}
+  }
 
-.container .second .sharePost .share_container ul a {
+  .container .second .sharePost .share_container ul a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -952,126 +997,171 @@ body {
     padding: 8px;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-}
+  }
 
-.container .second .sharePost .share_container ul a:nth-child(1) {
+  .container .second .sharePost .share_container ul a:nth-child(1) {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
+  }
 
-.container .second .sharePost .share_container ul a:nth-child(4) {
+  .container .second .sharePost .share_container ul a:nth-child(4) {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-}
+  }
 
-.container .second .sharePost .share_container ul a svg {
-    color: #161B2E;
+  .container .second .sharePost .share_container ul a svg {
+    color: #161b2e;
     width: 25px;
     height: 25px;
     margin-right: 8px;
-}
+  }
 
-.container .second .sharePost .share_container ul a p {
+  .container .second .sharePost .share_container ul a p {
     font-size: 12px;
-    color: #0B1020;
-    font-family: 'Poppins', sans-serif;
-}
+    color: #0b1020;
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .second .sharePost .share_container button {
+  .container .second .sharePost .share_container button {
     border: none;
     outline: none;
     width: 100%;
     padding: 8px;
     color: #fff;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 13px;
     cursor: pointer;
-}
+  }
 
-.container main .second .comment_upload form {
+  .container main .second .comment_upload form {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 25px;
-}
+  }
 
-.container main .second .comment_upload form textarea {
+  .container main .second .comment_upload form textarea {
     border: none;
     outline: none;
     width: 100%;
     margin-right: 5px;
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     resize: none;
     padding-left: 8px;
     padding-right: 8px;
     overflow-y: auto;
-}
+  }
 
-.container main .second .comment_upload form textarea::placeholder {
-    font-family: 'Poppins', sans-serif;
+  .container main .second .comment_upload form textarea::placeholder {
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
-}
+  }
 
-.container main .second .comment_upload form button {
+  .container main .second .comment_upload form button {
     border: none;
     outline: none;
     padding: 8px;
     border-radius: 25px;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     cursor: pointer;
-}
+  }
 
-.container main .second .comment_upload form button svg {
+  .container main .second .comment_upload form button svg {
     stroke: #fff;
-}
+  }
 
-.container main .second .post_container .comment_display{
+  .container main .second .post_container .comment_display {
     padding: 8px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner {
+  .container main .second .post_container .comment_display .comment_inner {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     width: 100%;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner a {
+  .container main .second .post_container .comment_display .comment_inner a {
     margin-right: 10px;
     align-self: flex-start;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner a img {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    a
+    img {
     border-radius: 50%;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    .inner_option {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option a {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    .inner_option
+    a {
     font-size: 12px;
     text-decoration: none;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info p {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    p {
     font-size: 12px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option svg {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    svg {
     margin-right: 10px;
     padding: 8px;
     background-color: #ccc;
@@ -1079,612 +1169,1059 @@ body {
     cursor: pointer;
     width: 35px;
     height: 35px;
-}
+  }
 
-.container main .second .post_container .comment_display p {
+  .container main .second .post_container .comment_display p {
     align-self: flex-start;
-}
+  }
 
-
-.container main .third {
+  .container main .third {
     align-self: flex-start;
     width: 25%;
     padding: 10px;
     height: auto;
-}
+  }
 
-.container main .third .follow_suggest {
+  .container main .third .follow_suggest {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-}
+  }
 
-.container main .third .follow_suggest h4 {
+  .container main .third .follow_suggest h4 {
     font-family: 13px;
     margin-bottom: 7px;
-    color: #7C3AED;
-}
+    color: #7c3aed;
+  }
 
-.container main .third .follow_suggest .follow_container {
+  .container main .third .follow_suggest .follow_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner {
+  .container main .third .follow_suggest .follow_container .follow_inner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner img {
+  .container main .third .follow_suggest .follow_container .follow_inner img {
     align-self: flex-start;
     border-radius: 50%;
     margin-right: 10px;
     border: 1px dashed #fff;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner .follow_info p {
+  .container
+    main
+    .third
+    .follow_suggest
+    .follow_container
+    .follow_inner
+    .follow_info
+    p {
     font-size: 12px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container a {
+  .container main .third .follow_suggest .follow_container a {
     align-self: flex-start;
     text-decoration: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 6px;
     min-width: 100px;
     display: block;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 10px;
     text-align: center;
     border-radius: 5px;
-}
+  }
 
-.container main .third .trending {
+  .container main .third .trending {
     padding: 8px;
     width: 100%;
     border-radius: 5px;
     background-color: #ccc;
-}
+  }
 
-.container main .third .trending h4 {
+  .container main .third .trending h4 {
     margin-bottom: 5px;
-}
+  }
 
-.container main .third .trending p {
+  .container main .third .trending p {
     font-size: 12px;
-}
-    </style>
-{% endblock %}
-
-{% block content %}
+  }
+</style>
+{% endblock %} {% block content %}
 <div class="container">
-         <nav class="navbar">
-            <div class="first">
-                <div class="logo">
-                    <h4>Bacbok</h4>
-                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
-                </div>
-            </div>
-            <div class="second">
-                <form action="search">
-                    <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                    </a>
-                    <div class="search">
-                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <a id="message_btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                    </a>
-                </form>
-            </div>
-            <div class="third">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-                    </svg>
-                </a>
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
-                <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                    </svg>
-                </a>
-            </div>
-        </nav>
-
-    <div class="popup">
-        <div class="close">
-            <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+  <nav class="navbar">
+    <div class="first">
+      <div class="logo">
+        <h4>Bacbok</h4>
+        <img
+          width="40px"
+          height="40px"
+          src="{% static 'image/bacbok.png' %}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="second">
+      <form action="search">
+        <a href="{% url 'home' %}" class="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="search on bacbok"
+            name="search"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
         </div>
-        <div class="content">
-            <div class="content_owner">
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
-                        alt=""></a>
-                <div class="content_owner_info">
-                    <h5>{{ profile.fullname }}</h5>
-                    <p>@{{ profile.user.username }}</p>
-                </div>
-            </div>
-            <form action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <p id="errors" style="text-align: center;color: red;">{{ message }}</p>
-                <input type="text" name="post_caption" placeholder="What's on your mind,{{profile.user.username}}?"
-                    autocomplete="off">
-                <ion-icon name="close-outline" id="image_cancle"></ion-icon>
-                <div class="showimage_wrapper">
+        <a id="message_btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+        </a>
+      </form>
+    </div>
+    <div class="third">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+          />
+        </svg>
+      </a>
+      <a href="profile/{{profile.user.username}}"
+        ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+      /></a>
+      <a href="{% url 'logout' %}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </a>
+    </div>
+  </nav>
 
-                </div>
-
-                <div class="add_to_post">
-                    <button type="button">Add to your post</button>
-                    <ul>
-                        <li>
-                            <label for="contentimage">
-                                <ion-icon name="images-outline" id="photo"></ion-icon>
-                            </label>
-                            <input type="file" name="post_image" id="contentimage" style="display: none;" multiple>
-                        </li>
-                        <li>
-                            <label for="contenttag">
-                                <ion-icon name="person-add-outline" id="tag"></ion-icon>
-                            </label>
-                            <input type="file" name="content_image" id="contenttag" style="display: none;">
-                        </li>
-                        <li>
-                            <label for="contentlocation">
-                                <ion-icon name="location-outline" id="location"></ion-icon>
-                            </label>
-                            <input type="file" name="content_image" id="contentlocation" style="display: none;">
-                        </li>
-                    </ul>
-                </div>
-                <input type="submit" name="content_upload" value="Upload">
-            </form>
+  <div class="popup">
+    <div class="close">
+      <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+    </div>
+    <div class="content">
+      <div class="content_owner">
+        <a href="profile/{{profile.user.username}}"
+          ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+        /></a>
+        <div class="content_owner_info">
+          <h5>{{ profile.fullname }}</h5>
+          <p>@{{ profile.user.username }}</p>
         </div>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p id="errors" style="text-align: center; color: red">{{ message }}</p>
+        <input
+          type="text"
+          name="post_caption"
+          placeholder="What's on your mind,{{profile.user.username}}?"
+          autocomplete="off"
+        />
+        <ion-icon name="close-outline" id="image_cancle"></ion-icon>
+        <div class="showimage_wrapper"></div>
+
+        <div class="add_to_post">
+          <button type="button">Add to your post</button>
+          <ul>
+            <li>
+              <label for="contentimage">
+                <ion-icon name="images-outline" id="photo"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="post_image"
+                id="contentimage"
+                style="display: none"
+                multiple
+              />
+            </li>
+            <li>
+              <label for="contenttag">
+                <ion-icon name="person-add-outline" id="tag"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contenttag"
+                style="display: none"
+              />
+            </li>
+            <li>
+              <label for="contentlocation">
+                <ion-icon name="location-outline" id="location"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contentlocation"
+                style="display: none"
+              />
+            </li>
+          </ul>
+        </div>
+        <input type="submit" name="content_upload" value="Upload" />
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <div class="first">
+      <ul>
+        <a class="active" href="{% url 'home' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+          <p>Home</p>
+        </a>
+        <a href="{% url 'friend' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+          <p>Friends</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+          <p>Explore</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
+            />
+          </svg>
+          <p>Notifications</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+          <p>Groups</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+            />
+          </svg>
+          <p>Premium</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+            />
+          </svg>
+          <p>Bookmarks</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+          <p>Marketplace</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+          <p>Profile</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p>More</p>
+        </a>
+      </ul>
+      <a href="#" id="create_post">Create Post</a>
+      <div class="signout">
+        <div class="signout_first">
+          <img width="30px" height="30px" src="{{profile.image.url}}" alt="" />
+          <div class="signout_info">
+            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+            <p>@{{profile.user.username}}</p>
+          </div>
+        </div>
+        <div class="signout_second">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
 
-    <main>
-        <div class="first">
-                <ul>
-                    <a class="active" href="{% url 'home' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                        <p>Home</p>
-                    </a>
-                    <a href="{% url 'friend' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                        </svg>
-                        <p>Friends</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                        <p>Explore</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                        </svg>
-                        <p>Notifications</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                        </svg>
-                        <p>Groups</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                        </svg>
-                        <p>Premium</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-                        </svg>
-                        <p>Bookmarks</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
-                        <p>Marketplace</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                        <p>Profile</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <p>More</p>
-                    </a>
-                </ul>
-                <a href="#" id="create_post">Create Post</a>
-                <div class="signout">
-                    <div class="signout_first">
-                        <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                        <div class="signout_info">
-                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                            <p>@{{profile.user.username}}</p>
-                        </div>
-                    </div>
-                    <div class="signout_second">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </div>
-                </div>
+    <div class="second">
+      <div class="post_container">
+        <div class="post_owner">
+          <img width="30px" height="30px" src="{{profile.image.url}}" alt="" />
+          <div class="post_owner_info">
+            <div class="info">
+              <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+              <p>@{{profile.user.username}} {{post.created_at|time:"h:i A"}}</p>
+            </div>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 post_option"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
         </div>
 
-        <div class="second">
-
-            <div class="post_container">
-                <div class="post_owner">
-                    <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                    <div class="post_owner_info">
-                        <div class="info">
-                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                            <p>@{{profile.user.username}} {{post.created_at|time:"h:i A"}}</p>
-                        </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6 post_option">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
-                </div>
-  
-                <div class="post_option_container">
-                    {% if video.user.username == request.user.username %}
-                        <ul>
-                            <a class="deletepost" href="{% url 'deleteVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                </svg>
-                                <p>Move to trash</p>
-                            </a>
-                            <a class="editpost" href="{% url 'editVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                </svg>
-                                <p>Edit Post</p>
-                            </a>
-                            <a class="sharepost" href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                                </svg>
-                                <p>Share</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                </svg>
-                                <p>Pin Post</p>
-                            </a>
-                            <a class="copylink" href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                                </svg>
-                                <p>Copy link</p>
-                            </a>
-                        </ul>
-                    {% else %}
-                        <ul>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
-                                </svg>
-                                <p>Hide</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" />
-                                </svg>
-                                <p>Report</p>
-                            </a>
-                            <a class="sharepost" href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                                </svg>
-                                <p>Share</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                                </svg>
-                                <p>If something broken? Let us know.</p>
-                            </a>
-                            <a class="copylink" href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                                </svg>
-                                <p>Copy link</p>
-                            </a>
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <div class="post_video_sure_modal">
-                    <div class="post_sure_container">
-                        <h5>Are you sure, you want to delete this post?</h5>
-                        <div class="post_sure_option">
-                            <a href="{% url 'deleteVideo' video_id=video.id %}">Yes</a>
-                            <a class="post_btn">No</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edit_post">
-                    <div class="edit_post_modal_close">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <input class="input_text" name="caption" type="text" value="{{video.caption}}">
-                        <div class="post_caption" contenteditable="true">{{video.caption}}</div>
-                        <input type="submit" value="Updated Post">
-                    </form>
-                </div>
-
-                <div class="sharePost">
-                    <div class="share_post_modal_close">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <h3>Share to</h3>
-                    <div class="share_container">
-                        <ul>
-                            <a class="copylink" href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                                </svg>
-                                <p>Copy link</p>
-                            </a>
-                            <a href="{% url 'shareVideo' video_id=video.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                </svg>
-                                <p>share to bacbok</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                                </svg>
-                                <p>share to groups</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                </svg>
-                                <p>Friends Timeline</p>
-                            </a>
-                        </ul>
-                        <button type="button">share to other apps...</button>
-                    </div>
-                </div>
-
-                {% if video.caption|length > 200 %}
-                    <div class="caption_container">
-                        <p class="post_caption">{{video.caption}}</p>
-                    </div>
-                {% else %}
-                    <div class="caption_container">
-                        <p class="post_caption">{{video.caption}}</p>
-                    </div>
-                {% endif %}
-
-                <div class="post_wrapper">
-                    <div class="video_wrapper">
-                        <div class="video_pause">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="size-6 pause">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-                            </svg>
-                        </div>
-                        {% if video.video %}
-                            <video playsinline autoplay loop muted class="post_video">
-                                <source src="{{video.video.url}}" type="video/mp4">
-                            </video>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <ul class="post_wrapper_option">
-                    <a href="{% url 'videolikes' video_id=video.id %}" class="video_liked">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                        </svg>
-                        <p>Likes</p> <span id="liked_count">{{video.user_likes.count}}</span>
-                    </a>
-            
-                    <a href="{% url 'videocomment' video_id=video.id %}" id="comment">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
-                        </svg>
-                        <p>Comment {{video.videocomment.count}}</p>
-                    </a>
-                    <a class="sharepost2" href="{% url 'shareVideo' video_id=video.id %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                        </svg>
-                        <p>Share {{video.share}}</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
-                        </svg>
-                        <p>Tweet</p>
-                    </a>
-                </ul>
-
-                <hr> 
-
-                <div class="comment_display">
-                    {% for comment in videocomment reversed %}
-                        <div class="comment_inner">
-                            <a href="{% url 'profile' comment.user.username %}"><img width="30px" height="30px" src="{{comment.user.users_acc.image.url}}"
-                            alt=""></a>
-                            <div class="comment_option">
-                                <div class="comment_info">
-                                    <h5>{{comment.user.users_acc.fullname}}</h5>
-                                    <p>{{comment.comment_text}}</p>
-                                    <div class="inner_option">
-                                        <a href="#">like</a>
-                                        <a href="#">reply</a>
-                                    </div>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                                </svg>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="comment_upload">
-                <form action="" method="post" id="videocomment_form">
-                    {% csrf_token %}
-                    <textarea name="videocomment" id="" placeholder="Comment as {{profile.user.username}}" autocomplete="off"></textarea>
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
+        <div class="post_option_container">
+          {% if video.user.username == request.user.username %}
+          <ul>
+            <a
+              class="deletepost"
+              href="{% url 'deleteVideo' video_id=video.id %}"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                />
+              </svg>
+              <p>Move to trash</p>
+            </a>
+            <a class="editpost" href="{% url 'editVideo' video_id=video.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                />
+              </svg>
+              <p>Edit Post</p>
+            </a>
+            <a
+              class="sharepost"
+              href="{% url 'shareVideo' video_id=video.id %}"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+                />
+              </svg>
+              <p>Share</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+              <p>Pin Post</p>
+            </a>
+            <a class="copylink" href="{% url 'shareVideo' video_id=video.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                />
+              </svg>
+              <p>Copy link</p>
+            </a>
+          </ul>
+          {% else %}
+          <ul>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                />
+              </svg>
+              <p>Hide</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z"
+                />
+              </svg>
+              <p>Report</p>
+            </a>
+            <a
+              class="sharepost"
+              href="{% url 'shareVideo' video_id=video.id %}"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+                />
+              </svg>
+              <p>Share</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                />
+              </svg>
+              <p>If something broken? Let us know.</p>
+            </a>
+            <a class="copylink" href="{% url 'shareVideo' video_id=video.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                />
+              </svg>
+              <p>Copy link</p>
+            </a>
+          </ul>
+          {% endif %}
         </div>
 
-        <div class="third">
-            <div class="follow_suggest">
-                <h4>Follow People</h4>
-                
-                {% for profile in profiles %}
-                    {% if not profile.user.username == request.user.username %}
-                        <div class="follow_container">
-                            <div class="follow_inner">
-                                <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                                <div class="follow_info">
-                                    <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                                    <p>@{{ profile.user.username }}</p>
-                                </div>
-                            </div>
-                            <a href="{% url 'follow' profile_id=profile.id %}" class="home_follow">Follow</a>
-                            
-                        </div>
-                    {% endif %}
-                {% endfor %}
+        <div class="post_video_sure_modal">
+          <div class="post_sure_container">
+            <h5>Are you sure, you want to delete this post?</h5>
+            <div class="post_sure_option">
+              <a href="{% url 'deleteVideo' video_id=video.id %}">Yes</a>
+              <a class="post_btn">No</a>
             </div>
-
-            <div class="trending">
-                <h4>Trending Topics</h4>
-                <p>No trending topics today. Start a conversion!</p>
-            </div>
+          </div>
         </div>
-    </main>
+
+        <div class="edit_post">
+          <div class="edit_post_modal_close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+          <form action="" method="post">
+            {% csrf_token %}
+            <input
+              class="input_text"
+              name="caption"
+              type="text"
+              value="{{video.caption}}"
+            />
+            <div class="post_caption" contenteditable="true">
+              {{video.caption}}
+            </div>
+            <input type="submit" value="Updated Post" />
+          </form>
+        </div>
+
+        <div class="sharePost">
+          <div class="share_post_modal_close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+          <h3>Share to</h3>
+          <div class="share_container">
+            <ul>
+              <a
+                class="copylink"
+                href="{% url 'shareVideo' video_id=video.id %}"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                  />
+                </svg>
+                <p>Copy link</p>
+              </a>
+              <a href="{% url 'shareVideo' video_id=video.id %}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                  />
+                </svg>
+                <p>share to bacbok</p>
+              </a>
+              <a href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                  />
+                </svg>
+                <p>share to groups</p>
+              </a>
+              <a href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+                <p>Friends Timeline</p>
+              </a>
+            </ul>
+            <button type="button">share to other apps...</button>
+          </div>
+        </div>
+
+        {% if video.caption|length > 200 %}
+        <div class="caption_container">
+          <p class="post_caption">{{video.caption}}</p>
+        </div>
+        {% else %}
+        <div class="caption_container">
+          <p class="post_caption">{{video.caption}}</p>
+        </div>
+        {% endif %}
+
+        <div class="post_wrapper">
+          <div class="video_wrapper">
+            <div class="video_pause">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6 pause"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 5.25v13.5m-7.5-13.5v13.5"
+                />
+              </svg>
+            </div>
+            {% if video.video %}
+            <video playsinline autoplay loop muted class="post_video">
+              <source src="{{video.video.url}}" type="video/mp4" />
+            </video>
+            {% endif %}
+          </div>
+        </div>
+
+        <ul class="post_wrapper_option">
+          <a
+            href="{% url 'videolikes' video_id=video.id %}"
+            class="video_liked"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+            <p>Likes</p>
+            <span id="liked_count">{{video.user_likes.count}}</span>
+          </a>
+
+          <a href="{% url 'videocomment' video_id=video.id %}" id="comment">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
+              />
+            </svg>
+            <p>Comment {{video.videocomment.count}}</p>
+          </a>
+          <a class="sharepost2" href="{% url 'shareVideo' video_id=video.id %}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+              />
+            </svg>
+            <p>Share {{video.share}}</p>
+          </a>
+          <a href="#">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
+              />
+            </svg>
+            <p>Tweet</p>
+          </a>
+        </ul>
+
+        <hr />
+
+        <div class="comment_display">
+          {% for comment in videocomment reversed %}
+          <div class="comment_inner">
+            <a href="{% url 'profile' comment.user.username %}"
+              ><img
+                width="30px"
+                height="30px"
+                src="{{comment.user.users_acc.image.url}}"
+                alt=""
+            /></a>
+            <div class="comment_option">
+              <div class="comment_info">
+                <h5>{{comment.user.users_acc.fullname}}</h5>
+                <p>{{comment.comment_text}}</p>
+                <div class="inner_option">
+                  <a href="#">like</a>
+                  <a href="#">reply</a>
+                </div>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                />
+              </svg>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="comment_upload">
+        <form action="" method="post" id="videocomment_form">
+          {% csrf_token %}
+          <textarea
+            name="videocomment"
+            id=""
+            placeholder="Comment as {{profile.user.username}}"
+            autocomplete="off"
+          ></textarea>
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="third">
+      <div class="follow_suggest">
+        <h4>Follow People</h4>
+
+        {% for profile in profiles %} {% if not profile.user.username ==
+        request.user.username %}
+        <div class="follow_container">
+          <div class="follow_inner">
+            <img
+              width="30px"
+              height="30px"
+              src="{{profile.image.url}}"
+              alt=""
+            />
+            <div class="follow_info">
+              <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+              <p>@{{ profile.user.username }}</p>
+            </div>
+          </div>
+          <a href="{% url 'follow' profile_id=profile.id %}" class="home_follow"
+            >Follow</a
+          >
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+
+      <div class="trending">
+        <h4>Trending Topics</h4>
+        <p>No trending topics today. Start a conversion!</p>
+      </div>
+    </div>
+  </main>
 </div>
 <script src="{% static 'js/video_comment.js' %}"></script>
 {% endblock %}

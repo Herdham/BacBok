@@ -1,79 +1,66 @@
-{% extends 'auth/base.html' %}
-
-{% load static %}
-
-{% static "media" as mediaURL %}
-
-{% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <title>bacbok</title>
-    <style>
-     * {
+{% extends 'auth/base.html' %} {% load static %} {% static "media" as mediaURL
+%} {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<title>bacbok</title>
+<style>
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-:root {
-    --bg-main: #0a0e27;
-    --bg-card: #131842;
-    --bg-card-glass: rgba(19, 24, 66, 0.6);
-    --primary: #6C5CE7;
-    --primary-light: #a29bfe;
-    --secondary: #00cec9;
-    --accent: #fd79a8;
-    --text-main: #FFFFFF;
-    --text-secondary: #a0a3b1;
-    --text-muted: #6c6f85;
-    --border: rgba(108, 92, 231, 0.2);
-    --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
-    --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
+  /* Theme tokens centralized in auth/base.html */
 
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     height: 6px;
     width: 6px;
-}
+  }
 
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
-}
+  }
 
-::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: var(--text-muted);
     border-radius: 6px;
-}
+  }
 
-::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background-color: var(--primary-light);
-}
+  }
 
-body {
-    font-family: 'Poppins', sans-serif;
+  body {
+    font-family: "Poppins", sans-serif;
     background: var(--bg-main);
     color: var(--text-main);
     min-height: 100vh;
     overflow-x: hidden;
-}
+  }
 
-.container {
+  .container {
     padding-left: 3%;
     padding-right: 3%;
     margin-bottom: 20px;
-}
+  }
 
-/* Navbar */
-.container .navbar {
+  /* Navbar */
+  .container .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -85,37 +72,37 @@ body {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(108, 92, 231, 0.15);
     height: 60px;
-}
+  }
 
-.container .navbar .first h4 {
+  .container .navbar .first h4 {
     color: var(--primary);
     font-size: 20px;
-}
+  }
 
-.container .navbar .first .logo {
+  .container .navbar .first .logo {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .first .logo h4 {
+  .container .navbar .first .logo h4 {
     margin-right: 5px;
-}
+  }
 
-.container .navbar .second form {
+  .container .navbar .second form {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .second .search {
+  .container .navbar .second .search {
     display: flex;
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-right: 20px;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.05);
-}
+  }
 
-.container .navbar .second .search input {
+  .container .navbar .second .search input {
     padding: 10px 16px;
     border: none;
     outline: none;
@@ -123,94 +110,94 @@ body {
     background: transparent;
     color: var(--text-main);
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .navbar .second .search input::placeholder {
-    font-family: 'Poppins', sans-serif;
+  .container .navbar .second .search input::placeholder {
+    font-family: "Poppins", sans-serif;
     color: var(--text-muted);
-}
+  }
 
-.container .navbar .second form .search button {
+  .container .navbar .second form .search button {
     border: none;
     outline: none;
     background: transparent;
     margin-right: 8px;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second .search button svg {
+  .container .navbar .second .search button svg {
     stroke: var(--text-muted);
     width: 22px;
     height: 22px;
     transition: stroke 0.3s ease;
-}
+  }
 
-.container .navbar .second .search button svg:hover {
+  .container .navbar .second .search button svg:hover {
     stroke: var(--primary-light);
-}
+  }
 
-.container .navbar .second form a svg {
+  .container .navbar .second form a svg {
     margin-right: 20px;
     width: 25px;
     height: 25px;
     margin-top: 8px;
     stroke: var(--text-muted);
     transition: stroke 0.3s ease;
-}
+  }
 
-.container .navbar .second form a svg:hover {
+  .container .navbar .second form a svg:hover {
     stroke: var(--primary-light);
-}
+  }
 
-.container .navbar .second form a {
+  .container .navbar .second form a {
     color: var(--bg-main);
     border: none;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second form .active svg {
+  .container .navbar .second form .active svg {
     stroke: var(--primary-light);
-}
+  }
 
-.container .navbar .third {
+  .container .navbar .third {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .third a svg {
+  .container .navbar .third a svg {
     margin-right: 15px;
     margin-top: 8px;
     stroke: var(--text-muted);
     transition: stroke 0.3s ease;
-}
+  }
 
-.container .navbar .third a svg:nth-child(3) {
+  .container .navbar .third a svg:nth-child(3) {
     margin-right: 0px;
-}
+  }
 
-.container .navbar .third a svg:hover {
+  .container .navbar .third a svg:hover {
     stroke: var(--primary-light);
-}
+  }
 
-.container .navbar .third a img {
+  .container .navbar .third a img {
     border-radius: 50%;
     margin-right: 15px;
     margin-top: 8px;
     border: 2px solid var(--border);
-}
+  }
 
-svg {
+  svg {
     stroke: var(--text-muted);
     width: 25px;
     height: 25px;
-}
+  }
 
-/* Popup Modal */
-.container .popup {
+  /* Popup Modal */
+  .container .popup {
     width: 96%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     left: 2%;
@@ -218,19 +205,19 @@ svg {
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
+  }
 
-.container .popup .close ion-icon {
+  .container .popup .close ion-icon {
     color: var(--bg-main);
     font-size: 23px;
     margin-left: 95%;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
-}
+  }
 
-.container .popup .content {
+  .container .popup .content {
     top: 50%;
     left: 50%;
     position: absolute;
@@ -242,33 +229,33 @@ svg {
     border-radius: 12px;
     padding: 15px;
     box-shadow: var(--shadow);
-}
+  }
 
-.container .popup .content .content_owner {
+  .container .popup .content .content_owner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content .content_owner img {
+  .container .popup .content .content_owner img {
     border-radius: 50%;
     margin-right: 5px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info {
+  .container .popup .content .content_owner .content_owner_info {
     align-self: flex-start;
     margin-bottom: 10px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info h5 {
+  .container .popup .content .content_owner .content_owner_info h5 {
     color: var(--text-main);
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info p {
+  .container .popup .content .content_owner .content_owner_info p {
     color: var(--text-muted);
     font-size: 12px;
-}
+  }
 
-.container .popup .content form input[type="text"] {
+  .container .popup .content form input[type="text"] {
     border: none;
     outline: none;
     width: 100%;
@@ -277,17 +264,17 @@ svg {
     border: 1px solid var(--border);
     border-radius: 25px;
     color: var(--text-main);
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 8px;
-}
+  }
 
-.container .popup .content form input::placeholder {
+  .container .popup .content form input::placeholder {
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: var(--text-muted);
-}
+  }
 
-.container .popup .content form #image_cancle {
+  .container .popup .content form #image_cancle {
     color: var(--text-muted);
     font-size: 20px;
     margin-left: 87%;
@@ -299,17 +286,17 @@ svg {
     display: none;
     margin-bottom: 10px;
     position: absolute;
-}
+  }
 
-.container .popup .content form .showimage {
+  .container .popup .content form .showimage {
     width: 70px;
     height: 70px;
     border-radius: 5px;
     margin-bottom: 6px;
     display: none;
-}
+  }
 
-.container .popup .content form .add_to_post {
+  .container .popup .content form .add_to_post {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -317,9 +304,9 @@ svg {
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
-}
+  }
 
-.container .popup .content form .add_to_post button {
+  .container .popup .content form .add_to_post button {
     border: none;
     outline: none;
     padding: 8px 15px;
@@ -327,45 +314,45 @@ svg {
     color: #fff;
     border-radius: 8px;
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul {
+  .container .popup .content form .add_to_post ul {
     display: flex;
     align-items: center;
     gap: 10px;
-}
+  }
 
-.container .popup .content form .add_to_post ul li {
+  .container .popup .content form .add_to_post ul li {
     display: flex;
     align-items: center;
     list-style: none;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label ion-icon {
+  .container .popup .content form .add_to_post ul li label ion-icon {
     font-size: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label ion-icon:hover {
+  .container .popup .content form .add_to_post ul li label ion-icon:hover {
     transform: scale(1.2);
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #photo {
+  .container .popup .content form .add_to_post ul li label #photo {
     color: #00b894;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #tag {
+  .container .popup .content form .add_to_post ul li label #tag {
     color: var(--primary-light);
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #location {
+  .container .popup .content form .add_to_post ul li label #location {
     color: var(--accent);
-}
+  }
 
-.container .popup .content form input[type="submit"] {
+  .container .popup .content form input[type="submit"] {
     width: 100%;
     border: none;
     outline: none;
@@ -373,27 +360,27 @@ svg {
     color: #fff;
     padding: 12px;
     border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-.container .popup .content form input[type="submit"]:hover {
+  .container .popup .content form input[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
-}
+  }
 
-/* Main Layout */
-.container main {
+  /* Main Layout */
+  .container main {
     display: flex;
     align-items: flex-start;
     margin-top: 10px;
     gap: 20px;
-}
+  }
 
-/* Left Sidebar */
-.container main .first {
+  /* Left Sidebar */
+  .container main .first {
     background: var(--bg-card-glass);
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
@@ -408,9 +395,9 @@ svg {
     flex-direction: column;
     overflow-y: auto;
     flex-shrink: 0;
-}
+  }
 
-.container main .first ul a {
+  .container main .first ul a {
     display: flex;
     align-items: center;
     padding: 8px;
@@ -418,31 +405,31 @@ svg {
     margin-bottom: 5px;
     border-radius: 8px;
     transition: all 0.3s ease;
-}
+  }
 
-.container main .first ul .active {
+  .container main .first ul .active {
     background-color: rgba(108, 92, 231, 0.2);
-}
+  }
 
-.container main .first ul a:hover {
+  .container main .first ul a:hover {
     background-color: rgba(108, 92, 231, 0.15);
-}
+  }
 
-.container main .first ul a svg {
+  .container main .first ul a svg {
     margin-right: 10px;
     font-size: 20px;
     stroke: var(--text-secondary);
-}
+  }
 
-.container main .first ul a p {
+  .container main .first ul a p {
     font-size: 15px;
     color: var(--text-secondary);
     margin-top: 6px;
-}
+  }
 
-.container main .first #create_post {
+  .container main .first #create_post {
     background: var(--gradient-1);
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     padding: 8px 15px;
     margin-left: 8px;
@@ -451,54 +438,54 @@ svg {
     border-radius: 8px;
     text-align: center;
     font-weight: 600;
-}
+  }
 
-.container main .first .signout {
+  .container main .first .signout {
     margin-left: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.container main .first .signout .signout_first {
+  .container main .first .signout .signout_first {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .first .signout .signout_first img {
+  .container main .first .signout .signout_first img {
     border-radius: 50%;
     margin-right: 10px;
-}
+  }
 
-.container main .first .signout .signout_first .signout_info h5 {
+  .container main .first .signout .signout_first .signout_info h5 {
     font-size: 13px;
     color: var(--text-main);
-}
+  }
 
-.container main .first .signout .signout_first .signout_info p {
+  .container main .first .signout .signout_first .signout_info p {
     font-size: 10px;
     color: var(--text-secondary);
-}
+  }
 
-/* Main Content */
-.container main .second {
+  /* Main Content */
+  .container main .second {
     flex: 1;
     max-width: 680px;
     padding: 0;
     border-radius: 5px;
-}
+  }
 
-/* Post Container */
-.container main .second .post_container {
+  /* Post Container */
+  .container main .second .post_container {
     width: 100%;
     border-radius: 8px;
     background: var(--bg-card-glass);
     border: 1px solid var(--border);
-    margin-bottom: 12px;         
+    margin-bottom: 12px;
     overflow: hidden;
-}
+  }
 
-.container main .second .post_container .post_owner {
+  .container main .second .post_container .post_owner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -506,136 +493,149 @@ svg {
     border-bottom: 1px solid var(--border);
     padding: 10px 12px;
     margin-bottom: 0;
-}
+  }
 
-.container main .second .post_container .post_owner img {
+  .container main .second .post_container .post_owner img {
     border-radius: 50%;
     align-self: flex-start;
     margin-right: 10px;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info {
+  .container main .second .post_container .post_owner .post_owner_info {
     align-self: flex-start;
     flex-grow: 1;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info {
+  .container main .second .post_container .post_owner .post_owner_info .info {
     display: flex;
     flex-direction: column;
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info h5 {
+  .container
+    main
+    .second
+    .post_container
+    .post_owner
+    .post_owner_info
+    .info
+    h5 {
     font-size: 13px;
     color: var(--text-main);
-}
+  }
 
-.container main .second .post_container .post_owner .post_owner_info .info p {
+  .container main .second .post_container .post_owner .post_owner_info .info p {
     font-size: 10px;
     color: var(--text-muted);
-}
+  }
 
-.container main .second .post_container .post_owner svg {
+  .container main .second .post_container .post_owner svg {
     align-self: flex-start;
     cursor: pointer;
     stroke: var(--text-muted);
-}
+  }
 
-.container main .second .post_container .caption_container {
+  .container main .second .post_container .caption_container {
     display: flex;
     cursor: pointer;
     padding: 0 12px;
-}
+  }
 
-.container main .second .post_container .caption_container p {
+  .container main .second .post_container .caption_container p {
     color: var(--text-main);
-}
+  }
 
-.container main .second .post_container .post_caption {
+  .container main .second .post_container .post_caption {
     color: var(--text-main);
     line-height: 1.5;
-    font-size: 14px;                
+    font-size: 14px;
     padding: 8px 12px;
     margin-bottom: 0;
-}
+  }
 
-.container main .second .post_container .post_wrapper {
+  .container main .second .post_container .post_wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-}
+  }
 
-.container main .second .post_container .post_wrapper #chevback,
-.container main .second .post_container .post_wrapper #chevfront {
+  .container main .second .post_container .post_wrapper #chevback,
+  .container main .second .post_container .post_wrapper #chevfront {
     background: rgba(255, 255, 255, 0.1);
     width: 35px;
     height: 35px;
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
-}
+  }
 
-.container main .second .post_container .post_wrapper #chevback:hover,
-.container main .second .post_container .post_wrapper #chevfront:hover {
+  .container main .second .post_container .post_wrapper #chevback:hover,
+  .container main .second .post_container .post_wrapper #chevfront:hover {
     background: rgba(108, 92, 231, 0.3);
-}
+  }
 
-.container main .second .post_container .image_wrapper {
-   width: 100%;
-    max-height: 400px;           
-    overflow-x: auto;               
+  .container main .second .post_container .image_wrapper {
+    width: 100%;
+    max-height: 400px;
+    overflow-x: auto;
     overflow-y: hidden;
     display: flex;
     gap: 2px;
     padding: 0;
     scroll-snap-type: x mandatory;
-}
+  }
 
-.container main .second .post_container .image_wrapper a {
+  .container main .second .post_container .image_wrapper a {
     display: block;
     width: 100%;
     max-height: 400px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     scroll-snap-type: x mandatory;
-}
+  }
 
-.container main .second .post_container .post_image {
-    height: 400px;                 
+  .container main .second .post_container .post_image {
+    height: 400px;
     width: auto;
-    min-width: 60%;               
+    min-width: 60%;
     object-fit: cover;
     border-radius: 0;
     scroll-snap-align: start;
-}
+  }
 
-.container main .second .post_container .image_wrapper:only-child .post_image,
-.container main .second .post_container .image_wrapper a:only-child .post_image {
+  .container main .second .post_container .image_wrapper:only-child .post_image,
+  .container
+    main
+    .second
+    .post_container
+    .image_wrapper
+    a:only-child
+    .post_image {
     min-width: 100%;
     height: auto;
     max-height: 500px;
     object-fit: contain;
     background: #000;
-}
+  }
 
-/* Post Options Dropdown */
-.container main .second .post_container .post_option_container {
+  /* Post Options Dropdown */
+  .container main .second .post_container .post_option_container {
     position: absolute;
     width: 100%;
     height: auto;
     z-index: 10;
     display: none;
-}
+  }
 
-.container main .second .post_container .post_option_container.display {
+  .container main .second .post_container .post_option_container.display {
     display: block;
-}
+  }
 
-.container main .second .post_container .post_option_container ul {
+  .container main .second .post_container .post_option_container ul {
     display: flex;
     flex-direction: column;
-}
+  }
 
-.container main .second .post_container .post_option_container ul a {
+  .container main .second .post_container .post_option_container ul a {
     display: flex;
     align-items: center;
     padding: 10px 15px;
@@ -643,34 +643,34 @@ svg {
     border-bottom: 1px solid var(--border);
     text-decoration: none;
     transition: background 0.3s ease;
-}
+  }
 
-.container main .second .post_container .post_option_container ul a:hover {
+  .container main .second .post_container .post_option_container ul a:hover {
     background: rgba(108, 92, 231, 0.15);
-}
+  }
 
-.container main .second .post_container .post_option_container ul a svg {
+  .container main .second .post_container .post_option_container ul a svg {
     margin-right: 12px;
     stroke: var(--text-secondary);
-}
+  }
 
-.container main .second .post_container .post_option_container ul a p {
+  .container main .second .post_container .post_option_container ul a p {
     color: var(--text-secondary);
     font-weight: 400;
     font-size: 12px;
-}
+  }
 
-/* Post Action Buttons */
-.container main .second .post_container .post_wrapper_option {
+  /* Post Action Buttons */
+  .container main .second .post_container .post_wrapper_option {
     display: flex;
     align-items: center;
     justify-content: space-around;
     background: transparent;
     border-top: 1px solid var(--border);
     padding: 10px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a {
+  .container main .second .post_container .post_wrapper_option a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -678,36 +678,36 @@ svg {
     flex: 1;
     text-align: center;
     justify-content: center;
-    border-right: none;  
-    transition: background 0.3s ease;
-}
-
-.container main .second .post_container .post_wrapper_option a:last-child {
     border-right: none;
-}
+    transition: background 0.3s ease;
+  }
 
-.container main .second .post_container .post_wrapper_option a:hover {
+  .container main .second .post_container .post_wrapper_option a:last-child {
+    border-right: none;
+  }
+
+  .container main .second .post_container .post_wrapper_option a:hover {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a svg {
+  .container main .second .post_container .post_wrapper_option a svg {
     margin-right: 8px;
     stroke: var(--text-secondary);
     width: 18px;
     height: 18px;
-}
+  }
 
-.container main .second .post_container .post_wrapper_option a p {
+  .container main .second .post_container .post_wrapper_option a p {
     color: var(--text-secondary);
     font-size: 12px;
     white-space: nowrap;
     margin-right: 4px;
-}
+  }
 
-/* Delete/Edit/Share Modals */
-.container .second .post_container .post_sure_modal,
-.container .second .post_container .post_video_sure_modal {
+  /* Delete/Edit/Share Modals */
+  .container .second .post_container .post_sure_modal,
+  .container .second .post_container .post_video_sure_modal {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -717,33 +717,58 @@ svg {
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container,
-.container .second .post_container .post_video_sure_modal .post_sure_container {
+  .container .second .post_container .post_sure_modal .post_sure_container,
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container {
     width: 300px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     padding: 20px;
     border-radius: 12px;
     text-align: center;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container h5,
-.container .second .post_container .post_video_sure_modal .post_sure_container h5 {
+  .container .second .post_container .post_sure_modal .post_sure_container h5,
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    h5 {
     color: var(--text-main);
     margin-bottom: 15px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option,
-.container .second .post_container .post_video_sure_modal .post_sure_container .post_sure_option {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option,
+  .container
+    .second
+    .post_container
+    .post_video_sure_modal
+    .post_sure_container
+    .post_sure_option {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(1) {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(1) {
     background: #00b894;
     color: #fff;
     padding: 10px;
@@ -751,9 +776,15 @@ svg {
     text-decoration: none;
     border-radius: 8px;
     font-size: 13px;
-}
+  }
 
-.container .second .post_container .post_sure_modal .post_sure_container .post_sure_option a:nth-child(2) {
+  .container
+    .second
+    .post_container
+    .post_sure_modal
+    .post_sure_container
+    .post_sure_option
+    a:nth-child(2) {
     background: #ff6b6b;
     color: #fff;
     padding: 10px;
@@ -762,10 +793,10 @@ svg {
     border-radius: 8px;
     font-size: 13px;
     cursor: pointer;
-}
+  }
 
-/* Edit Post Modal */
-.container .second .edit_post {
+  /* Edit Post Modal */
+  .container .second .edit_post {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -774,37 +805,37 @@ svg {
     z-index: 20;
     padding: 8px;
     display: none;
-}
+  }
 
-.container .second .edit_post .edit_post_modal_close {
+  .container .second .edit_post .edit_post_modal_close {
     display: flex;
     justify-content: right;
     cursor: pointer;
-}
+  }
 
-.container .second .edit_post .edit_post_modal_close svg {
+  .container .second .edit_post .edit_post_modal_close svg {
     background: rgba(255, 255, 255, 0.1);
     padding: 8px;
     border-radius: 50%;
     width: 35px;
     height: 35px;
     stroke: var(--text-main);
-}
+  }
 
-.container .second .edit_post form {
+  .container .second .edit_post form {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
     padding: 8px;
-}
+  }
 
-.container .second .edit_post form .post_caption {
+  .container .second .edit_post form .post_caption {
     width: 100%;
     height: auto;
     max-height: 150px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 13px;
     padding: 12px;
     margin-bottom: 10px;
@@ -815,24 +846,24 @@ svg {
     border: 1px solid var(--border);
     color: var(--text-main);
     border-radius: 8px;
-}
+  }
 
-.container .second .edit_post form input[type="submit"] {
+  .container .second .edit_post form input[type="submit"] {
     border: none;
     outline: none;
     background: var(--gradient-1);
     color: #fff;
     padding: 10px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 13px;
     border-radius: 8px;
     width: 100%;
     cursor: pointer;
     font-weight: 600;
-}
+  }
 
-/* Share Modal */
-.container .second .sharePost {
+  /* Share Modal */
+  .container .second .sharePost {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -844,33 +875,33 @@ svg {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+  }
 
-.container .second .sharePost .share_post_modal_close {
+  .container .second .sharePost .share_post_modal_close {
     display: flex;
     justify-content: right;
     cursor: pointer;
-}
+  }
 
-.container .second .sharePost .share_post_modal_close svg {
+  .container .second .sharePost .share_post_modal_close svg {
     background: rgba(255, 255, 255, 0.1);
     padding: 8px;
     border-radius: 50%;
     width: 35px;
     height: 35px;
     stroke: var(--text-main);
-}
+  }
 
-.container .second .sharePost h3 {
+  .container .second .sharePost h3 {
     margin-bottom: 15px;
     color: var(--text-main);
-}
+  }
 
-.container .second .sharePost .share_container ul {
+  .container .second .sharePost .share_container ul {
     margin-bottom: 10px;
-}
+  }
 
-.container .second .sharePost .share_container ul a {
+  .container .second .sharePost .share_container ul a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -879,36 +910,36 @@ svg {
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
     transition: background 0.3s ease;
-}
+  }
 
-.container .second .sharePost .share_container ul a:hover {
+  .container .second .sharePost .share_container ul a:hover {
     background: rgba(108, 92, 231, 0.15);
-}
+  }
 
-.container .second .sharePost .share_container ul a:first-child {
+  .container .second .sharePost .share_container ul a:first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
+  }
 
-.container .second .sharePost .share_container ul a:last-child {
+  .container .second .sharePost .share_container ul a:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom: none;
-}
+  }
 
-.container .second .sharePost .share_container ul a svg {
+  .container .second .sharePost .share_container ul a svg {
     stroke: var(--text-secondary);
     width: 22px;
     height: 22px;
     margin-right: 10px;
-}
+  }
 
-.container .second .sharePost .share_container ul a p {
+  .container .second .sharePost .share_container ul a p {
     font-size: 13px;
     color: var(--text-secondary);
-}
+  }
 
-.container .second .sharePost .share_container button {
+  .container .second .sharePost .share_container button {
     border: none;
     outline: none;
     width: 100%;
@@ -916,18 +947,18 @@ svg {
     color: #fff;
     background: var(--gradient-1);
     border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 13px;
     cursor: pointer;
     font-weight: 600;
-}
+  }
 
-/* Comment Section */
-.container main .second .comment_upload {
+  /* Comment Section */
+  .container main .second .comment_upload {
     margin-bottom: 10px;
-}
+  }
 
-.container main .second .comment_upload form {
+  .container main .second .comment_upload form {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -936,29 +967,29 @@ svg {
     border: 1px solid var(--border);
     border-radius: 25px;
     padding: 5px 10px;
-}
+  }
 
-.container main .second .comment_upload form textarea {
+  .container main .second .comment_upload form textarea {
     border: none;
     outline: none;
     width: 100%;
     margin-right: 5px;
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     resize: none;
     padding: 10px 15px;
     background: transparent;
     color: var(--text-main);
     font-size: 13px;
-}
+  }
 
-.container main .second .comment_upload form textarea::placeholder {
-    font-family: 'Poppins', sans-serif;
+  .container main .second .comment_upload form textarea::placeholder {
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     color: var(--text-muted);
-}
+  }
 
-.container main .second .comment_upload form button {
+  .container main .second .comment_upload form button {
     border: none;
     outline: none;
     padding: 10px;
@@ -967,42 +998,54 @@ svg {
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
-}
+  }
 
-.container main .second .comment_upload form button:hover {
+  .container main .second .comment_upload form button:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
-}
+  }
 
-.container main .second .comment_upload form button svg {
+  .container main .second .comment_upload form button svg {
     stroke: #fff;
     width: 20px;
     height: 20px;
-}
+  }
 
-.container main .second .post_container hr {
+  .container main .second .post_container hr {
     border-color: var(--border);
     border-width: 1px;
-}
+  }
 
-
-.container main .second .post_container .comment_display {
+  .container main .second .post_container .comment_display {
     padding: 8px 12px;
     background: rgba(0, 0, 0, 0.2);
-}
-.container main .second .post_container .comment_display .comment_inner {
+  }
+  .container main .second .post_container .comment_display .comment_inner {
     display: flex;
     align-items: flex-start;
     margin-bottom: 8px;
     gap: 10px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner a img {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    a
+    img {
     border-radius: 50%;
     border: 2px solid var(--border);
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1010,39 +1053,88 @@ svg {
     background: rgba(255, 255, 255, 0.03);
     padding: 10px 12px;
     border-radius: 10px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info h5 {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    h5 {
     color: var(--text-main);
     font-size: 13px;
     margin-bottom: 4px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info p {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    p {
     color: var(--text-secondary);
     font-size: 12px;
     margin-bottom: 5px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    .inner_option {
     display: flex;
     align-items: center;
     gap: 15px;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option a {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    .inner_option
+    a {
     font-size: 11px;
     text-decoration: none;
     color: var(--primary-light);
     font-weight: 600;
     transition: color 0.3s ease;
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option .comment_info .inner_option a:hover {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    .comment_info
+    .inner_option
+    a:hover {
     color: var(--secondary);
-}
+  }
 
-.container main .second .post_container .comment_display .comment_inner .comment_option svg {
+  .container
+    main
+    .second
+    .post_container
+    .comment_display
+    .comment_inner
+    .comment_option
+    svg {
     padding: 6px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
@@ -1051,18 +1143,18 @@ svg {
     height: 28px;
     stroke: var(--text-muted);
     flex-shrink: 0;
-}
+  }
 
-/* Right Sidebar */
-.container main .third {
+  /* Right Sidebar */
+  .container main .third {
     width: 25%;
     position: sticky;
     top: 70px;
     padding: 10px;
     flex-shrink: 0;
-}
+  }
 
-.container main .third .follow_suggest {
+  .container main .third .follow_suggest {
     width: 100%;
     padding: 15px;
     border-radius: 12px;
@@ -1070,678 +1162,1127 @@ svg {
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     margin-bottom: 15px;
-}
+  }
 
-.container main .third .follow_suggest h4 {
+  .container main .third .follow_suggest h4 {
     font-size: 14px;
     margin-bottom: 15px;
     color: var(--primary-light);
     font-weight: 600;
-}
+  }
 
-.container main .third .follow_suggest .follow_container {
+  .container main .third .follow_suggest .follow_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner {
+  .container main .third .follow_suggest .follow_container .follow_inner {
     display: flex;
     align-items: center;
     gap: 10px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner img {
+  .container main .third .follow_suggest .follow_container .follow_inner img {
     border-radius: 50%;
     border: 2px solid var(--border);
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner .follow_info h5 {
+  .container
+    main
+    .third
+    .follow_suggest
+    .follow_container
+    .follow_inner
+    .follow_info
+    h5 {
     color: var(--text-main);
     font-size: 13px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner .follow_info p {
+  .container
+    main
+    .third
+    .follow_suggest
+    .follow_container
+    .follow_inner
+    .follow_info
+    p {
     font-size: 11px;
     color: var(--text-secondary);
-}
+  }
 
-.container main .third .follow_suggest .follow_container a {
+  .container main .third .follow_suggest .follow_container a {
     text-decoration: none;
     background: var(--gradient-1);
     color: #fff;
     padding: 6px 15px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 11px;
     text-align: center;
     border-radius: 20px;
     font-weight: 600;
     transition: all 0.3s ease;
-}
+  }
 
-.container main .third .follow_suggest .follow_container a:hover {
+  .container main .third .follow_suggest .follow_container a:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
-}
+  }
 
-.container main .third .trending {
+  .container main .third .trending {
     padding: 15px;
     width: 100%;
     border-radius: 12px;
     background: var(--bg-card-glass);
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
-}
+  }
 
-.container main .third .trending h4 {
+  .container main .third .trending h4 {
     margin-bottom: 8px;
     color: var(--text-main);
     font-size: 14px;
-}
+  }
 
-.container main .third .trending p {
+  .container main .third .trending p {
     font-size: 12px;
     color: var(--text-secondary);
-}
+  }
 
-/* Responsive */
-@media (max-width: 1024px) {
+  /* Responsive */
+  @media (max-width: 1024px) {
     .container .navbar .second .search input {
-        width: 200px;
+      width: 200px;
     }
-    
+
     .container .navbar .third a:nth-child(1),
     .container .navbar .third a:nth-child(2) {
-        display: none;
+      display: none;
     }
-    
-    .container main .first {
-        width: 30%;
-    }
-    
-    .container main .third {
-        display: none;
-    }
-}
 
-@media (max-width: 768px) {
+    .container main .first {
+      width: 30%;
+    }
+
+    .container main .third {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
     .container .navbar {
-        padding: 8px 15px;
+      padding: 8px 15px;
     }
-    
+
     .container .navbar .second .search input {
-        width: 120px;
-        padding: 8px 12px;
+      width: 120px;
+      padding: 8px 12px;
     }
-    
+
     .container main .first,
     .container main .third {
-        display: none;
+      display: none;
     }
-    
+
     .container main .second {
-        width: 100%;
+      width: 100%;
     }
-}
-    </style>
-{% endblock %}
-
-{% block content %}
+  }
+</style>
+{% endblock %} {% block content %}
 <div class="container">
-        <nav class="navbar">
-            <div class="first">
-                <div class="logo">
-                    <h4>Bacbok</h4>
-                    <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
-                </div>
-            </div>
-            <div class="second">
-                <form action="search">
-                    <a href="{% url 'home' %}" class="active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                    </a>
-                    <div class="search">
-                        <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <a id="message_btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                    </a>
-                </form>
-            </div>
-            <div class="third">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-                    </svg>
-                </a>
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}" alt=""></a>
-                <a href="{% url 'logout' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                    </svg>
-                </a>
-            </div>
-        </nav>
+  <nav class="navbar">
+    <div class="first">
+      <div class="logo">
+        <h4>Bacbok</h4>
+        <img
+          width="40px"
+          height="40px"
+          src="{% static 'image/bacbok.png' %}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="second">
+      <form action="search">
+        <a href="{% url 'home' %}" class="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="search on bacbok"
+            name="search"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <a id="message_btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+        </a>
+      </form>
+    </div>
+    <div class="third">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+          />
+        </svg>
+      </a>
+      <a href="profile/{{profile.user.username}}"
+        ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+      /></a>
+      <a href="{% url 'logout' %}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </a>
+    </div>
+  </nav>
 
-        <div class="popup">
-            <div class="close">
-                <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
-            </div>
-            <div class="content">
-                <div class="content_owner">
-                    <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
-                            alt=""></a>
-                    <div class="content_owner_info">
-                        <h5>{{ profile.fullname }}</h5>
-                        <p>@{{ profile.user.username }}</p>
-                    </div>
-                </div>
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <p id="errors" style="text-align: center;color: red;">{{ message }}</p>
-                    <input type="text" name="post_caption" placeholder="What's on your mind,{{profile.user.username}}?"
-                        autocomplete="off">
-                    <ion-icon name="close-outline" id="image_cancle"></ion-icon>
-                    <div class="showimage_wrapper">
+  <div class="popup">
+    <div class="close">
+      <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+    </div>
+    <div class="content">
+      <div class="content_owner">
+        <a href="profile/{{profile.user.username}}"
+          ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+        /></a>
+        <div class="content_owner_info">
+          <h5>{{ profile.fullname }}</h5>
+          <p>@{{ profile.user.username }}</p>
+        </div>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p id="errors" style="text-align: center; color: red">{{ message }}</p>
+        <input
+          type="text"
+          name="post_caption"
+          placeholder="What's on your mind,{{profile.user.username}}?"
+          autocomplete="off"
+        />
+        <ion-icon name="close-outline" id="image_cancle"></ion-icon>
+        <div class="showimage_wrapper"></div>
 
-                    </div>
+        <div class="add_to_post">
+          <button type="button">Add to your post</button>
+          <ul>
+            <li>
+              <label for="contentimage">
+                <ion-icon name="images-outline" id="photo"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="post_image"
+                id="contentimage"
+                style="display: none"
+                multiple
+              />
+            </li>
+            <li>
+              <label for="contenttag">
+                <ion-icon name="person-add-outline" id="tag"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contenttag"
+                style="display: none"
+              />
+            </li>
+            <li>
+              <label for="contentlocation">
+                <ion-icon name="location-outline" id="location"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contentlocation"
+                style="display: none"
+              />
+            </li>
+          </ul>
+        </div>
+        <input type="submit" name="content_upload" value="Upload" />
+      </form>
+    </div>
+  </div>
 
-                    <div class="add_to_post">
-                        <button type="button">Add to your post</button>
-                        <ul>
-                            <li>
-                                <label for="contentimage">
-                                    <ion-icon name="images-outline" id="photo"></ion-icon>
-                                </label>
-                                <input type="file" name="post_image" id="contentimage" style="display: none;" multiple>
-                            </li>
-                            <li>
-                                <label for="contenttag">
-                                    <ion-icon name="person-add-outline" id="tag"></ion-icon>
-                                </label>
-                                <input type="file" name="content_image" id="contenttag" style="display: none;">
-                            </li>
-                            <li>
-                                <label for="contentlocation">
-                                    <ion-icon name="location-outline" id="location"></ion-icon>
-                                </label>
-                                <input type="file" name="content_image" id="contentlocation" style="display: none;">
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="submit" name="content_upload" value="Upload">
-                </form>
+  <main>
+    <div class="first">
+      <ul>
+        <a class="active" href="{% url 'home' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+          <p>Home</p>
+        </a>
+        <a href="{% url 'friend' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+          <p>Friends</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+          <p>Explore</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
+            />
+          </svg>
+          <p>Notifications</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+          <p>Groups</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+            />
+          </svg>
+          <p>Premium</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+            />
+          </svg>
+          <p>Bookmarks</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+          <p>Marketplace</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+          <p>Profile</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p>More</p>
+        </a>
+      </ul>
+      <a href="#" id="create_post">Create Post</a>
+      <div class="signout">
+        <div class="signout_first">
+          <img width="30px" height="30px" src="{{profile.image.url}}" alt="" />
+          <div class="signout_info">
+            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+            <p>@{{profile.user.username}}</p>
+          </div>
+        </div>
+        <div class="signout_second">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="second">
+      <div class="post_container">
+        <div class="post_owner">
+          <img
+            width="30px"
+            height="30px"
+            src="{{post.user.users_acc.image.url}}"
+            alt=""
+          />
+          <div class="post_owner_info">
+            <div class="info">
+              <h5>
+                {{post.user.users_acc.firstname}}
+                {{post.user.users_acc.lastname}}
+              </h5>
+              <p>@{{post.user.username}} {{post.created_at|time:"h:i A"}}</p>
             </div>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 post_option"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
         </div>
 
-    <main>
-        <div class="first">
-                <ul>
-                    <a class="active" href="{% url 'home' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                        </svg>
-                        <p>Home</p>
-                    </a>
-                    <a href="{% url 'friend' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                        </svg>
-                        <p>Friends</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                        <p>Explore</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                        </svg>
-                        <p>Notifications</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                        </svg>
-                        <p>Groups</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                        </svg>
-                        <p>Premium</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-                        </svg>
-                        <p>Bookmarks</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
-                        <p>Marketplace</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                        <p>Profile</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <p>More</p>
-                    </a>
-                </ul>
-                <a href="#" id="create_post">Create Post</a>
-                <div class="signout">
-                    <div class="signout_first">
-                        <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                        <div class="signout_info">
-                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                            <p>@{{profile.user.username}}</p>
-                        </div>
-                    </div>
-                    <div class="signout_second">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </div>
-                </div>
+        <div class="post_option_container">
+          {% if post.user.username == request.user.username %}
+          <ul>
+            <a class="deletepost" href="{% url 'deletePost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                />
+              </svg>
+              <p>Move to trash</p>
+            </a>
+            <a class="editpost" href="{% url 'editPost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                />
+              </svg>
+              <p>Edit Post</p>
+            </a>
+            <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+                />
+              </svg>
+              <p>Share</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+              <p>Pin Post</p>
+            </a>
+            <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                />
+              </svg>
+              <p>Copy link</p>
+            </a>
+          </ul>
+          {% else %}
+          <ul>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                />
+              </svg>
+              <p>Hide</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z"
+                />
+              </svg>
+              <p>Report</p>
+            </a>
+            <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+                />
+              </svg>
+              <p>Share</p>
+            </a>
+            <a href="#">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                />
+              </svg>
+              <p>If something broken? Let us know.</p>
+            </a>
+            <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                />
+              </svg>
+              <p>Copy link</p>
+            </a>
+          </ul>
+          {% endif %}
         </div>
 
-        <div class="second">
-
-            <div class="post_container">
-                <div class="post_owner">
-                    <img width="30px" height="30px" src="{{post.user.users_acc.image.url}}" alt="">
-                    <div class="post_owner_info">
-                        <div class="info">
-                            <h5>{{post.user.users_acc.firstname}} {{post.user.users_acc.lastname}}</h5>
-                            <p>@{{post.user.username}} {{post.created_at|time:"h:i A"}}</p>
-                        </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="size-6 post_option">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
-                </div>
-            
-                <div class="post_option_container">
-                    {% if post.user.username == request.user.username %}
-                    <ul>
-                        <a class="deletepost" href="{% url 'deletePost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                            </svg>
-                            <p>Move to trash</p>
-                        </a>
-                        <a class="editpost" href="{% url 'editPost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                            </svg>
-                            <p>Edit Post</p>
-                        </a>
-                        <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                            </svg>
-                            <p>Share</p>
-                        </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                            </svg>
-                            <p>Pin Post</p>
-                        </a>
-                        <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                            </svg>
-                            <p>Copy link</p>
-                        </a>
-                    </ul>
-                    {% else %}
-                    <ul>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
-                            </svg>
-                            <p>Hide</p>
-                        </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" />
-                            </svg>
-                            <p>Report</p>
-                        </a>
-                        <a class="sharepost" href="{% url 'sharePost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                            </svg>
-                            <p>Share</p>
-                        </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                            </svg>
-                            <p>If something broken? Let us know.</p>
-                        </a>
-                        <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                            </svg>
-                            <p>Copy link</p>
-                        </a>
-                    </ul>
-                    {% endif %}
-                </div>
-            
-                <div class="post_sure_modal">
-                    <div class="post_sure_container">
-                        <h5>Are you sure, you want to delete this post?</h5>
-                        <div class="post_sure_option">
-                            <a href="{% url 'deletePost' post_id=post.id %}">Yes</a>
-                            <a class="post_btn">No</a>
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="edit_post">
-                    <div class="edit_post_modal_close">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <input class="input_text" name="caption" type="text" value="{{post.caption}}">
-                        <div class="post_caption" contenteditable="true">{{post.caption}}</div>
-                        <input type="submit" value="Updated Post">
-                    </form>
-                </div>
-            
-                <div class="sharePost">
-                    <div class="share_post_modal_close">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <h3>Share to</h3>
-                    <div class="share_container">
-                        <ul>
-                            <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                                </svg>
-                                <p>Copy link</p>
-                            </a>
-                            <a href="{% url 'sharePost' post_id=post.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                </svg>
-                                <p>share to bacbok</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                                </svg>
-                                <p>share to groups</p>
-                            </a>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                </svg>
-                                <p>Friends Timeline</p>
-                            </a>
-                        </ul>
-                        <button type="button">share to other apps...</button>
-                    </div>
-                </div>
-            
-                {% if post.caption|length > 200 %}
-                    <div class="caption_container">
-                        <p class="post_caption">{{post.caption}}</p>
-                    </div>
-                {% else %}
-                    <div class="caption_container">
-                        <p class="post_caption">{{post.caption}}</p>
-                    </div>
-                {% endif %}
-            
-                {% if post.image.count > 1 %}
-                    <div class="post_wrapper">
-                        <svg id="chevback" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-                
-                        <div class="image_wrapper">
-                            {% if post.image %}
-                                {% for img_obj in post.image.all %}
-                                    <a href="{{ img_obj.image.url }}">
-                                        <img class="post_image" src="{{ img_obj.image.url }}" alt="">
-                                    </a>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                
-                        <svg id="chevfront" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </div>
-                {% elif post.image.count == 0 %}
-                    <div class="post_wrapper">
-                        <div class="no_image">
-                            {% if post.image %}
-                                {% for img_obj in post.image.all %}
-                                    <a href="{{ img_obj.image.url }}">
-                                        <img class="post_image" src="{{ img_obj.image.url }}" alt="">
-                                    </a>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="post_wrapper">
-                        <div class="image_wrapper">
-                            {% if post.image %}
-                                {% for img_obj in post.image.all %}
-                                    <a href="{{ img_obj.image.url }}">
-                                        <img class="post_image" src="{{ img_obj.image.url }}" alt="">
-                                    </a>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endif %}
-                <ul class="post_wrapper_option">
-                    <a href="{% url 'postlikes' post_id=post.id %}" id="liked">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                        </svg>
-                        <p>Likes</p>
-                        <span id="likedcount-{{post.id}}">{{ post.likes.count }}</span>
-                    </a>
-            
-                    <a href="{% url 'postcomment' post_id=post.id %}" id="comment">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
-                        </svg>
-                        <p>Comment {{post.comments.count}}</p>
-                    </a>
-                    <a class="sharepost2" href="{% url 'sharePost' post_id=post.id %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                        </svg>
-                        <p>Share {{post.share}}</p>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
-                        </svg>
-                        <p>Tweet</p>
-                    </a>
-                </ul>
-                <hr>
-                <div class="comment_display">
-                    {% for comment in comments reversed %}
-                        <div class="comment_inner">
-                            <a href="{% url 'profile' comment.user.username %}">
-                                <img width="30px" height="30px"src="{{comment.user.users_acc.image.url}}" alt="">
-                            </a>
-                            <div class="comment_option">
-                                <div class="comment_info">
-                                    <h5>{{comment.user.users_acc.fullname}}</h5>
-                                    <p>{{comment.text}}</p>
-                                    <div class="inner_option">
-                                        <a href="#">like</a>
-                                        <a href="#">reply</a>
-                                    </div>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                                </svg>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+        <div class="post_sure_modal">
+          <div class="post_sure_container">
+            <h5>Are you sure, you want to delete this post?</h5>
+            <div class="post_sure_option">
+              <a href="{% url 'deletePost' post_id=post.id %}">Yes</a>
+              <a class="post_btn">No</a>
             </div>
-            
-            <div class="comment_upload">
-                <form action="" method="post" id="comment_form">
-                    {% csrf_token %}
-                    <textarea name="comment" id="" placeholder="Comment as {{profile.user.username}}"></textarea>
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
+          </div>
         </div>
 
-        <div class="third">
-            <div class="follow_suggest">
-                <h4>Follow People</h4>
-                {% for profile in profiles %}
-                    {% if not profile.user.username == request.user.username %}
-                        <div class="follow_container">
-                            <div class="follow_inner">
-                                <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                                <div class="follow_info">
-                                    <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                                    <p>@{{ profile.user.username }}</p>
-                                </div>
-                            </div>
-                            <a href="#">Follow</a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+        <div class="edit_post">
+          <div class="edit_post_modal_close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+          <form action="" method="post">
+            {% csrf_token %}
+            <input
+              class="input_text"
+              name="caption"
+              type="text"
+              value="{{post.caption}}"
+            />
+            <div class="post_caption" contenteditable="true">
+              {{post.caption}}
             </div>
-
-            <div class="trending">
-                <h4>Trending Topics</h4>
-                <p>No trending topics today. Start a conversion!</p>
-            </div>
+            <input type="submit" value="Updated Post" />
+          </form>
         </div>
-    </main>
+
+        <div class="sharePost">
+          <div class="share_post_modal_close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+          <h3>Share to</h3>
+          <div class="share_container">
+            <ul>
+              <a class="copylink" href="{% url 'sharePost' post_id=post.id %}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                  />
+                </svg>
+                <p>Copy link</p>
+              </a>
+              <a href="{% url 'sharePost' post_id=post.id %}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                  />
+                </svg>
+                <p>share to bacbok</p>
+              </a>
+              <a href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                  />
+                </svg>
+                <p>share to groups</p>
+              </a>
+              <a href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+                <p>Friends Timeline</p>
+              </a>
+            </ul>
+            <button type="button">share to other apps...</button>
+          </div>
+        </div>
+
+        {% if post.caption|length > 200 %}
+        <div class="caption_container">
+          <p class="post_caption">{{post.caption}}</p>
+        </div>
+        {% else %}
+        <div class="caption_container">
+          <p class="post_caption">{{post.caption}}</p>
+        </div>
+        {% endif %} {% if post.image.count > 1 %}
+        <div class="post_wrapper">
+          <svg
+            id="chevback"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+
+          <div class="image_wrapper">
+            {% if post.image %} {% for img_obj in post.image.all %}
+            <a href="{{ img_obj.image.url }}">
+              <img class="post_image" src="{{ img_obj.image.url }}" alt="" />
+            </a>
+            {% endfor %} {% endif %}
+          </div>
+
+          <svg
+            id="chevfront"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m8.25 4.5 7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </div>
+        {% elif post.image.count == 0 %}
+        <div class="post_wrapper">
+          <div class="no_image">
+            {% if post.image %} {% for img_obj in post.image.all %}
+            <a href="{{ img_obj.image.url }}">
+              <img class="post_image" src="{{ img_obj.image.url }}" alt="" />
+            </a>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+        {% else %}
+        <div class="post_wrapper">
+          <div class="image_wrapper">
+            {% if post.image %} {% for img_obj in post.image.all %}
+            <a href="{{ img_obj.image.url }}">
+              <img class="post_image" src="{{ img_obj.image.url }}" alt="" />
+            </a>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        <ul class="post_wrapper_option">
+          <a href="{% url 'postlikes' post_id=post.id %}" id="liked">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+            <p>Likes</p>
+            <span id="likedcount-{{post.id}}">{{ post.likes.count }}</span>
+          </a>
+
+          <a href="{% url 'postcomment' post_id=post.id %}" id="comment">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
+              />
+            </svg>
+            <p>Comment {{post.comments.count}}</p>
+          </a>
+          <a class="sharepost2" href="{% url 'sharePost' post_id=post.id %}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+              />
+            </svg>
+            <p>Share {{post.share}}</p>
+          </a>
+          <a href="#">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
+              />
+            </svg>
+            <p>Tweet</p>
+          </a>
+        </ul>
+        <hr />
+        <div class="comment_display">
+          {% for comment in comments reversed %}
+          <div class="comment_inner">
+            <a href="{% url 'profile' comment.user.username %}">
+              <img
+                width="30px"
+                height="30px"
+                src="{{comment.user.users_acc.image.url}}"
+                alt=""
+              />
+            </a>
+            <div class="comment_option">
+              <div class="comment_info">
+                <h5>{{comment.user.users_acc.fullname}}</h5>
+                <p>{{comment.text}}</p>
+                <div class="inner_option">
+                  <a href="#">like</a>
+                  <a href="#">reply</a>
+                </div>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                />
+              </svg>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="comment_upload">
+        <form action="" method="post" id="comment_form">
+          {% csrf_token %}
+          <textarea
+            name="comment"
+            id=""
+            placeholder="Comment as {{profile.user.username}}"
+          ></textarea>
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="third">
+      <div class="follow_suggest">
+        <h4>Follow People</h4>
+        {% for profile in profiles %} {% if not profile.user.username ==
+        request.user.username %}
+        <div class="follow_container">
+          <div class="follow_inner">
+            <img
+              width="30px"
+              height="30px"
+              src="{{profile.image.url}}"
+              alt=""
+            />
+            <div class="follow_info">
+              <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+              <p>@{{ profile.user.username }}</p>
+            </div>
+          </div>
+          <a href="#">Follow</a>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+
+      <div class="trending">
+        <h4>Trending Topics</h4>
+        <p>No trending topics today. Start a conversion!</p>
+      </div>
+    </div>
+  </main>
 </div>
 <script src="{% static 'js/comment.js' %}"></script>
 {% endblock %}

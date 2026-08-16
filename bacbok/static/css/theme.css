@@ -1,0 +1,27 @@
+/* Shared theme variables for Bacbok
+   Centralize colors from login/home pages so all templates inherit them.
+*/
+:root {
+    --bg-primary: #0a0e27;
+    --bg-secondary: #131842;
+    --bg-card: rgba(19, 24, 66, 0.6);
+    --primary: #6C5CE7;
+    --primary-light: #a29bfe;
+    --secondary: #00cec9;
+    --accent: #fd79a8;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a3b1;
+    --text-muted: #6c6f85;
+    --success: #00b894;
+    --error: #ff6b6b;
+    --border: rgba(108, 92, 231, 0.2);
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --gradient-1: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+    --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6C5CE7 100%);
+}
+
+/* Minimal theme helpers (can be extended) */
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}

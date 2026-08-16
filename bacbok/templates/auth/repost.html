@@ -1,297 +1,286 @@
-{% extends 'auth/base.html' %}
-
-{% load static %}
-
-{% static "media" as mediaURL %}
-
-{% block head %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{% extends 'auth/base.html' %} {% load static %} {% static "media" as mediaURL
+%} {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 <title>bacbok</title>
 <style>
-    * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-:root {
-    --bg-main: #0B1020;
-    --bg-card: #161B2E;
+  /* Theme tokens centralized in auth/base.html */
 
-    --primary: #7C3AED;
-    --secondary: #3B82F6;
-
-    --text-main: #FFFFFF;
-    --text-secondary: #9CA3AF;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
-}
+  }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  @font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
-}
+  }
 
-svg {
-    stroke: #0B1020;
+  svg {
+    stroke: #0b1020;
     width: 25px;
     height: 25px;
-}
+  }
 
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     height: 6px;
     width: 6px;
-}
+  }
 
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
+  }
 
-::-webkit-scrollbar-thumb {
-    background: #9CA3AF;
+  ::-webkit-scrollbar-thumb {
+    background: #9ca3af;
     border-radius: 6px;
-}
+  }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: #161B2E;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #161b2e;
+  }
 
-body {
-    font-family: 'Poppins', sans-serif;
-}
+  body {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container {
+  .container {
     padding-left: 3%;
     padding-right: 3%;
     margin-bottom: 20px;
-}
+  }
 
-.container .navbar {
+  .container .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); */
-}
+  }
 
-.container .navbar .first h4 {
-    color: #7C3AED;
+  .container .navbar .first h4 {
+    color: #7c3aed;
     font-size: 20px;
-}
+  }
 
-.container .navbar .first .logo {
+  .container .navbar .first .logo {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .first .logo h4 {
+  .container .navbar .first .logo h4 {
     margin-right: 5px;
-}
+  }
 
-.container .navbar .second form {
+  .container .navbar .second form {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .second .search {
+  .container .navbar .second .search {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
     margin-right: 20px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input {
+  .container .navbar .second .search input {
     padding: 8px;
     border: none;
     outline: none;
     width: 300px;
     margin-right: 3px;
     border-radius: 5px;
-}
+  }
 
-.container .navbar .second .search input::placeholder {
-    font-family: 'Poppins', sans-serif;
-}
+  .container .navbar .second .search input::placeholder {
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .navbar .second form .search button {
+  .container .navbar .second form .search button {
     border: none;
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin-right: 5px;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second .search button svg {
+  .container .navbar .second .search button svg {
     margin-right: 0px;
     margin-top: 0px;
     width: 22px;
     height: 22px;
-}
+  }
 
-.container .navbar .second .search button svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second .search button svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a svg {
+  .container .navbar .second form a svg {
     margin-right: 20px;
     width: 25px;
     height: 25px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .second form a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .second form a {
-    color: #0B1020;
+  .container .navbar .second form a {
+    color: #0b1020;
     border: none;
     cursor: pointer;
-}
+  }
 
-.container .navbar .second form .active svg {
-    stroke: #7C3AED;
-}
+  .container .navbar .second form .active svg {
+    stroke: #7c3aed;
+  }
 
-
-.container .navbar .third {
+  .container .navbar .third {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .navbar .third a svg {
+  .container .navbar .third a svg {
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .navbar .third a svg:nth-child(3) {
+  .container .navbar .third a svg:nth-child(3) {
     margin-right: 0px;
-}
+  }
 
-.container .navbar .third svg {
-    stroke: #0B1020;
-}
+  .container .navbar .third svg {
+    stroke: #0b1020;
+  }
 
-.container .navbar .third a svg:hover {
-    stroke: #7C3AED;
-}
+  .container .navbar .third a svg:hover {
+    stroke: #7c3aed;
+  }
 
-.container .navbar .third a img {
+  .container .navbar .third a img {
     border-radius: 50%;
     margin-right: 15px;
     margin-top: 8px;
-}
+  }
 
-.container .popup {
+  .container .popup {
     width: 96%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     margin-right: 3%;
     z-index: 10;
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
+  }
 
-
-.container .popup .close ion-icon {
-    color: #0B1020;
+  .container .popup .close ion-icon {
+    color: #0b1020;
     font-size: 23px;
     margin-left: 95%;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
-}
+  }
 
-.container .popup .content {
+  .container .popup .content {
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
     width: 500px;
     height: auto;
     border-radius: 5px;
     padding: 10px;
-}
+  }
 
-.container .popup .content .content_owner {
+  .container .popup .content .content_owner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content .content_owner img {
+  .container .popup .content .content_owner img {
     border-radius: 50%;
     margin-right: 5px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info {
+  .container .popup .content .content_owner .content_owner_info {
     align-self: flex-start;
     margin-bottom: 10px;
-}
+  }
 
-.container .popup .content .content_owner .content_owner_info h5 {
-    color: #0B1020;
-}
+  .container .popup .content .content_owner .content_owner_info h5 {
+    color: #0b1020;
+  }
 
-.container .popup .content form input[type="text"] {
+  .container .popup .content form input[type="text"] {
     border: none;
     outline: none;
     width: 100%;
     padding: 8px;
     background-color: #fff;
     border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 8px;
-}
+  }
 
-.container .popup .content form input::placeholder {
+  .container .popup .content form input::placeholder {
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container .popup .content form #image_cancle {
-    color: #0B1020;
+  .container .popup .content form #image_cancle {
+    color: #0b1020;
     font-size: 20px;
     margin-left: 87%;
     margin-top: 8px;
     padding: 10px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     cursor: pointer;
     display: none;
     margin-bottom: 10px;
     position: absolute;
-}
+  }
 
-.container .popup .content form .showimage {
+  .container .popup .content form .showimage {
     width: 70px;
     height: 70px;
     border-radius: 5px;
     margin-bottom: 6px;
     display: none;
-}
+  }
 
-
-
-.container .popup .content form .add_to_post {
+  .container .popup .content form .add_to_post {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -299,71 +288,70 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
-}
+  }
 
-.container .popup .content form .add_to_post button {
+  .container .popup .content form .add_to_post button {
     border: none;
     outline: none;
     padding: 8px;
-    background-color: #0B1020;
+    background-color: #0b1020;
     color: #fff;
     width: 150px;
     border-radius: 4px;
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul {
+  .container .popup .content form .add_to_post ul {
     display: flex;
     align-items: center;
-}
+  }
 
-.container .popup .content form .add_to_post ul li {
+  .container .popup .content form .add_to_post ul li {
     display: flex;
     align-items: center;
     list-style: none;
     margin-right: 20px;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label ion-icon {
+  .container .popup .content form .add_to_post ul li label ion-icon {
     font-size: 25px;
     cursor: pointer;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #photo {
+  .container .popup .content form .add_to_post ul li label #photo {
     color: green;
-}
+  }
 
-.container .popup .content form .add_to_post ul li label #tag {
-    color: #3B82F6;
-}
+  .container .popup .content form .add_to_post ul li label #tag {
+    color: #3b82f6;
+  }
 
-.container .popup .content form .add_to_post ul li label #location {
+  .container .popup .content form .add_to_post ul li label #location {
     color: maroon;
-}
+  }
 
-.container .popup .content form input[type="submit"] {
+  .container .popup .content form input[type="submit"] {
     width: 100%;
     border: none;
     outline: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 8px;
     border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
-}
+  }
 
-
-.container main {
+  .container main {
     display: flex;
     align-items: center;
     margin-top: 10px;
-}
+  }
 
-.container main .first {
-    background-color: #FFFFFF;
+  .container main .first {
+    background-color: #ffffff;
     width: 25%;
     height: 100vh;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -374,41 +362,41 @@ body {
     flex-direction: column;
     overflow-y: auto;
     margin-right: 20px;
-}
+  }
 
-.container main .first ul a {
+  .container main .first ul a {
     display: flex;
     align-items: center;
     padding: 8px;
     text-decoration: none;
     margin-bottom: 5px;
-}
+  }
 
-.container main .first ul .active {
+  .container main .first ul .active {
     background-color: #ccc;
     border-radius: 5px;
-}
+  }
 
-.container main .first ul a:hover {
+  .container main .first ul a:hover {
     background-color: #ccc;
     border-radius: 5px;
-}
+  }
 
-.container main .first ul a svg {
+  .container main .first ul a svg {
     margin-right: 10px;
     font-size: 20px;
-    stroke: #161B2E;
-}
+    stroke: #161b2e;
+  }
 
-.container main .first ul a p {
+  .container main .first ul a p {
     font-size: 15px;
-    color: #161B2E;
+    color: #161b2e;
     margin-top: 6px;
-}
+  }
 
-.container main .first #create_post {
-    background-color: #7C3AED;
-    color: #FFFFFF;
+  .container main .first #create_post {
+    background-color: #7c3aed;
+    color: #ffffff;
     text-decoration: none;
     padding: 6px;
     margin-left: 8px;
@@ -416,31 +404,31 @@ body {
     font-size: 12px;
     border-radius: 5px;
     text-align: center;
-}
+  }
 
-.container main .first .signout {
+  .container main .first .signout {
     margin-left: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.container main .first .signout .signout_first {
+  .container main .first .signout .signout_first {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .first .signout .signout_first img {
+  .container main .first .signout .signout_first img {
     border-radius: 50%;
     margin-right: 10px;
     align-self: flex-start;
-}
+  }
 
-.container main .first .signout .signout_first .signout_info p {
+  .container main .first .signout .signout_first .signout_info p {
     font-size: 10px;
-}
+  }
 
-.container main .second {
+  .container main .second {
     align-self: flex-start;
     width: 45%;
     margin-right: 20px;
@@ -448,483 +436,727 @@ body {
     height: 100vh;
     padding: 10px;
     border-radius: 5px;
-}
+  }
 
-
-.container main .second::-webkit-scrollbar {
+  .container main .second::-webkit-scrollbar {
     height: 0px;
     width: 0px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-track {
+  .container main .second::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-thumb {
-    background: #9CA3AF;
+  .container main .second::-webkit-scrollbar-thumb {
+    background: #9ca3af;
     border-radius: 6px;
-}
+  }
 
-.container main .second::-webkit-scrollbar-thumb:hover {
-    background-color: #161B2E;
-}
+  .container main .second::-webkit-scrollbar-thumb:hover {
+    background-color: #161b2e;
+  }
 
-.container main .second .post_container {
+  .container main .second .post_container {
     width: 100%;
     border-radius: 5px;
     height: auto;
     overflow-y: auto;
     background-color: #fff;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
-}
+  }
 
-.container main .second .post_container .repost_owner{
+  .container main .second .post_container .repost_owner {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding: 8px;
-}
+  }
 
-.container main .second .post_container .repost_owner img{
+  .container main .second .post_container .repost_owner img {
     border-radius: 50px;
     margin-right: 5px;
-}
+  }
 
-.container main .second .post_container .repost_owner .repost_owner_info{
+  .container main .second .post_container .repost_owner .repost_owner_info {
     align-self: flex-start;
-}
+  }
 
-.container main .second .post_container .repost_owner .repost_owner_info p{
+  .container main .second .post_container .repost_owner .repost_owner_info p {
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
-.container main .second .post_container .repost_container{
+  .container main .second .post_container .repost_container {
     width: 100%;
     height: auto;
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
     padding: 5px;
-}
+  }
 
-.container main .second .post_container #success{
+  .container main .second .post_container #success {
     text-align: center;
     font-size: 12px;
     color: green;
-}
+  }
 
-.container main .second .post_container .repost_container textarea{
+  .container main .second .post_container .repost_container textarea {
     width: 100%;
     height: 90px;
     padding: 8px;
     border: none;
     outline: none;
     resize: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
     color: #fff;
-}
+  }
 
-.container main .second .post_container .repost_container textarea::placeholder{
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    textarea::placeholder {
     color: #fff;
-}
+  }
 
-.container main .second .post_container .repost_container .repost_content{
+  .container main .second .post_container .repost_container .repost_content {
     margin-bottom: 10px;
-}
+  }
 
-.container main .second .post_container .repost_container .repost_content p{
+  .container main .second .post_container .repost_container .repost_content p {
     font-size: 12px;
     margin-bottom: 8px;
-}
+  }
 
-.container main .second .post_container .repost_container .repost_content .content{
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    .repost_content
+    .content {
     display: flex;
     align-items: center;
     border-radius: 5px;
     border: 1px solid #fff;
     padding: 6px;
-}
+  }
 
-.container main .second .post_container .repost_container .repost_content .content img{
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    .repost_content
+    .content
+    img {
     margin-right: 5px;
     align-self: flex-start;
     object-fit: cover;
-}
+  }
 
-.container main .second .post_container .repost_container .repost_content .content video{
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    .repost_content
+    .content
+    video {
     margin-right: 5px;
     align-self: flex-start;
     object-fit: cover;
-}
-.container main .second .post_container .repost_container .repost_content .content p{
+  }
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    .repost_content
+    .content
+    p {
     align-self: flex-start;
     font-size: 12px;
     color: #fff;
     cursor: pointer;
-}
+  }
 
-.container main .second .post_container .repost_container input[type="submit"]{
+  .container
+    main
+    .second
+    .post_container
+    .repost_container
+    input[type="submit"] {
     border: none;
     outline: none;
     padding: 8px;
     width: 100%;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     font-size: 12px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
     border-radius: 5px;
-}
+  }
 
-.container main .third {
+  .container main .third {
     align-self: flex-start;
     width: 25%;
     padding: 10px;
     height: auto;
-}
+  }
 
-.container main .third .follow_suggest {
+  .container main .third .follow_suggest {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-}
+  }
 
-.container main .third .follow_suggest h4 {
+  .container main .third .follow_suggest h4 {
     font-family: 13px;
     margin-bottom: 7px;
-    color: #7C3AED;
-}
+    color: #7c3aed;
+  }
 
-.container main .third .follow_suggest .follow_container {
+  .container main .third .follow_suggest .follow_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner {
+  .container main .third .follow_suggest .follow_container .follow_inner {
     display: flex;
     align-items: center;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner img {
+  .container main .third .follow_suggest .follow_container .follow_inner img {
     align-self: flex-start;
     border-radius: 50%;
     margin-right: 10px;
     border: 1px dashed #fff;
-}
+  }
 
-.container main .third .follow_suggest .follow_container .follow_inner .follow_info p {
+  .container
+    main
+    .third
+    .follow_suggest
+    .follow_container
+    .follow_inner
+    .follow_info
+    p {
     font-size: 12px;
-}
+  }
 
-.container main .third .follow_suggest .follow_container a {
+  .container main .third .follow_suggest .follow_container a {
     align-self: flex-start;
     text-decoration: none;
-    background-color: #3B82F6;
+    background-color: #3b82f6;
     color: #fff;
     padding: 6px;
     width: 100px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 10px;
     text-align: center;
     border-radius: 5px;
-}
+  }
 
-.container main .third .trending {
+  .container main .third .trending {
     padding: 8px;
     width: 100%;
     border-radius: 5px;
     background-color: #ccc;
-}
+  }
 
-.container main .third .trending h4 {
+  .container main .third .trending h4 {
     margin-bottom: 5px;
-}
+  }
 
-.container main .third .trending p {
+  .container main .third .trending p {
     font-size: 12px;
-}
+  }
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container">
-    <nav class="navbar">
-        <div class="first">
-            <div class="logo">
-                <h4>Bacbok</h4>
-                <img width="40px" height="40px" src="{% static 'image/bacbok.png' %}" alt="">
-            </div>
+  <nav class="navbar">
+    <div class="first">
+      <div class="logo">
+        <h4>Bacbok</h4>
+        <img
+          width="40px"
+          height="40px"
+          src="{% static 'image/bacbok.png' %}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="second">
+      <form action="search">
+        <a href="{% url 'home' %}" class="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="search on bacbok"
+            name="search"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
         </div>
-        <div class="second">
-            <form action="search">
-                <a href="{% url 'home' %}" class="active">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                </a>
-                <div class="search">
-                    <input type="text" placeholder="search on bacbok" name="search" autocomplete="off" required>
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                    </button>
-                </div>
-                <a id="message_btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                    </svg>
-                </a>
-            </form>
-        </div>
-        <div class="third">
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                </svg>
-            </a>
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-                </svg>
-            </a>
-            <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
-                    alt=""></a>
-            <a href="{% url 'logout' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                </svg>
-            </a>
-        </div>
-    </nav>
+        <a id="message_btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+          </svg>
+        </a>
+      </form>
+    </div>
+    <div class="third">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+          />
+        </svg>
+      </a>
+      <a href="profile/{{profile.user.username}}"
+        ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+      /></a>
+      <a href="{% url 'logout' %}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </a>
+    </div>
+  </nav>
 
-    <div class="popup">
-        <div class="close">
-            <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+  <div class="popup">
+    <div class="close">
+      <ion-icon name="close-outline" id="popclosebtn"></ion-icon>
+    </div>
+    <div class="content">
+      <div class="content_owner">
+        <a href="profile/{{profile.user.username}}"
+          ><img width="30px" height="30px" src="{{profile.image.url}}" alt=""
+        /></a>
+        <div class="content_owner_info">
+          <h5>{{ profile.fullname }}</h5>
+          <p>@{{ profile.user.username }}</p>
         </div>
-        <div class="content">
-            <div class="content_owner">
-                <a href="profile/{{profile.user.username}}"><img width="30px" height="30px" src="{{profile.image.url}}"
-                        alt=""></a>
-                <div class="content_owner_info">
-                    <h5>{{ profile.fullname }}</h5>
-                    <p>@{{ profile.user.username }}</p>
-                </div>
-            </div>
-            <form action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <p id="errors" style="text-align: center;color: red;">{{ message }}</p>
-                <input type="text" name="post_caption" placeholder="What's on your mind,{{profile.user.username}}?"
-                    autocomplete="off">
-                <ion-icon name="close-outline" id="image_cancle"></ion-icon>
-                <div class="showimage_wrapper">
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p id="errors" style="text-align: center; color: red">{{ message }}</p>
+        <input
+          type="text"
+          name="post_caption"
+          placeholder="What's on your mind,{{profile.user.username}}?"
+          autocomplete="off"
+        />
+        <ion-icon name="close-outline" id="image_cancle"></ion-icon>
+        <div class="showimage_wrapper"></div>
 
-                </div>
-
-                <div class="add_to_post">
-                    <button type="button">Add to your post</button>
-                    <ul>
-                        <li>
-                            <label for="contentimage">
-                                <ion-icon name="images-outline" id="photo"></ion-icon>
-                            </label>
-                            <input type="file" name="post_image" id="contentimage" style="display: none;" multiple>
-                        </li>
-                        <li>
-                            <label for="contenttag">
-                                <ion-icon name="person-add-outline" id="tag"></ion-icon>
-                            </label>
-                            <input type="file" name="content_image" id="contenttag" style="display: none;">
-                        </li>
-                        <li>
-                            <label for="contentlocation">
-                                <ion-icon name="location-outline" id="location"></ion-icon>
-                            </label>
-                            <input type="file" name="content_image" id="contentlocation" style="display: none;">
-                        </li>
-                    </ul>
-                </div>
-                <input type="submit" name="content_upload" value="Upload">
-            </form>
+        <div class="add_to_post">
+          <button type="button">Add to your post</button>
+          <ul>
+            <li>
+              <label for="contentimage">
+                <ion-icon name="images-outline" id="photo"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="post_image"
+                id="contentimage"
+                style="display: none"
+                multiple
+              />
+            </li>
+            <li>
+              <label for="contenttag">
+                <ion-icon name="person-add-outline" id="tag"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contenttag"
+                style="display: none"
+              />
+            </li>
+            <li>
+              <label for="contentlocation">
+                <ion-icon name="location-outline" id="location"></ion-icon>
+              </label>
+              <input
+                type="file"
+                name="content_image"
+                id="contentlocation"
+                style="display: none"
+              />
+            </li>
+          </ul>
         </div>
+        <input type="submit" name="content_upload" value="Upload" />
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <div class="first">
+      <ul>
+        <a class="active" href="{% url 'home' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+          <p>Home</p>
+        </a>
+        <a href="{% url 'friend' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+          <p>Friends</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+          <p>Explore</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
+            />
+          </svg>
+          <p>Notifications</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+          <p>Groups</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+            />
+          </svg>
+          <p>Premium</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+            />
+          </svg>
+          <p>Bookmarks</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+          <p>Marketplace</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+          <p>Profile</p>
+        </a>
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p>More</p>
+        </a>
+      </ul>
+      <a href="#" id="create_post">Create Post</a>
+      <div class="signout">
+        <div class="signout_first">
+          <img width="30px" height="30px" src="{{profile.image.url}}" alt="" />
+          <div class="signout_info">
+            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+            <p>@{{profile.user.username}}</p>
+          </div>
+        </div>
+        <div class="signout_second">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
 
-    <main>
-        <div class="first">
-            <ul>
-                <a class="active" href="{% url 'home' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                    <p>Home</p>
-                </a>
-                <a href="{% url 'friend' %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                    </svg>
-                    <p>Friends</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                    <p>Explore</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                    </svg>
-                    <p>Notifications</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                    </svg>
-                    <p>Groups</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                    </svg>
-                    <p>Premium</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-                    </svg>
-                    <p>Bookmarks</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
-                    <p>Marketplace</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                    <p>Profile</p>
-                </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    <p>More</p>
-                </a>
-            </ul>
-            <a href="#" id="create_post">Create Post</a>
-            <div class="signout">
-                <div class="signout_first">
-                    <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                    <div class="signout_info">
-                        <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                        <p>@{{profile.user.username}}</p>
-                    </div>
-                </div>
-                <div class="signout_second">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </div>
-            </div>
+    <div class="second">
+      <div class="post_container">
+        <div class="repost_owner">
+          <img width="40px" height="40px" src="{{profile.image.url}}" alt="" />
+          <div class="repost_owner_info">
+            <h5>{{profile.fullname}}</h5>
+            <p>{{profile.user.username}}</p>
+          </div>
         </div>
-
-        <div class="second">
-            <div class="post_container">
-                <div class="repost_owner">
-                    <img width="40px" height="40px" src="{{profile.image.url}}" alt="">
-                    <div class="repost_owner_info">
-                        <h5>{{profile.fullname}}</h5>
-                        <p>{{profile.user.username}}</p>
-                    </div>
-                </div>
-                <p id="success"></p>
-                <div class="repost_container">
-                    <form action="" method="post" id="repostForm">
-                        {% csrf_token %}
-                        <textarea name="repost_caption" id="" placeholder="Add something to the post"></textarea>
-                        <div class="repost_content">
-                            <p>post created by {{post.user.username}}'s</p>
-                            {% if post.image.count > 1 %}
-                                <div class="content">
-                                    <img width="70px" height="70px" src="{{post.image.all.0.image.url}}" alt="">
-                                    <p class="post_caption">{{post.caption}}</p>
-                                </div>
-                            {% else %}
-                                <div class="content">
-                                    <img width="70px" height="70px" src="{{post.image.all.0.image.url}}" alt="">
-                                    <p class="post_caption">{{post.caption}}</p>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <input id="repostBtn" type="submit" value="Post">
-                    </form>
-                </div>
+        <p id="success"></p>
+        <div class="repost_container">
+          <form action="" method="post" id="repostForm">
+            {% csrf_token %}
+            <textarea
+              name="repost_caption"
+              id=""
+              placeholder="Add something to the post"
+            ></textarea>
+            <div class="repost_content">
+              <p>post created by {{post.user.username}}'s</p>
+              {% if post.image.count > 1 %}
+              <div class="content">
+                <img
+                  width="70px"
+                  height="70px"
+                  src="{{post.image.all.0.image.url}}"
+                  alt=""
+                />
+                <p class="post_caption">{{post.caption}}</p>
+              </div>
+              {% else %}
+              <div class="content">
+                <img
+                  width="70px"
+                  height="70px"
+                  src="{{post.image.all.0.image.url}}"
+                  alt=""
+                />
+                <p class="post_caption">{{post.caption}}</p>
+              </div>
+              {% endif %}
             </div>
+            <input id="repostBtn" type="submit" value="Post" />
+          </form>
         </div>
+      </div>
+    </div>
 
-        <div class="third">
-            <div class="follow_suggest">
-                <h4>Follow People</h4>
-                {% for profile in profiles %}
-                <div class="follow_container">
-                    <div class="follow_inner">
-                        <img width="30px" height="30px" src="{{profile.image.url}}" alt="">
-                        <div class="follow_info">
-                            <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                            <p>@{{ profile.user.username }}</p>
-                        </div>
-                    </div>
-                    <a href="#">Follow</a>
-                </div>
-                {% endfor %}
+    <div class="third">
+      <div class="follow_suggest">
+        <h4>Follow People</h4>
+        {% for profile in profiles %}
+        <div class="follow_container">
+          <div class="follow_inner">
+            <img
+              width="30px"
+              height="30px"
+              src="{{profile.image.url}}"
+              alt=""
+            />
+            <div class="follow_info">
+              <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+              <p>@{{ profile.user.username }}</p>
             </div>
-
-            <div class="trending">
-                <h4>Trending Topics</h4>
-                <p>No trending topics today. Start a conversion!</p>
-            </div>
+          </div>
+          <a href="#">Follow</a>
         </div>
-    </main>
+        {% endfor %}
+      </div>
+
+      <div class="trending">
+        <h4>Trending Topics</h4>
+        <p>No trending topics today. Start a conversion!</p>
+      </div>
+    </div>
+  </main>
 </div>
 <script src="{% static 'js/repost.js' %}"></script>
 {% endblock %}
