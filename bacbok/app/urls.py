@@ -1,11 +1,14 @@
 from django.urls import path
 from . import views
 from chat.urls import urlpatterns
+from .views import SignUpView, VerifyEmailView, CheckEmailView
 
 
 urlpatterns = [
-    # path('', views.register, name='signup'),
-    # path('accounts/login/', views.login, name='account_login'),
+    path('', views.login, name='login'),
+    path('signup', SignUpView.as_view(), name='signup'),
+    path('check-email', CheckEmailView.as_view(), name='check-email'),
+    path('verify-email/<uidb64>/<token>/', VerifyEmailView.as_view(), name="verify-email"),
     path('login_check', views.login_check, name="login_check"),
     path('fullname', views.fullname, name='fullname'),
     path('home', views.home, name='home'),

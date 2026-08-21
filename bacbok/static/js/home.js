@@ -440,7 +440,7 @@ status_image.addEventListener("change", function(e){
 })
 
 
-const home_follow = document.querySelectorAll(".home_follow")
+const home_follow = document.querySelectorAll(".home_followBtn")
 if(home_follow){
     home_follow.forEach((follow) => {
         follow.addEventListener('click', (e) => {

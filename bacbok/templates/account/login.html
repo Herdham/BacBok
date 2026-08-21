@@ -24,12 +24,8 @@
                 <p class="errors">{{ msg }}</p>
             {% endfor %}
 
-            {% for error in form.non_field_errors %}
-                <p class="errors">{{ error }}</p>
-            {% endfor %}
-
             <div id="type_text">
-                <input type="email" id="email" name="login" placeholder="your email" required autocomplete="off">
+                <input type="email" id="email" name="email" placeholder="your email" required autocomplete="off">
             </div>
 
             <div id="type_password">
@@ -48,8 +44,8 @@
             <div id="options">
                 <span>Dont have an account?</span>
                 <ul>
-                    <li><a href="{% url 'account_signup' %}">Register</a></li>
-                    <li><a href="{% url 'account_reset_password' %}">Forget Password?</a></li>
+                    <li><a href="{% url 'signup' %}">Register</a></li>
+                    <li><a href="#">Forget Password?</a></li>
                 </ul>
             </div>
 

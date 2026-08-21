@@ -62,6 +62,14 @@ body{
     text-align: left;
 }
 
+.container form .form-error-box {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e63946;
+    border-radius: 6px;
+    color: #e63946;
+}
+
 .container .type_text input{
     padding: 10px;
     margin-bottom: 7px;

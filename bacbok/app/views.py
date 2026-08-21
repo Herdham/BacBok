@@ -1,64 +1,124 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 from .models import ProfilePage, Post, PostImage, Comment, Status, Video, VideoComment, Share, ShareVideo
 from chat.models import Conversation, Message
-from .forms import SignupForm, LoginForm
 from django.db.models import OuterRef, Subquery, Q, F
 from django.http import JsonResponse, HttpResponse
-from allauth.account.models import EmailAddress
-# Create your views here.
-
+from .forms import SignUpForm
+from django.views.generic import CreateView, TemplateView
+from django.views import View
+from django.utils.http import (
+    urlsafe_base64_encode, urlsafe_base64_decode
+)
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth.tokens import (
+    default_token_generator
+)
+from django.core.mail import send_mail
 User = get_user_model()
 
-#registration validation
-def register(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data["email"]
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password1"]
-            cpassword = form.cleaned_data["password2"]
 
-            user = User.objects.create_user(
-                    email=email,
-                    username=username,
-                    password=password
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = "account/signup.html"
+
+    def form_valid(self, form):
+
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+
+        uidb64 = urlsafe_base64_encode(
+            force_bytes(user.pk)
+        )
+
+        token = default_token_generator.make_token(user)
+
+        verification_path = reverse(
+            "verify-email",
+            kwargs={
+                "uidb64": uidb64,
+                "token": token,
+            }
+        )
+
+        verification_url = self.request.build_absolute_uri(
+            verification_path
+        )
+
+        send_mail(
+            subject="Verify your email",
+            message=(
+                f"Hi {user.username},\n\n"
+                "Please click the link below to verify your account:\n\n"
+                f"{verification_url}"
+            ),
+            from_email="user.me.adam@gmail.com",
+            recipient_list=[user.email],
+        )
+
+        return redirect("check-email")
+
+
+class CheckEmailView(TemplateView):
+    template_name = "account/checkmail.html"
+
+
+class VerifyEmailView(View):
+
+    def get(self, request, uidb64, token):
+
+        try:
+            uid = force_str(
+                urlsafe_base64_decode(uidb64)
             )
+
+            user = User.objects.get(pk=uid)
+
+        except (
+            TypeError,
+            ValueError,
+            OverflowError,
+            User.DoesNotExist,
+        ):
+            user = None
+
+        if (
+            user is not None
+            and default_token_generator.check_token(user, token)
+        ):
+            user.is_active = True
             user.save()
-            return redirect("account_login")
-        
-        return render(request, 'account/signup.html', {"form": form})
-                          
-    else:
-        return render(request, 'account/signup.html')
+
+            return redirect("login")
+
+        return redirect("signup")
 
 #login validation
 def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get("email")
-            password = form.cleaned_data.get("password")
-            try:
-                user_obj = User.objects.get(email=email)
-                        
-                user = auth.authenticate(username=user_obj.username, password=password)
-                
-                if user is not None:
-                    auth.login(request, user)  
-                    return redirect("home")
-                else:
-                    return redirect("account_login")
-                
-            except User.DoesNotExist:
-                return redirect("account_login")
-             
-        return render(request, 'account/login.html', {"form": form})
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        try:
+            user = User.objects.get(email=email)
+            auth_user = auth.authenticate(username=user.username, password=password)
+                    
+            if auth_user is not None:
+                auth.login(request, auth_user)
+                return redirect('login_check')
+            else:
+                messages.info(request, "Crendential Incorrect")
+                return redirect('login')
+        except User.DoesNotExist:
+            messages.info(request, "User Does Not Exist Create an Account")
+            return redirect('login')
+            
     else:
         return render(request, 'account/login.html')
 
@@ -71,11 +131,13 @@ def login_check(request):
     else:
         return redirect('setting', request.user.username)
 
+
+
 def forget_password(request):
     return render(request, 'account/password_reset.html')
 
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def home(request):
     profile = ProfilePage.objects.select_related("user").get(user=request.user)
     follow_user_obj = profile.follow.values_list("user", flat=True)
@@ -149,7 +211,7 @@ def home(request):
         return render(request, 'auth/home.html', context)
 
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def follow(request, profile_id):
     profile = ProfilePage.objects.get(id=profile_id)
     profile_user = ProfilePage.objects.get(user=request.user)
@@ -166,7 +228,7 @@ def follow(request, profile_id):
          })
 
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def search(request):
     if request.method == 'GET':
         search = request.GET.get('search')
@@ -183,7 +245,7 @@ def search(request):
 
 
 #fullname validation
-@login_required(login_url='account_login')    
+@login_required(login_url='login')    
 def fullname(request):
     if request.method == 'POST':
         firstname = request.POST['firstname'].strip()
@@ -196,7 +258,7 @@ def fullname(request):
             fullname = firstname + " " + lastname
             try:
                 ProfilePage.objects.get(user=user_profile)
-                return redirect("account_login")
+                return redirect("login")
             except ProfilePage.DoesNotExist:
                 profile = ProfilePage.objects.create(user=user_profile, firstname=firstname, lastname=lastname, fullname=fullname)
                 profile.save()
@@ -206,7 +268,7 @@ def fullname(request):
  
 
 #profile validation
-@login_required(login_url='account_login')   
+@login_required(login_url='login')   
 def profile(request, username):
     user_obj = User.objects.get(username=request.user.username)
     user = User.objects.get(username=username)
@@ -279,14 +341,14 @@ def profile(request, username):
         return render(request, 'auth/profile.html', context)
 
 #profile_display
-@login_required(login_url='account_login')   
+@login_required(login_url='login')   
 def profile_display(request, pk):
     profile = ProfilePage.objects.get(id=pk)
     context = {"profile": profile}
     return render(request, 'auth/profile_display.html', context)
 
 #setting validation
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def setting(request, user):
     profile_info = ProfilePage.objects.get(user=request.user)
     context = {'profile_info': profile_info}
@@ -312,7 +374,7 @@ def setting(request, user):
         return render(request, 'auth/settings.html', context)
 
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def postLikes(request, post_id):
     post = Post.objects.get(id=post_id)
     if post.likes.filter(id=request.user.id).exists():
@@ -324,7 +386,7 @@ def postLikes(request, post_id):
     })
 
 
-@login_required(login_url="account_login")
+@login_required(login_url="login")
 def videoLikes(request, video_id):
     video = Video.objects.get(id=video_id)
     if request.user in video.user_likes.all():
@@ -336,7 +398,7 @@ def videoLikes(request, video_id):
     })
 
 #POST COMMENT
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def postComment(request, post_id):
     user = User.objects.get(username=request.user.username)
     profile = ProfilePage.objects.select_related("user").get(user=user)
@@ -360,7 +422,7 @@ def postComment(request, post_id):
 
 
 #VIDEO COMMENT
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def videoComment(request, video_id):
     user = User.objects.get(username=request.user.username)
     video = Video.objects.select_related("user").prefetch_related("user_likes").get(id=video_id)
@@ -384,7 +446,7 @@ def videoComment(request, video_id):
         return render(request, 'auth/video_comment.html', context)
     
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def friend(request):
     profile = ProfilePage.objects.prefetch_related("follow").select_related('user').get(user=request.user)
     users = User.objects.exclude(id=request.user.id).prefetch_related('users_acc')
@@ -407,7 +469,7 @@ def friend_request(request, id):
     return JsonResponse(isFollow, safe=False)
 
 
-@login_required(login_url='account_login')
+@login_required(login_url='login')
 def status(request, username):
     now = timezone.now()
     profile = ProfilePage.objects.get(user=request.user)    
@@ -488,7 +550,7 @@ def shareVideo(request, video_id):
         return render(request, "auth/repost_video.html", context)
 
 #logout
-@login_required(login_url='account_login') 
+@login_required(login_url='login') 
 def logout(request):
     auth.logout(request)
-    return redirect('account_login')
+    return redirect('login')
