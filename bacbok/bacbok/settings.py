@@ -58,12 +58,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
-
 ROOT_URLCONF = 'bacbok.urls'
 
 TEMPLATES = [
@@ -181,3 +175,20 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "user.me.adam@gmail.com"
 EMAIL_HOST_PASSWORD = "uubo ugcj nihf bdxi"
 DEFAULT_FROM_EMAIL = "user.me.adam@gmail.com"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
