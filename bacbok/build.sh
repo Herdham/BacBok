@@ -8,5 +8,5 @@ pip install -r requirements.txt
 
 cd bacbok
 
-python manage.py collectstatic --no-input
+python manage.py collectstatic --noinput
 python manage.py migrate
